@@ -6,25 +6,23 @@
     <title>Sample Site</title>
 </head>
 <body>
-    <header>
-        <div>
-            Logo / Site Name
-        </div>
-        <nav>
-            <ul>
-                <li><a href="/html/index.html">Home</a></li> <!--#은 자기 자신에게 돌아오게 된다.(링크를 눌러도인덱스.html여기로감)-->
-                <!--상대 경로중에 하위 목록에서찾을 수 없다고 하는 오류를 해결하기 위해 주소앞에 /를 삽입-->
-                <li><a href="/html/sample_site/login.html">로그인</a></li>
-                <li><a href="/html/sample_site/join.html">회원가입</a></li>
-                <li><a href="/html/sample_site/sitemap.html">사이트맵</a></li>
-                <li><a href="/html/sample_site/callcenter.html">고객센터</a></li>
-            </ul>
-        </nav>
-    </header> <!--반복되는 헤더코드를 파일로만들어 (가독성을 위해) 불러내는 방법도있다. 일단은 알아두기만 할것.
-                    헤더 파일의 경우 변하지 않고 모든 페이지마다 css를 씌우기 어려우니 완성된 후 각 사이트에 넣어주고
-                    세부를 수정하는 것이 더 편함.-->
+    <!--header start-->
+        <iframe src="/html/header.html " 
+            frameborder="0"
+            width="100%"
+            height="230px"></iframe>
+            
+    <!--header end-->
+    
     <div class="main-content"></div>
+    
     <h1>index.html</h1>
-    <footer></footer>
+
+    <!--footer stsrt-->
+    <iframe src="/html/footer.html" 
+    frameborder="0"
+    width="100%"
+    height="210px"></iframe>    
+    <!--footer end-->
 </body>
 </html>
