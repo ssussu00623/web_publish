@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Unit</title>
+<style>
+    div.Pixel {
+        /*길이 고정 : width, height*/
+        width: 400px; 
+        height: 300px;
+        background-color: aquamarine;
+    }
+    div.percent {
+        width: 100%;
+        height: 200px;
+        background-color: darkorange;
+    }
+    div.pixel-child1 {
+        background-color: yellow;
+        width: 50%;
+    }
+    p.Lorem {
+        width: 500px;
+        font-size: 1.2em;
+    }
+    strong {
+        font-size: 3rem; /*기본설정되어있는 폰트 사이즈가 16임 1rem은 10px다.*/  
+        
+    }
+</style>
+</head>
+<body>
+    <h1>CSS 단위</h1>
+    <h2>픽셀(Pixel)</h2>
+    <div class="Pixel"><!--parent-->
+        <h5>pixel</h5>
+        <div class="pixel-child1">pixel child element</div> <!--child-->
+        <!-- 부모자식 관계가 되면 부모의 크기가
+            자식 크기 한계값이 됨. 잘 확인할 것-->
+    </div>
+        <hr>
+        <h2>%percent</h2>
+    <div class="percent"> percent </div>
+<hr>
+<h2>em/rem</h2>
+<p class="Lorem">
+    <strong>lorem</strong> Lorem ipsum dolor sit, amet consectetur adipisicing elit. 
+    Nam natus architecto ipsa impedit aspernatur error voluptas blanditiis quaerat, 
+    cumque facere neque, tenetur vero quas quasi. 
+    Sunt necessitatibus fuga doloremque eaque.</p>
+</body>
+</html>
