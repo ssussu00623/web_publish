@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Status Selector</title>
+    <style>
+        ul {
+            list-style-type: none;
+            padding: 0%;
+        }
+        li {
+            padding: 10px;
+        }
+        input[type="radio"]:checked + label {
+            background-color: tomato;
+        }
+        /*input 타입 중에~ radio버튼 중에서~ 체크가 된 애들 중에~ 
+        인접한 label이 체크 됐을 때 색칠 됐으면 함 */
+        input[type=checkbox]:checked + label {
+            background-color: aquamarine;
+        }
+        input[type=":checkbox"] :checked + label {
+            color: white;
+            background-color: red;
+        }
+        /*
+                ul > li:last-child > button.disabled {
+            color: white;
+            background-color: red;
+        }
+        뭘까? 예제는 이거였는데 안 됨 */
+
+        .not-selector > li:not(:last-child) {
+            background-color: aquamarine;
+        }
+        /* 선택되지 않은 것을 일괄적용(예시는 last-child만 선택함)*/
+    </style>
+</head>
+<body>
+    <h1>Status Selector</h1>
+    <ul>
+        <li>
+            <input type="radio" name="city">
+            <label for="">서울</label>
+            <input type="radio" name="city">
+            <label for="">전주</label>
+            <input type="radio" name="city">
+            <label for="">경주</label>
+        </li>
+        <li>
+            <input type="checkbox" name="subject">
+            <label for="">HTML5</label>
+            <input type="checkbox" name="subject">
+            <label for="">CSS</label>
+            <input type="checkbox" name="subject">
+            <label for="">JavaScript</label>
+        </li>
+        <li>
+            <button>사용가능</button>
+            <button class="disable" disabled>사용불가능</button>
+        </li>
+        <li>
+            <ul class="not-selector">
+                <li>list item</li>
+                <li>list item</li>
+                <li>list item</li>
+                <li>list item</li>
+                <li>list item</li>
+            </ul>
+        </li>
+    </ul>
+</body>
+</html>
