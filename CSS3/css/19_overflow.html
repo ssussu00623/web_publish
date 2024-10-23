@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Overflow</title>
+    <style>
+        div {
+            width: 400px;
+            border: 1px solid silver;
+        }
+        div p {
+            width: 600px;
+            border: 1px solid green;
+        }
+        .auto {overflow: auto;} /*맞춤 스크롤 자동생성*/
+        .hidden {overflow: hidden;} /*맞춤 스크롤 자동생성*/
+        .scroll {overflow: scroll;} /*스크롤이 x축과 y축에 생성*/
+        .scroll-x {overflow-x: scroll;} /*스크롤이 x축에 생성*/
+        .scroll-y {overflow-y: scroll;} 
+        /*스크롤이 y축에 생성 스크롤이 생성되면서 x축에만 필요하면 y축도 생기긴 하지만 비활성화 되어있다. */
+        .bg-img {
+            background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQSvmWS39Nvnncin3dHOEYpPYa9_WVdKD0u0g&s);
+            /*백그라운드 이미지 삽입 응용편.*/
+            background-repeat: repeat;
+            opacity: 0.3;
+        }
+    </style>
+</head>
+<body>
+    <h1>Overflow</h1>
+    <div class="auto bg-img">
+        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. 
+            Maiores repellat expedita suscipit perferendis saepe? Quod dolorem voluptates, 
+            atque vel neque fugit. Vel facilis quibusdam 
+            vitae ex quidem ipsum eligendi ipsam?</p>
+    </div>
+    <div class="hidden">
+        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. 
+            Maiores repellat expedita suscipit perferendis saepe? Quod dolorem voluptates, 
+            atque vel neque fugit. Vel facilis quibusdam 
+            vitae ex quidem ipsum eligendi ipsam?</p>
+    </div>
+    <div class="scroll">
+        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. 
+            Maiores repellat expedita suscipit perferendis saepe? Quod dolorem voluptates, 
+            atque vel neque fugit. Vel facilis quibusdam 
+            vitae ex quidem ipsum eligendi ipsam?</p>
+    </div>
+    <div class="scroll-x">
+        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. 
+            Maiores repellat expedita suscipit perferendis saepe? Quod dolorem voluptates, 
+            atque vel neque fugit. Vel facilis quibusdam 
+            vitae ex quidem ipsum eligendi ipsam?</p>
+    </div>
+    <div class="scroll-y">
+        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. 
+            Maiores repellat expedita suscipit perferendis saepe? Quod dolorem voluptates, 
+            atque vel neque fugit. Vel facilis quibusdam 
+            vitae ex quidem ipsum eligendi ipsam?</p>
+    </div>
+</body>
+</html>

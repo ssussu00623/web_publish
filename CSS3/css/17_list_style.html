@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>List style</title>
+    <style>
+        ul > li {
+            list-style-type: disc;
+            /*disc는 안이 채워진 원... HTML안쪽에 있는 지정하면 
+            li목록과 ol도 disc형으로 바뀌어있다.*/
+        }
+        h1 + ul h3 +li > ul li {
+            border: 1px solid tomato;
+            list-style: decimal;
+        }
+        ol li {
+            list-style-type: '- ';
+        }
+        .db li {
+            list-style-type: '\1F600';
+        }
+    </style>
+</head>
+<body>
+    <h1>list style</h1>
+    <ul>
+        <h3>Front-end</h3>
+        <li>
+            <h5>HTML</h5>
+            <ul>
+            <li>HTML4</li>
+            <li>HTML5</li>
+            </ul>
+        </li>
+        <li>CSS</li>
+        <li>JavaScript</li>
+        <li>React</li>
+    </ul>
+    <hr>
+    <ol>
+        <h3>Back-end</h3>
+        <li>NodeJS</li>
+        <li>JSP</li>
+        <li>ASP</li>
+        <li>PHP</li>
+    </ol>
+    <hr>
+    <ul class="db">
+        <h3>Database</h3>
+        <li>MySQL</li>
+        <li>Oracle</li>
+        <li>Tibero</li>
+        <li>Maria</li>
+    </ul>
+</body>
+</html>
