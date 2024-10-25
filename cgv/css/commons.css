@@ -2,6 +2,7 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+    font-family: '나눔바른고딕';
 }
 :root {
     /*color list*/
@@ -11,4 +12,40 @@
     --color-border: tomato;
     --color-silver: silver;
     --color-footer-bg : rgb(248, 248, 248);
+    --color-button-bg : rgb(222,222,222);
+    --color-gray-222 : rgb(102,102,127);
+    --color-moviechart: rgb(251,251,251);
+    --color-font-primary: rgb(34,34,34);
+    --color-more-line : rgb(244,244,244);
 }
+/* index-total button style*/
+.total-view {
+    border: 1px solid var(--color-silver);
+    border-radius: 15px;
+    padding: 7px 15px;
+    /*position: absolute;
+    부모설정이 없어서 안됨 !! */
+}
+.more-view {
+    border: 1px solid var(--color-more-line);
+    border-radius: 15px;
+    padding: 7px 15px;
+    background-color: #fff;
+} 
+
+/*moviechart, event, special => title style*/
+.content-title-style{
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    /*border: 1px solid sienna;*/
+}
+.content-title-style-font{
+    font-size: 1.4em;
+    font-weight: 600;
+}
+
+.font-color-main {color: var(--color-font-primary);}
+.font-color-sub {color: var(--color-gray-222);}
+
+

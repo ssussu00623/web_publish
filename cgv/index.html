@@ -4,47 +4,83 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CGV</title>
+    <link rel="stylesheet" href="/cgv/css/cgv.css">
+    <link rel="stylesheet" href="/cgv/css/commons.css">
 </head>
 <body>
     <!--header-->
     <iframe src="/cgv/header.html" frameborder="0"
     width="100%"
     height="150px"></iframe>
-
     <!--content-->
-    <div class="content">
-
+    <div>
         <!--영화 예고편-->
-        <div style="background-color:black; width: 100%;">
-            <h1>    <iframe width="500" 
-                height="300" 
-                src="https://www.youtube.com/embed/pFsIUVhahr8?si=pThIJFJO4YvtS571" 
-                title="YouTube video player" 
-                frameborder="0" 
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                referrerpolicy="strict-origin-when-cross-origin" 
-                allowfullscreen></iframe></h1>
+        <div class="content-top">
+            <h1>    
+                <iframe width="1000" 
+                    height="500" 
+                    src="https://www.youtube.com/embed/pFsIUVhahr8?si=pThIJFJO4YvtS571" 
+                    title="YouTube video player" 
+                    frameborder="0" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                    referrerpolicy="strict-origin-when-cross-origin" 
+                    allowfullscreen>
+                </iframe>
+            </h1>
         </div>
         <!--무비 차트리스트-->
-        <div style="background-color: thistle; width: 100%;">
+        <div class="content-moviechart">
             <div><!--컨텐츠 가운데 정렬-->
-                <article>
+                <article class="content-title-style">
                     <div>
-                        <span>무비차트</span>
-                        <span>상영예정작</span>
+                        <span class="content-title-style-font font-color-main">무비차트</span>
+                        <span> &nbsp;</span>
+                        <span class="content-title-style-font font-color-sub">상영예정작</span>
                     </div>
                     <div>
-                        <button>찾아보기</button>
+                        <button class="total-view">전체보기 &gt;</button>
                     </div>
                 </article>
-                <article>
+                <article class="content-moviechart-list">
                     <ul>
                         <li>
                             <div>
                                 <img src="/cgv/imges/movie-chart1.jpg" alt="movie-chart1"
                                 width="200px">
                             </div>
-                            <div><h3>제목</h3></div>
+                            <div><h3>보통의 가족</h3></div>
+                            <div><h5>예매율 100%</h5></div>
+                        </li>
+                        <li>
+                            <div>
+                                <img src="https://img.cgv.co.kr/Movie/Thumbnail/Poster/000088/88526/88526_320.jpg" alt="movie-chart2"
+                                width="200px">
+                            </div>
+                            <div><h3>베놈:라스트댄스</h3></div>
+                            <div><h5>예매율 100%</h5></div>
+                        </li>
+                        <li>
+                            <div>
+                                <img src="https://img.cgv.co.kr/Movie/Thumbnail/Poster/000088/88880/88880_320.jpg" alt="movie-chart3"
+                                width="200px">
+                            </div>
+                            <div><h3>2024 KBO</h3></div>
+                            <div><h5>예매율 100%</h5></div>
+                        </li>
+                        <li>
+                            <div>
+                                <img src="https://img.cgv.co.kr/Movie/Thumbnail/Poster/000088/88459/88459_320.jpg" alt="movie-chart4"
+                                width="200px">
+                            </div>
+                            <div><h3>글래디에이터 Ⅱ </h3></div>
+                            <div><h5>예매율 100%</h5></div>
+                        </li>
+                        <li>
+                            <div>
+                                <img src="https://img.cgv.co.kr/Movie/Thumbnail/Poster/000088/88813/88813_320.jpg" alt="movie-chart5"
+                                width="200px">
+                            </div>
+                            <div><h3>리틀엠마</h3></div>
                             <div><h5>예매율 100%</h5></div>
                         </li>
                         <!--무비차트 리스트 반복 (총 5회 노출)-->
@@ -53,59 +89,78 @@
             </div>
         </div>
         <!--이벤트, 특별관 등-->
-        <div>
+        <div class="content-event-special">
             <!--이벤트-->
             <section>
-                <div>
-                    <h3>event</h3>
-                    <button>전체보기</button>
+                <div class="content-title-style">
+                    <h3 class="content-title-style-font">EVENT</h3>
+                    <button class="total-view">전체보기 &gt;</button>
                 </div>            
-                <ul>
-                    <li>
-                        <div>
-                            <img src="/cgv/imges/event1.jpg" alt="event1"
-                            width="200">
-                        </div>
-                        <p>[콜렉터블 무비머니]Vol.1 맥스 달튼</p>
-                        <p>2024.09.25~2024.10.31</p>
-                    </li>
-                </ul>
+                    <ul>
+                        <li>
+                            <div>
+                                <img src="https://img.cgv.co.kr/WebApp/contents/eventV4/42386/17297657794310.jpg" 
+                                alt="event1"
+                                width="200">
+                            </div>
+                            <p>[CGV] 10월 컬처위크</p>
+                            <p>2024.10.24~2024.10.31</p>
+                        </li>
+                        <li>
+                            <div>
+                                <img src="https://img.cgv.co.kr/WebApp/contents/eventV4/42372/17295802409470.jpg" 
+                                alt="event2"
+                                width="200">
+                            </div>
+                            <p>[베놈-라스트댄스] 씨네브리핑 시리즈</p>
+                            <p>2024.10.22~2024.10.27</p>
+                        </li>
+                        <li>
+                            <div>
+                                <img src="/cgv/imges/event1.jpg" alt="event1"
+                                width="200">
+                            </div>
+                            <p>[콜렉터블 무비나나]Vol.1 맥스 달튼</p>
+                            <p>2024.09.25~2024.10.31</p>
+                        </li>
+                    </ul>
             </section>
             <!--특별관-->
             <section>
-                <div>
-                    <h3>특별관</h3>
-                    <button>전체보기</button>
+                <div class="content-title-style">
+                    <h3 class="content-title-style-font">특별관</h3>
+                    <button class="total-view">전체보기 &gt;</button>
                 </div>
                 <div>
-                    <div><img src="/cgv/imges/special1.png" alt="special1"
-                        width="400px"></div>
-                </div>          
-                <ul>
-                    <li>
-                        <span>SUITE CINEMA</span>
-                        <span>#호텔 컨셉의 프리미엄관</span>
-                    </li>
-                    <li>
-                        <span>CINE & LIVINGROOM</span>
-                        <span>#신개념 소셜 상영관</span>
-                    </li>
-                    <li>
-                        <span>4DX</span>
-                        <span>#모션시트 #오감체험</span>
-                    </li>
-                    <li>
-                        <span>CINE de CHEF</span>
-                        <span>#쉐프가 있는 영화관</span>
-                    </li>
-                </ul>  
+                    <div>
+                        <div><img src="/cgv/imges/special1.png" alt="special1"></div>
+                    </div>          
+                    <ul>
+                        <li>
+                            <span>SUITE CINEMA</span>
+                            <span>#호텔 컨셉의 프리미엄관</span>
+                        </li>
+                        <li>
+                            <span>CINE & LIVINGROOM</span>
+                            <span>#신개념 소셜 상영관</span>
+                        </li>
+                        <li>
+                            <span>4DX</span>
+                            <span>#모션시트 #오감체험</span>
+                        </li>
+                        <li>
+                            <span>CINE de CHEF</span>
+                            <span>#쉐프가 있는 영화관</span>
+                        </li>
+                    </ul>  
+                </div>
             </section>
             <!--패키지, 기프트 등-->
             <section>
                 <div>
                     <div>
-                        <span><b>패키지</b></span>
-                        <button>더보기</button>
+                        <spanclass="content-title-style-font"><b>패키지</b></span>
+                        <button class="more-view">더보기</button>
                     </div>
                     <ul>
                         <li>
@@ -116,13 +171,29 @@
                                 <p>62,000원</p>
                             </div>
                         </li>
+                        <li>
+                            <img src="https://img.cgv.co.kr/GiftStore/Product/Pc/List/17170513228970.jpg" alt="나랑 너 패키지"
+                            width="100px">
+                            <div>
+                                <p>나랑 너 패키지</p>
+                                <p>35,000원</p>
+                            </div>
+                        </li>
+                        <li>
+                            <img src="https://img.cgv.co.kr/GiftStore/Product/Pc/List/16778206767040.jpg" alt="좋은 날 패키지"
+                            width="100px">
+                            <div>
+                                <p>좋은 날 패키지</p>
+                                <p>18,000원</p>
+                            </div>
+                        </li>
                     </ul>
                 </div>
             <!--영화관람권-->
                 <div>
                     <div>
                         <span><b>영화관람권</b></span>
-                        <button>더보기</button>
+                        <button class="more-view">더보기</button>
                     </div>
                     <ul>
                         <li>
@@ -139,7 +210,7 @@
                 <div>
                     <div>
                         <span><b>기프트카드</b></span>
-                        <button>더보기</button>
+                        <button class="more-view">더보기</button>
                     </div>
                     <ul>
                         <li>
@@ -162,7 +233,7 @@
                             <span>
                                 <a href="#">[시스템 점검iOS 18 업데이트 관련 예매 서비스...</a>
                             </span>
-                            <button>더보기</button>
+                            <button class="more-view">더보기</button>
                         </div>
                     </div><!--공지사항, 앱 다운로드-->
                     <div> <!--고객센터-->
