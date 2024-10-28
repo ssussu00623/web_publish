@@ -23,6 +23,7 @@
     border: 1px solid var(--color-silver);
     border-radius: 15px;
     padding: 7px 15px;
+    background-color: #fff;
     /*position: absolute;
     부모설정이 없어서 안됨 !! */
 }
@@ -30,7 +31,9 @@
     border: 1px solid var(--color-more-line);
     border-radius: 15px;
     padding: 7px 15px;
+    font-weight: 500;
     background-color: #fff;
+    color: var(--color-gray-222);
 } 
 
 /*moviechart, event, special => title style*/
@@ -47,5 +50,3 @@
 
 .font-color-main {color: var(--color-font-primary);}
 .font-color-sub {color: var(--color-gray-222);}
-
-

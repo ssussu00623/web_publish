@@ -60,6 +60,15 @@ header {
     position: relative;
     /*overflow: hidden;*/
 }
+.header-menu-serch-icon {
+    display: block;
+    width: 30px;
+    height: 30px; 
+}
+.header-menu-serch-icon-img {
+    width: 30px;
+    height: 30px; 
+}
 .header-menu-icon img{
     width: 36px;
     height: 36px;
@@ -119,6 +128,10 @@ header {
     width: 80%;
     border-style: none;
     padding: 5px;
+}
+.header-bottom-search button{
+    background-color: #fff;
+    border-style: none;
 }
 /*.header-bottom-search input > img{
     width: 36px;
@@ -296,56 +309,151 @@ footer {
     width: 1000px;
     margin: auto;
 }
-
-.content-event-special section:first-child ul {
+.content-event-list {
     /*border: 1px solid red;*/
     list-style: none;
     display: flex;
-    justify-content: space-between
+    /*justify-content: space-between*/
 }
-
+.content-event-list li {
+    /*border: 1px solid blue;*/
+    padding: 10px;
+}
+.content-event-list li p {
+    /*border: 1px solid blue;*/
+    padding: 5px;
+}
+.content-event-title {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--color-primary);
+    margin-top: 10px;
+}
+.content-event-sub {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--color-gray-222);
+}
 .content-event-special section:first-child ul li div> img {
     width: 310px;
     height: 207px;
     border-radius: 15px; 
 }
-
 /*
 특별관
 */
-
-.content-event-special section:nth-child(2) > div:first-child {
-    border: 1px solid rgb(255, 0, 200);
-    display: flex;
-    /*justify-content: space-between;*/
-}
-.content-event-special section:nth-child(2) div {
-    display: inline;
-    /*border: 1px solid green;*/
+.special1-content-list {
+    /*border: 1px solid rgb(255, 0, 200);*/
     display: flex;
     justify-content: space-between;
 }
-.content-event-special section:nth-child(2) div img {
-    width: 500px;
-    height: 260px;
+.special1-content-list div img,
+.special1-content-list ul {
+    /*border: 1px solid rgb(255, 0, 200);*/
+    width: 480px;
 }
-.content-event-special section:nth-child(2) div > ul li {
+.special1-content-list ul li{
+    border-top: 1px solid var(--color-silver);
+    display: flex;
     list-style: none;
-    display: block;
-    border: 1px solid green;
+    padding: 18px 20px;
+    justify-content: space-between;
+    align-items: center;
 }
-
+.special1-content-list ul li:last-child {
+    border-bottom: 1px solid var(--color-silver);
+}
+.special1-content-list ul li span:first-child{
+    font-size: 1.1em;
+    letter-spacing: 1px;
+}
+.special1-content-list ul li span:last-child{
+    display: inline;
+    padding: 5px;
+    background-color: var(--color-footer-bg);
+    border-radius: 6px;
+    font-size: 14px;
+    color: var(--color-gray-222);
+}
+.special1-content-list ul li:hover {
+    border: 1px solid var(--color-primary);
+    border-radius: 10px;
+}
+.special1-content-list ul li:hover +li{
+    border-top: 1px solid white;
+}
 /*
 패키지
 */
-
-.content-event-special section:nth-child(3) {
-    /*border: 1px solid red;*/
+/*.content-event-special section:nth-child(3) {
+    border: 1px solid red;
     list-style: none;
     display: flex;
     justify-content: space-between;
+}*/
+.package-content-list{
+    /*border: 1px solid salmon;*/
+    display: flex;
+    justify-content: space-between;
+    margin: 50px 0 20px 0;
+}
+.package-title {
+    font-size: 1.4em;
+    font-weight: 600;
 }
 
+.package-content-border {
+    border: 1px solid rgb(228, 228, 228);
+    border-radius: 8px;
+    padding: 20px;
+    width: 320px;
+}
+.package-content-border > div {
+    display: flex;
+    justify-content: space-between;
+}
+.package-content-border > ul {
+    /*border: 1px solid purple;*/
+    list-style: none;
+}
+.package-content-border > ul li {
+    /*border: 1px solid salmon;*/
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 20px 5px;
+}
+.package-content-border > ul li div p {
+    /*border: 1px solid salmon;*/
+    font-size: 1.2em;
+    font-weight: 500;
+    padding-left: 10px;
+}
 /*
 공지사항
 */
+.notice-content-list, .notice-content-list >div:first-child{
+    /*border: 1px solid salmon;*/
+    display: flex;
+    justify-content: space-between;
+}
+.notice-content-border {
+    border: 1px solid silver;
+    border-radius: 8px;
+    width: 750px;
+    height: 200px;
+    margin-bottom: 70px;
+    padding: 20px;
+}
+.notice-content-border >div:first-child {
+    border: 1px solid green;
+}
+.notice-content-border >div:nth-last-child(1){
+    border: 1px solid salmon;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+.notice-content-border img {
+    border: 1px solid purple;
+}
