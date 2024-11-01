@@ -160,6 +160,9 @@
     color: #fff;
     background-color: var(--color-siam);
 }
+/* .box {
+    box-shadow: 5px 5px 5px 5px rgba(0,0,0,2);
+} */
 .my-skills > div > p:first-child {
     padding: 50px 20px 20px 20px;
     font-size: 2em;
@@ -172,9 +175,8 @@
     text-align: center;
     margin-bottom: 20px;
 }
-
 .my-ad-skills div:first-child {
-    border: 1px solid tomato;
+    /* border: 1px solid tomato; */
     margin: 0px 0px 0px 50px;
     width: 550px;
     height: 500px;
@@ -184,25 +186,27 @@
 .my-ad-skills div:nth-child(2),
 .my-ad-skills div:last-child{
     /* border: 1px solid tomato; */
-    width: 300px;
+    float: inline-start;
+    width: 350px;
     height: 250px;
-    display: flex;
-    float: right;
 }
 .my-ad-skills div:nth-child(2){
-    border: 1px solid tomato;
     background-color: var(--color-siam);
-    width: 300px;
-    height: 250px;
-    float: right;
 }
-.my-ad-skills div:last-child{
-    /* border: 1px solid tomato; */
+.my-ad-skills div:last-child{   
     background-color: var(--color-blue-black);
-    width: 300px;
-    height: 250px;
-    float: right;
 }
+.my-ad-skills > div> p:first-child {
+    margin: 30px;
+    font-weight: 700;
+    color: var(--color-point);
+    text-align: center;
+}
+.my-ad-skills > div> p:not(:first-child){
+    /* border: 1px solid tomato; */
+    text-align: center;
+}
+
 /****************************************
 * title : my work
 * author : ssussu
@@ -243,6 +247,7 @@
     background-color: var(--color-point);
 }
 .my-work img {
+    margin: 5px;
     display: inline-flex;
     width: 200px;
     border-radius: 15px;
@@ -285,11 +290,10 @@
 }
 .Testimonial>ul>li>span {
     border: 1px solid silver;
+    display: inline-block;
     border-radius: 15px;
     padding: 20px;
-    display: flex;
     list-style: none;
-    text-align: center;
     width: 1000px;
 }
 .Testimonial ul li img {
