@@ -57,15 +57,29 @@
     height: 500px;
     margin: 0 auto;
 }
-.main-board> img{
-    border: 1px solid tomato;
+.main-board> div:first-child{
+    display: flex;
+    justify-content: center;
 }
-.main-intro > div p {
+.main-intro > div {
     color: #fff;
     text-align: center;
 }
-.main-board > p{
+.main-board > div:nth-child(2) p:first-child{
+    /* border: 1px solid tomato; */
     font-size: 2.0em;
+    font-weight: 600;
+    padding: 10px;
+}
+.main-board > div:nth-child(2) p:nth-child(2){
+    /* border: 1px solid tomato; */
+    font-size: 2.0em;
+    font-weight: 600;
+    padding: 10px;
+}
+.main-board > div:nth-child(2) p:nth-child(3){
+    /* border: 1px solid tomato; */
+    padding: 10px;
 }
 .main-btn {
     /* border: 5px solid tomato; */
@@ -105,7 +119,7 @@
 .About-me article> div > span {
     padding: 50px 20px 20px 20px;
     font-size: 2em;
-    font-weight: 700;
+    font-weight: bold;
     display: flex;
     justify-content: center;
 }
@@ -147,6 +161,22 @@
     width: 100px;
     height: 100px;
 }
+.main-company {
+    /* border: 1px solid tomato; */
+    width: 900px;
+    margin-left: 50px;
+}
+.main-company> div{
+    /* border: 1px solid tomato; */
+    display: flex;
+}
+.main-company> div> img{
+    /* border: 1px solid tomato; */
+    width: 100px;
+    height: 40px;
+    display: flex;
+}
+
 /****************************************
 * title : my skills
 * author : ssussu
