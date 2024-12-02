@@ -1,0 +1,49 @@
+1. 리액트?
+- user Interface(UI)사용자 인터페이스를 만들기 위한 JavaScript 라이브러리(리액트를 표현하는 하나의 문장)
+- 로직X 화면만 맹금
+- 리액트 만든 곳 ...? Meta(구 facebook)에서 2013년도 오픈소스로 공개 2015년에 React Native 출시
+- 2019년도 함수형태로 수정하여 업데이트 그 전에는 클래스 기반이었음.
+- 2022년 서버사이트 렌더링이 가능해짐
+
+
+2. React 장점
+- 빠른 업데이트와 렌더링 속도 : React DOM을 사용하기 때문
+- 컴포넌트 기반 구조 : UI를 만ㄹ어주는 하나의 블럭. 함수기반의 컴포넌트 생성
+- 재 사용성 : 함수 기반의 컴포턴트이기 때문에 자새용이 up
+- 든든한 지원군 : Meta(구 facebook)에서 support함
+- 활발한 지식공유 & 방대한 커뮤니티(NPM)
+- 모바일 앱 개발 가능 : 2015년 React Native출시 (잘 사용하진 않음)
+
+3. React 단점
+- 방대한 학습량 : HTML, CSS, 자바스크립트 기본+ React 문법
+- 높을 상태 관리 복잡도 : React Hooks를 통한 상태관리
+
+
+4. React 프로젝트 생성 및 실행
+ 1) NodeJS 설치가 선행되어져야 함
+ 2) NPM 커뮤니티를 통해 React 앱을 생성함
+ 3) React 앱 생성하기
+    -  npx create-react-app [생성할 앱 이름(snake case type으로)] /외워
+    - 터미널 안에서 실행 하여야...함!
+    예) npx create-react-app my-app
+4) React앱 실행
+    cd [이동할 리액트 앱 이름] ex. cd my-app /외워
+    my-app> npm start /외워
+4-1) json 파일 안에서 확인 가능한 압축 파일들은 한 번 압축 해제하면 다시는 압출 할 수 없음.
+    -start를 실행했던 것도 이 안에 있던 start 키워드가 실행 된 것이다.
+4-2) json 확장자명인 이유로 확인 할 수 있듯 {}로 묶여진 걸 볼 수 있음.
+
+5. React 실행 순서
+- npm start > src/index.js > App.js(컴포넌트)
+- npm start > (pakage.json start실행)> src/index.js > index 컴포넌트를 App.js가 출력됨
+    index.js는 이름도 확장자도 바뀌면안 된다. index.html 역시 바뀌면 안됨 
+
+컴포넌트의 첫 글자는 늘 대문자! Function 함수 도 늘 첫글자가 대문자였던 걸 따르는 
+
+6. 컴포넌트(Component):: UI를 만드는 블럭 생성
+- 리액트의 UI를 구성하는 함수 컴포넌트
+- 첫글자는 대문자로 정의한다.
+- return 키워드 다음에는 ()로묶어준다. 
+- 반환되는 컴포넌트는 반드시 하나의 태그로 그룹핑 한 후 반환하도록 한다.
+    예) <dvi>, <>(빈태그)
+- 로직을 실행하는 코드는 {}로 묶어서 반환코드에 추가한다.

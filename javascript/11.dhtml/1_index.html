@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="/javascript/11.dhtml/1_counter.js"></script>
+    <style>
+        .counter_container {
+            width: 160px;
+        }
+        #number {
+            font-size : 30px;
+            text-align: center;
+            padding-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Counter</h1>
+    <div class="counter_container">
+        <div id="number">0</div>
+        <!-- <input type="text" id="number2"> -->
+        <button type="button" onclick="counter('increment')">increment</button>
+        <!--/*같은 함수 안에 넣으려고 하기 때문에 비워두는게 아닌 각 값을 넣어준다.-->
+        <button type="button" onclick="counter('decrement')">decrement</button>
+    </div>
+    <h1>Counter2</h1>
+    <div class="counter_container">
+        <div id="number2">0</div>
+        <!-- <input type="text" id="number2"> -->
+        <button type="button" onclick="increment()">increment</button>
+        <!--/*함수를 js에서 받아오기 때문에 이 빈칸이 필요하다
+        괄호없이 부르면 그냥 주소값만 불러와 실행 안 됨!-->
+        <button type="button" onclick="decrement()">decrement</button>
+    </div>
+</body>
+</html>

@@ -1,0 +1,16 @@
+.swiper {
+    width: 1200px;
+    height: 800px;
+    margin: auto;
+    border: 1px solid salmon;
+}
+
+.swiper-slide {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* background-color: burlywood; */
+}
+.swiper-slide img {
+    width: 50%;
+}

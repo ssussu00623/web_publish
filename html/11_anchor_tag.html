@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anchor Tags</title>
+</head>
+<body>
+    <!--인라인컨텐츠. 링크를 삽입해야하는 필수 요소-->
+    <!--다른 곳에서 서비스하는 url은 절대경로, 아직 서비스하지 않고 만들어진 (vs코드 내)사이트는 상대경로라고 한다.-->
+    <h1>Anchot Tags</h1>
+    <h3>절대경로</h3>
+    <a href="http://www.naver.com">naver</a>
+    <a href="http://www.google.com">google</a>
+
+    <!--경로를 삽입하지 않아도링크가 걸려있는 상태. 주의하자!
+        사이트가 열려있던 탭에서 이동하는게 디폴트. 새탭생성은 추가 작업을 해야함.-->
+
+        <h1>Anchot Tags</h1>
+        <h3>절대경로</h3>
+        <div>   
+        <a href="http://www.naver.com">naver</a>
+        <a href="http://www.google.com">google</a>
+        </div>
+    
+
+    <div>
+        <h3>상대경로</h3>
+        <a href="10_table.html">테이블 사용법</a>
+    </div>
+    
+    <div>
+        <h3>네트워크를 사용하여 상대경로를 절대경로로</h3>
+        <a href="http://127.0.0.1:5500/html/11_anchor_tag.html">테이블 사용법의 절대경로</a>
+    </div>
+
+
+    <div> 
+        <h3>새탭으로 열기</h3>  
+        <!-- target="_blank"를 사용하면 새 창으로 열린다. _self는 기본(이 창에서 열기), 
+         _parent는 유튜브 pip화면처럼 화면 일부를 분할하여 사용하는 것. 
+         _top 상단에 띄우도록 하는 것-->
+
+        <a href="http://www.naver.com" target="_blank">naver</a>
+        <a href="http://www.google.com" target="_blank">google</a>
+        </div>
+    
+
+        <h3>파일 다운로드</h3>
+        <a href="/html/sample_site.zip">샘플 사이트</a>
+</body>
+</html>

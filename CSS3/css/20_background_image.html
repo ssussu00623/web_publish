@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Background-image</title>
+    <style>
+        div {
+            width: 800px;
+            height: 500px;
+            border: 1px  solid silver;
+        }
+        .bg-img {
+            /*background-image: url(/html/imges/logoRed.png); 
+            상대 경로와 절대 경로 모두 가능!*/
+            background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQSvmWS39Nvnncin3dHOEYpPYa9_WVdKD0u0g&s);
+            /*인터넷 상의 이미지 주소 복사로도 적용이 가능하다.*/
+            background-repeat: repeat;
+        }
+        /*디폴트 값이 repeat이라서 이미지가 자동반복된다.*/
+    </style>
+</head>
+<body>
+    <h3>Background Image</h3>
+    <div class="bg-img">
+        <img src="/html/imges/logoRed.png" alt="cgv logo">
+    </div>
+
+</body>
+</html>

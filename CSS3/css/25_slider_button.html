@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Slider Button</title>
+    <style>
+        .sliderwapper {
+            width: 600px;
+            height: 400px;
+            margin: 0 auto/*가운데 정렬! 오토를 사용하려면 width 지정 필수*/;
+            background-color: gray;
+            position: relative;
+        }
+        .btn {
+            padding: 0 20px;
+            line-height: 30px;
+            color: white;
+            background-color: black;
+            display: inline-block;
+            position: absolute;
+            top: 50%;
+            margin-top: -15;
+        }
+        .next {right: -30px;}
+        .prev {left : -30px;}
+        .slide_img {
+            width: 600;
+            height: 400;
+        }
+    </style>
+</head>
+<body>
+    <h1>Sloderwrapper</h1>
+    <div class="sliderwapper">  
+        <img class="slide_img" src="https://img.cgv.co.kr/Movie/Thumbnail/StillCut/000088/88813/88813230190_727.png" alt="still cut">
+        <button class="btn next">next</button>
+        <button class="btn prev">prev</button>
+    </div>
+</body>
+</html>

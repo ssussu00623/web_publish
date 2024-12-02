@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0 bax">
+    <title>Header</title>
+</head>
+<body>
+    
+    <header style="width: 100%; height: 200px; background-color: aqua;">
+        <div>
+            <img src="/html/imges/logoRed.png" 
+            alt="CGV LOGO" 
+            width="70px">
+        </div>
+        <nav>
+            <ul>
+                <li><a href="/html/index.html" target="_parent">Home</a></li> <!--#은 자기 자신에게 돌아오게 된다.(링크를 눌러도인덱스.html여기로감)-->
+                <!--상대 경로중에 하위 목록에서찾을 수 없다고 하는 오류를 해결하기 위해 주소앞에 /를 삽입-->
+                <li><a href="/html/sample_site/login.html" target="_parent">로그인</a></li>
+                <li><a href="/html/sample_site/join.html" target="_parent">회원가입</a></li>
+                <li><a href="/html/sample_site/sitemap.html" target="_parent">사이트맵</a></li>
+                <li><a href="/html/sample_site/callcenter.html" target="_parent">고객센터</a></li>
+                <li><a href="/html/sample_site/mycgv.html" target="_parent">My CGV</a></li>
+            </ul>
+        </nav>
+    </header>
+</body>
+</html>

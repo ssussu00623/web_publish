@@ -1,0 +1,132 @@
+:root{
+    --max-size-width: 1200px;
+}
+/* 
+    header
+*/
+.header {
+    /* border: 1px solid red; */
+    background-color: black;
+    width: 100%;
+    color: white;
+    display: flex;
+    top: 0;
+    justify-content: space-between;
+    margin: auto;
+    text-align: center;
+    position: fixed;
+}
+.header__logo{
+    display: flex;
+}
+.header__logo__img {
+    width: 35px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+}
+.header__logo__title {
+    font-size: 1.5rem;
+}
+.header__toggle {
+    display: none;
+}
+.header__menu {
+    list-style: none;
+    display: flex;
+}
+.header__menu__item{
+    margin: 15px;
+    color: white;
+    display: flex;
+    text-decoration: none;
+    text-align: center;
+    padding: 10px;
+    font-weight: bold;
+}
+.active {
+    border: 1px solid aqua;
+    border-radius: 8px;
+}
+.header__menu__item:hover {
+    border-bottom: 1px solid aqua;
+}
+/* 
+    main-home
+*/
+#home {
+    /* border: 1px solid red; */
+    background-color: black;
+    width: 100%;
+    color: white;
+    margin: auto;
+    display: inline-block;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    padding: 5rem 1rem;
+    padding-top : 7rem;
+    text-align: center;
+}
+.home__avatar {
+    border: 5px solid aqua;
+    border-radius: 100%;
+}
+.home__title {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+.home__title--strong{
+    color: aqua;
+}
+.home__description {
+    font-size: 1.3rem;
+    margin: 0 auto;
+}
+.home__contact {
+    display: inline-block;
+    border: 1px solid aqua;
+    border-radius: 8px;
+    padding: 0.5rem 1rem;
+    margin-top: 2rem;
+    color: black;
+    background-color: aqua;
+    text-decoration: none;
+    font-weight: bold;
+}
+.home__contact:hover {
+    background-color: black;
+    color: aqua;
+}
+/* 
+About me 
+*/
+.majors {
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    margin: 2.5rem 0;
+}
+.title {
+    margin: 0;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    gap: 1rem;
+    margin: 2.5rem 0;
+}
+.major {
+    background-color: black;
+    list-style: none;
+    color: white;
+    text-align: center;
+    align-items: center;
+    border-radius: 15px;
+}
+.major__icon {
+    color: aqua;
+    font-size: 4rem;
+    margin: 1rem 0;
+}

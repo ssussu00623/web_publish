@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>01_syntax</title>
+    <style>
+        /*>Internal, External syntax :
+            [선택자(selector)] 
+                { 프로퍼티:값(property):값(value); }
+            
+            - 선택자 종류 : id (#), class(.), 경로(부모/자식관계...)
+                */
+        li.internal {
+            color: green;
+        }
+        /*헤드에 style태그를 넣어서*/
+
+        /*태그가 많아지면external로 만들어서파일로따로 저장해 사용하는 것*/
+        /*id 태그는 자바스크립트에서 더많이 쓴다. */
+    </style>
+    <link rel="stylesheet"
+    type="text/css" href="/CSS3/css/syntax.css"></style>
+</head>
+<body>
+    <h1>CSS 문법</h1>
+    <ul>
+        <!--Inline syntax : style="프로퍼티:값; -->
+        <li style="color: red;">Inline style</li><!--짧고 부분적일 때만 사용 코드가 길어짐-->
+        <li class=internal>Internal style</li>
+        <li id="external">External style</li>
+</ul>
+</body>
+</html>

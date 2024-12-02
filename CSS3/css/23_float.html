@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>float</title>
+    <style>
+        .box-group {
+            border: 1px solid silver;
+            /*clear: both; 플롯이 적용되지 않게 얘를빼는 코드*/
+            overflow: hidden;
+        }
+        .box-group > div {
+            width: 100px;
+            height: 100px;
+            background-color: aquamarine;
+            text-align: center;
+            /*display: inline-block;
+            이렇게 할 수 있지만 블록인 상태를유지하고 정렬하고자 할 때 플롯을 사용한다.*/
+            float: right;
+            /* 플롯 정렬은 무조건 퍼스트 차일드부터*/
+            margin: 10px;
+            border-radius: 10px;
+            }
+            /*
+        h1 {
+            float: left;
+        }
+            */
+            div.box-group > p {clear: both;}
+            ul{
+                padding: 0;
+                list-style: none;
+            }
+            ul li {
+                background-color: pink;
+                border: 1px solid white;
+                float: left;
+                width: 100px;
+                padding: 20px 0px;
+                text-align: center;
+            }
+            ul li a {
+                text-decoration: none;
+                color: azure;
+            }
+            ul li a:hover {
+                color: tomato;
+                text-decoration: underline;
+            }
+            /* a태그까지 지정해야한다. 이 링크 텍스트에 마우스호버를 했을 때 발동하도록*/
+
+            ul li:first-child a {
+                color: black;
+                font-weight: bold;
+            }
+            /*li태그가 반복되고 있기 때문에 a태그를 먼저 지정하면 인식하지 못한다.
+            li태그를 먼저 선택한 뒤 a링크를 따로 지정한다.*/
+            ul + hr {clear: both;}
+            img {float: right;}
+            img + p {
+                width: 420px;
+                border: 1px solid red;
+                text-indent: 10px;
+                text-align: justify;
+            }
+    </style>
+</head>
+<body>
+    <h1>float : 블록레벨 한줄로 정렬</h1>
+    <div class="box-group">
+        <div>box1</div>
+        <div>box2</div>
+        <div>box3</div>
+        <p>
+            Lorem ipsum, dolor sit amet consectetur adipisicing elit. 
+            Reprehenderit laudantium, nesciunt animi, 
+            vel et obcaecati enim culpa dolor natus cum dolorum, 
+            labore id voluptatem quasi autem voluptates assumenda debitis consequatur!
+        </p>
+    </div>
+    <hr>
+    <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Login</a></li>
+        <li><a href="#">Signup</a></li>
+        <li><a href="#">Mypage</a></li>
+        <li><a href="#">support</a></li>
+    </ul>
+    <hr>
+    <img src="/html/imges/logoRed.png" alt="CGV logo">
+    <p>
+        Lorem ipsum, dolor sit amet consectetur adipisicing elit. 
+        Reprehenderit laudantium, nesciunt animi, 
+        vel et obcaecati enim culpa dolor natus cum dolorum, 
+        labore id voluptatem quasi autem voluptates assumenda debitis consequatur!
+    </p>
+</body>
+</html>

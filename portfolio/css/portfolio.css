@@ -1,0 +1,361 @@
+/****************************************
+* title : top style
+* author : ssussu
+* final date : 24.11.01
+****************************************/
+.header-top {
+    display: flex;
+    width: 1000px;
+    margin: 0 auto;
+    background-color: #000;
+    padding-bottom: 5px;
+}
+.header-top div {
+    width: 800px;
+}
+.header-top-logo {
+    /* border: 1px solid blue; */
+    position: relative;
+    width: 200px;
+}
+.header-top-logo> a > img {
+    width: 40px;
+}
+.top-main-menu ul {
+    font-weight: 400;
+    margin-top: 20px;
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+}
+.top-main-menu ul li a{
+    /* border: 1px solid aqua; */
+    text-align: center;
+    padding: 10px;
+    text-decoration: none;
+}
+.top-main-menu ul li a:hover {
+    border: 1px solid var(--color-point);
+    border-radius: 5px;
+}
+.header-top, .top-main-menu li a{
+    color: #fff;
+}
+
+/****************************************
+* title : main style
+* author : ssussu
+* final date : 24.11.01
+****************************************/
+.main-intro {
+    margin-top: 0;
+    width: 100%;
+    margin: auto;
+    position: relative;
+    background-color: #000;
+    width: 1000px;
+    height: 500px;
+    margin: 0 auto;
+}
+.main-board> div:first-child{
+    display: flex;
+    justify-content: center;
+}
+.main-intro > div {
+    color: #fff;
+    text-align: center;
+}
+.main-board > div:nth-child(2) p:first-child{
+    /* border: 1px solid tomato; */
+    font-size: 2.0em;
+    font-weight: 600;
+    padding: 10px;
+}
+.main-board > div:nth-child(2) p:nth-child(2){
+    /* border: 1px solid tomato; */
+    font-size: 2.0em;
+    font-weight: 600;
+    padding: 10px;
+}
+.main-board > div:nth-child(2) p:nth-child(3){
+    /* border: 1px solid tomato; */
+    padding: 10px;
+}
+.main-btn {
+    /* border: 5px solid tomato; */
+    padding-top: 15px;
+    text-align: center;
+}
+.main-btn button{
+    /* border: 5px solid tomato; */
+    padding: 15px ;
+    text-align: center;
+    padding: 7px 15px ;
+    outline: none;
+    background-color: var(--color-point);
+    border: 1px solid var(--color-point);
+    border-radius: 5px;
+    font-weight: 500;
+}
+/****************************************
+* title : About me
+* author : ssussu
+* final date : 24.11.01
+****************************************/
+.About-me {
+    width: 1000px;
+    height: 600px;
+    margin: 0 auto;   
+    background-color: #fff;
+    text-align: center;
+    padding-top: 50px;
+}
+.About-me article> div {
+    /* border: 1px solid tomato; */
+    width: 900px;
+    display: inline-block;
+    justify-content: center;    
+}
+.About-me article> div > span {
+    padding: 50px 20px 20px 20px;
+    font-size: 2em;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+}
+.About-me article> div > p{
+    padding: 20px;
+    font-size: 1.2em;
+    text-align: center;
+}
+.About-me-skills {
+    border: 1px solid tomato;
+    text-align: center;
+    padding-left: 50px;
+}
+.About-me-skills div {
+    /* border: 1px solid tomato; */
+    margin: 10px;
+    width: 250px;
+    height: 200px;
+    float: left;
+    justify-content: space-evenly;
+    color: #fff;
+    background-color: var(--color-siam);
+    text-align: center;
+}
+.About-me-skills> div> p {
+    /* border: 1px solid tomato; */
+    font-size: 1.5em;
+}
+.About-me-skills> div> span {
+    /* border: 1px solid tomato; */
+    font-size: 0.8em;
+}
+.About-me-skills> div> i{
+    border: 1px solid tomato;
+    color: var(--color-point);
+    display: inline-block;
+    text-align: center;
+    margin-bottom: 10px;
+    width: 100px;
+    height: 100px;
+}
+.main-company {
+    /* border: 1px solid tomato; */
+    width: 900px;
+    margin-left: 50px;
+}
+.main-company> div{
+    /* border: 1px solid tomato; */
+    display: flex;
+}
+.main-company> div> img{
+    /* border: 1px solid tomato; */
+    width: 100px;
+    height: 40px;
+    display: flex;
+}
+
+/****************************************
+* title : my skills
+* author : ssussu
+* final date : 24.11.01
+****************************************/
+.my-skills {
+    /* border: 1px solid tomato; */
+    width: 1000px;
+    height: 800px;
+    margin: 0 auto;   
+    color: #fff;
+    background-color: var(--color-siam);
+}
+/* .box {
+    box-shadow: 5px 5px 5px 5px rgba(0,0,0,2);
+} */
+.my-skills > div > p:first-child {
+    padding: 50px 20px 20px 20px;
+    font-size: 2em;
+    font-weight: 700;
+    text-align: center;
+}
+.my-skills > div > p:last-child {
+    /* border: 1px solid tomato;  */
+    padding: 15px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+.my-ad-skills div:first-child {
+    /* border: 1px solid tomato; */
+    margin: 0px 0px 0px 50px;
+    width: 550px;
+    height: 500px;
+    float: left;
+    background-color: var(--color-black);
+}
+.my-ad-skills div:nth-child(2),
+.my-ad-skills div:last-child{
+    /* border: 1px solid tomato; */
+    float: inline-start;
+    width: 350px;
+    height: 250px;
+}
+.my-ad-skills div:nth-child(2){
+    background-color: var(--color-siam);
+}
+.my-ad-skills div:last-child{   
+    background-color: var(--color-blue-black);
+}
+.my-ad-skills > div> p:first-child {
+    margin: 30px;
+    font-weight: 700;
+    color: var(--color-point);
+    text-align: center;
+}
+.my-ad-skills > div> p:not(:first-child){
+    /* border: 1px solid tomato; */
+    text-align: center;
+}
+
+/****************************************
+* title : my work
+* author : ssussu
+* final date : 24.11.01
+****************************************/
+.my-work {
+    /* border: 1px solid tomato; */
+    width: 1000px;
+    height: 600px;
+    margin: 0 auto;   
+    color: #fff;
+    background-color: #000;
+    text-align: center;
+}
+.my-work p:first-child {
+    padding: 20px;
+    font-size: 2em;
+    font-weight: 500;
+    text-align: center;
+}
+.my-work p:nth-child(2) {
+    text-align: center;
+    padding-bottom: 30px;
+}
+.my-work ul {
+    width: 600px;
+    list-style: none;
+    display: inline-flex;
+    justify-content: space-evenly;
+    padding-bottom: 20px;
+}
+.my-work ul li {
+    padding: 10px 40px;
+    border: 1px solid var(--color-point);
+    border-radius: 10px;
+}
+.my-work ul li:hover {
+    background-color: var(--color-point);
+}
+.my-work img {
+    margin: 5px;
+    display: inline-flex;
+    width: 200px;
+    border-radius: 15px;
+}
+/****************************************
+* title : testimonial
+* author : ssussu
+* final date : 24.11.01
+****************************************/
+.Testimonial {
+    /* border: 1px solid tomato; */
+    width: 1000px;
+    height: 800px;
+    margin: 0 auto;   
+    background-color: #fff;
+    text-align: center;
+}
+.Testimonial div {
+    width: 900px;
+}
+.Testimonial> p{
+    padding: 30px;
+    font-size: 2em;
+}
+.Testimonial> p{
+    padding: 30px;
+    font-size: 2em;
+}
+.Testimonial> p, .Testimonial> span {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+.Testimonial ul li {
+    /* border: 1px solid silver; */
+    list-style: none;
+    width: 1000px;
+    display: inline-flex;
+    justify-content: space-evenly;
+}
+.Testimonial>ul>li>span {
+    border: 1px solid silver;
+    display: inline-block;
+    border-radius: 15px;
+    padding: 20px;
+    list-style: none;
+    width: 1000px;
+}
+.Testimonial ul li img {
+    /* border: 1px solid salmon; */
+    width: 200px;
+    border-radius: 100px;
+}
+/****************************************
+* title : Let's talk
+* author : ssussu
+* final date : 24.11.01
+****************************************/
+.main-Contact {
+    /* border: 1px solid tomato; */
+    text-align: center;
+    width: 1000px;
+    height: 200px;
+    margin: 0 auto;   
+    background-color: black; 
+}
+.main-Contact i, .main-Contact p {
+    color: white;
+    padding: 10px;
+}
+.main-Contact p:first-child{
+    /* border: 1px solid tomato; */
+    padding: 15px;
+    font-size: 2em;
+}
+.main-Contact p:nth-child(2) {
+    font-size: 1.3em;
+}
+.main-Contact p:last-child {
+    font-size: 0.8em;
+}

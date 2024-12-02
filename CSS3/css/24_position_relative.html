@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Position-relative</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+        /*완전히 여백을 없애고 싶을 때는 유니버셜에서~*/
+        /*h1{
+            width: 300px;
+            border: 10px solid red; 
+            padding: 0;
+            margin: 0;
+            position: fixed; top, left로 위치 설정
+            top: 20px;
+            left: 100px;
+        }*/
+                /*
+        .border {
+            box-sizing: border-box;
+            padding: 10px;
+        }
+        .content {
+            box-sizing:content-box ;
+            padding: 10px;
+        }
+        content-box는 300px내에 컨텐츠 사이즈만 지정한다.
+        즉 컨텐츠 크기는 300, 총 크기는 보더 r과 l의 각 10을 합한 320이다
+        패딩, 마진등포함 */
+        /*border-box는 300px내에 border크기까지 포함되어있다.
+        즉 컨텐츠 크기는 280, 총 크기는 보더 r과 l의 각 10을 합한 300이다
+        태그안의 컨텐츠 width고정패딩등의 값은 추가 요소*/
+        div {
+            width: 500px;
+            border: 1px solid navy;
+        }
+        .relative { 
+            position: relative; /*부모의 위치를 기반으로! 위치조정*/
+            top: 50px;
+            left: 50px;
+        }
+        .absolute {
+            position: absolute;
+            top: 25px;
+            /*left: 235px;*/
+        }
+        div > span {letter-spacing: 5px;}
+    </style>
+</head>
+<body>
+    <h1>Position-relative</h1>
+    <div class="relative">
+        <img src="/html/imges/logoRed.png" alt="CGV logo">
+        <span class="absolute">DEEP DIVE SPACE</span>
+    </div>
+</body>
+</html>

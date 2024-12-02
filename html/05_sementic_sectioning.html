@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>html-Sectioning</title>
+</head>
+<body>
+    <header>
+        <div>
+     <!--이미지와 헤더를 그룹화 하여 사용하려면 div태그를 사용하여야 한다.-->
+        <h2>Header</h2>
+        <img src="" alt="">
+        </div>
+        <nav>
+            <ul> <!--목록을 나타내는 태그-->
+                <li><!--리스트?하는 태그인가-->
+                    <a href="http://naver.com">네이버</a></li>
+                <li><a href="http://google.com">구글</a></li>
+                <li><a href="http://daum.net">다음</a></li>
+            </ul>
+        </nav>
+   </header>
+   <main>
+    <section>
+        <aside>Sub Meun</aside>
+    </section>
+    <section><!--블록레벨의 요소-->
+        <article>Main Content 1</article>
+        <article>Main Content 2</article>
+        <article>Main Content 3</article>
+    </section>
+
+   </main>
+
+   <!-- 실제로는 /main보다 div를 많이 사용한다.-->
+    <!--
+        <div class="header-logo-fitst">Logo</div>
+        <div class="header-menulist">
+            <div class="header-menulist-menu1">menu1</div>
+            <div class="header-menulist-menu2">menu2</div>
+            <div class="header-menulist-menu3">menu3</div>
+        </div>
+    </div>
+
+     <div class="content">
+        <div class="content-submenu">SubMenu</div>
+        <div class="content-maincontent">MainMenu</div>
+     </div>
+           <div class="footer">
+        <div class="foote-copyright"> @copyright 회사소개</div>
+      </div>
+    -->
+      <address>
+        <p>@copyright 회사소개</p>
+        <p>전화번호02-1234-5678</p>
+        <p>이메일:test@mail.com</p>
+      </address>
+
+
+</body>
+</html>
