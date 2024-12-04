@@ -1,0 +1,50 @@
+.diwtter-container{
+    width: 1000px;
+    padding: 20px;
+    margin: auto;
+    background-color: gray;
+}
+.diwtter-container h1 {
+    text-align: center;
+}
+.dwitter-menu{
+    /* border: 1px solid tomato; */
+    list-style: none;
+    display: flex;
+    gap: 10px;
+    justify-content: right;
+    margin-right: 20px;
+}
+.dwitter-menu li{
+    border: 1px solid blanchedalmond ;
+    padding: 5px;
+    border-radius: 4px;
+    font-size: 12px;
+}
+.dwitter {
+    width: 95%;
+    margin: auto;
+    padding: 10px;
+    border: 1px solid white;
+    border-radius: 0.5rem;
+    margin-bottom: 10px;
+    display: flex;  
+    background-color: beige
+}
+.dwitter-image{
+    /* float: left; */
+}
+.dwitter-image img{
+    width: 100px;
+    height: 100px;
+    border-radius: 100%;
+}
+.title {
+    text-indent: 20px; /*indent 들여쓰기*/
+    padding: 20px;
+}
+.content{
+    height: 50px;
+    text-indent: 20px;
+    margin-top: 5px;
+}

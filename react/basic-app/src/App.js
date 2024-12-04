@@ -1,12 +1,15 @@
 import './App.css';
-import AppMenu from './components/AppMenu.jsx';
+// import Avatarlist from './AppAvarta.js'
+// import AppDwitter from './components/dwitter/AppDwitter.jsx';
+// import AppButton from './components/AppButton.jsx';
 //이 파일을 부르고...
+import AppBoxOffice from './components/kobis/AppBoxOffice'
 
 export default function App() {
 
   return (
     <div className='App'> 
-      <AppMenu />
+      <AppBoxOffice />
     </div>
   );
 }
