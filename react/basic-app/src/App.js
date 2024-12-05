@@ -3,13 +3,14 @@ import './App.css';
 // import AppDwitter from './components/dwitter/AppDwitter.jsx';
 // import AppButton from './components/AppButton.jsx';
 //이 파일을 부르고...
-import AppBoxOffice from './components/kobis/AppBoxOffice'
+// import AppLayout from './components/layout/AppLayout.jsx'
+import AppCgv from './components/cgv_layout/AppCgv.jsx';
 
 export default function App() {
 
   return (
     <div className='App'> 
-      <AppBoxOffice />
+      <AppCgv />
     </div>
   );
 }
