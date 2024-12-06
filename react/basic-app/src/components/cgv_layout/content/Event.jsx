@@ -1,23 +1,14 @@
 import EventItem from "./EventItem.jsx";
+import { useState, useEffect } from "react";
 
 export default function Event(){
-    const list = [
-        {
-            "src": "https://img.cgv.co.kr/WebApp/contents/eventV4/42386/17297657794310.jpg",
-            "title" : "[CGV] 10월 컬처위크",
-            "date" : "2024.10.24~2024.10.31"
-        },
-        {
-            "src": "https://img.cgv.co.kr/WebApp/contents/eventV4/42372/17295802409470.jpg",
-            "title" : "[베놈-라스트댄스] 씨네브리핑 시리즈",
-            "date" : "2024.10.22~2024.10.27"
-        },
-        {
-            "src": "/images/event1.jpg",
-            "title" : "[콜렉터블 무비나나]Vol.1 맥스 달튼",
-            "date" : "2024.10.22~2024.10.27"
-        }
-    ]
+    const [eventList, setEventList] = useState([]);
+    useEffect(() => {
+        fetch("/data/cgv_content.json")
+        .then(data => data.json())
+        .then(jsonData=> setEventList(jsonData.eventList))
+        .catch(error=> console.log(error))
+    }, [])
     return(
         <section>
                 <div className="content-title-style">
@@ -25,7 +16,8 @@ export default function Event(){
                     <button className="total-view">전체보기 &gt;</button>
                 </div>            
                     <ul className="content-event-list">
-                        {list.map (item=> 
+                        {eventList && eventList.map (item=> 
+                        //json데이터로 처리 할 대는 map핑할때 주의하기
                         <li>
                             <EventItem 
                             src={item.src}

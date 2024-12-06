@@ -4,6 +4,7 @@ import MovieChartContent from './MovieChartContent.jsx';
 export default function MovieChart(){
     return (
         <div className="content-moviechart">
+            <div>
             <MovieChartTitle 
                 text1= "무비차트"
                 text2= "상영예정작"
@@ -11,6 +12,7 @@ export default function MovieChart(){
             />
             <MovieChartContent 
             />
+            </div>
         </div>
     )
 }
