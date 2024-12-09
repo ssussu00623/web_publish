@@ -1,0 +1,22 @@
+.contanier{
+    border: 1px solid forestgreen;
+}
+.image{
+    width: 250px;
+    height: 200px;
+    border-radius: 15px;
+}
+.isgood{
+    position: absolute;
+    left: 0;
+    top: 0;
+    margin: 15px;
+    padding: 5px 10px;
+    background-color: aliceblue;
+    border-radius: 15px;
+    font-size: 0.7rem;
+}
+.data p{
+    padding: 0;
+    margin: 0;
+}

@@ -1,0 +1,49 @@
+.contanier{
+    width: 300px;
+    /* border: 1px solid tomato; */
+}
+.contanier img {
+    width: 250px;
+    height: 200px;
+    border-radius: 8px;
+}
+.description p{
+    padding: 10px;
+}
+.description p{
+    margin: 3px;
+    padding: 0px;
+    font-size: 0.8rem;
+}
+.d4 {
+    margin: 5px 0;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+ul {
+    display: flex;
+    list-style: none;
+}
+div.img{
+    position: relative;
+}
+div.img span.isGood{
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: white;
+    margin: 10px;
+    padding: 5px 10px;
+    border-radius: 8px;
+    font-size: 0.7rem;
+}
+div.img span.isheart{
+    position: absolute;
+    top: 0;
+    left: 0;
+    /* background-color: white; */
+    font-size: 1.5rem;
+    margin: 10px;
+    padding: 5px 10px;
+    /* border-radius: 8px; */
+}

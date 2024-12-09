@@ -1,0 +1,41 @@
+[
+    {
+        "img" :"https://a0.muscache.com/im/ml/photo_enhancement/pictures/1dd3334b-7a3b-42ec-aad2-72a9f78afbfb.jpg?im_w=720&im_format=avif",
+        "d1" : "한국 가평군",
+        "d2":"강변 전망",
+        "d3":"12월 10일 ~ 15일",
+        "d4":"176,368",
+        "isGood":"true",
+        "color" : "gray"
+    },
+    {
+        "img" :"https://a0.muscache.com/im/pictures/hosting/Hosting-1256096377928334611/original/c6dc74e4-8637-4c2d-b3e7-a7c94603345d.jpeg?im_w=720&im_format=avif",
+        "d1" : "한국 한남동",
+        "d2":"퀸 침대 1개",
+        "d3":"12월 15일 ~ 20일",
+        "d4":"180,306",
+        "color" : "coral"
+    },
+    {
+        "img" :"https://a0.muscache.com/im/pictures/miso/Hosting-1276640755710110762/original/579bde2a-e037-4037-902b-a3ff10b6c425.jpeg?im_w=720&im_format=avif",
+        "d2":"[오픈특가] 상수역근접",
+        "d3":"12월 10일 ~ 15일",
+        "d4":"86,729",
+        "color" : "gray"
+    },
+    {
+        "img" :"https://a0.muscache.com/im/pictures/hosting/Hosting-913678787128862409/original/b8de9e2c-ae42-42b6-a405-425a12fc9265.jpeg?im_w=720&im_format=avif",
+        "d1" : "흑석동 중앙대",
+        "d2":"취소수수료 없음",
+        "d3":"1월 10일 ~ 15일",
+        "d4":"55,461",
+        "color" : "gray"
+    },
+    {
+        "img" :"https://a0.muscache.com/im/pictures/hosting/Hosting-996870015464652023/original/14794a85-22bf-4645-8e3a-8e33f85aa7d1.jpeg?im_w=720&im_format=avif",
+        "d2":"서울의 집",
+        "d3":"12월 15일 ~ 20일",
+        "d4":"84,447",
+        "color" : "gray"
+    }
+]
