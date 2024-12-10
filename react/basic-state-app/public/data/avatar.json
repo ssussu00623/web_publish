@@ -1,0 +1,5 @@
+[
+    {"img":"/images/people1.webp", "alt":"people1", "name":"smith", "new":"true"},
+    {"img":"/images/people2.webp", "alt":"people2", "name":"james"},
+    {"img":"/images/people3.webp", "alt":"people3", "name":"kelly"}
+]

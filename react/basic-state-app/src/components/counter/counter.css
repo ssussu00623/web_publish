@@ -1,0 +1,25 @@
+.contaner{
+    text-align: center;
+    width: 300px;
+    margin: auto;
+    margin-bottom: 20px;
+    border: 1px solid lightgray;
+    border-radius: 8px;
+}
+.number{
+    font-size: 50px;
+    /* display: block; */
+    padding: 10px;
+    /* background-color: aquamarine; */
+}
+.total-number{
+    font-size: 50px;
+    /* display: block; */
+    font-weight: bold;
+    padding: 10px;
+    /* background-color: aquamarine; */
+}
+.button{
+    font-size: 15px;
+    margin: 20px 10px;
+}

@@ -1,15 +1,18 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import AppBestSeller from './components/yes24/AppBestSeller.jsx';
+// import AppCounter from './components/counter/AppCounter.jsx';
 // import './index.css';
-import AppAirbnb from './components/airbnb/AppAirbnb.jsx';
-import AppAirbnb2 from './components/airbnb2/AppAirbnb2.jsx'
+// import AppAirbnb from './components/airbnb/AppAirbnb.jsx';
+// import AppAirbnb2 from './components/airbnb2/AppAirbnb2.jsx'
+// import Avatar from './components/avatar/Avatar.jsx';
 // import App from './App';
 // import reportWebVitals from './reportWebVitals';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <AppAirbnb2 />
+    <AppBestSeller />
   </React.StrictMode>
 );
 

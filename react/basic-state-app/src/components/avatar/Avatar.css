@@ -1,0 +1,30 @@
+li{
+    list-style: none;
+}
+.avatarContanier{
+    border: 1px solid lightgray;
+    border-radius: 8px;
+    width: 250px;
+    margin-right: 10px;
+    position: relative;
+}
+.avatarImg{
+    display: flex;
+    justify-content: center;
+}
+.img{
+    width: 200px;
+    border-radius: 100%;
+}
+.name{
+    text-align: center;
+}
+.isNew{
+    position: absolute;
+    background-color: aqua;
+    left: 180px;
+    top: 30px;
+    /* border: 1px solid tomato; */
+    border-radius: 8px;
+    padding: 5px 10px;
+}

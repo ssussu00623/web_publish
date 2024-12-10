@@ -1,12 +1,12 @@
 
 export default function AirbnbComponent(props){
     return(
-        <div className="contanier">
+        <div className="container">
             <div className="img">
-            <img src={props.img} 
-            alt="airbnb_pic" />
-            {props.isGood && <span className="isGood">게스트 선호</span>}
-            <span className="isheart" style={{color:props.color}}>★</span>
+                <img src={props.img} />
+                {props.isGood && <span className="isgood">게스트 선호</span>}
+            <span className="isheart" 
+                        style={{color:props.color}}>❤</span>
             {/**props.isGood이 true값일 때만 송출 */}
             </div>
             <div className="description">
