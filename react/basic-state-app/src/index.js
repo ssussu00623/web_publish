@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import AppBestSeller from './components/yes24/AppBestSeller.jsx';
+// import AppBestSeller from './components/yes24/AppBestSeller.jsx';
 // import AppCounter from './components/counter/AppCounter.jsx';
 // import './index.css';
 // import AppAirbnb from './components/airbnb/AppAirbnb.jsx';
@@ -8,11 +8,12 @@ import AppBestSeller from './components/yes24/AppBestSeller.jsx';
 // import Avatar from './components/avatar/Avatar.jsx';
 // import App from './App';
 // import reportWebVitals from './reportWebVitals';
+import AppOlive from './components/olive/AppOlive.jsx'
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <AppBestSeller />
+    <AppOlive />
   </React.StrictMode>
 );
 

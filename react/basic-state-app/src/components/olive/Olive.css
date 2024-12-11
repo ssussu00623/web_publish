@@ -1,0 +1,82 @@
+header{
+    padding: 20px 0;
+    padding-bottom: 30px;
+    border-bottom: 1px solid lightgray;
+    display: flex;
+    justify-content: space-between;
+}
+header img{
+    width: 300px;
+    margin-left: 20px;
+}
+header ul {
+    display: flex;
+    list-style: none;
+    justify-content: right;
+    margin-right: 20px;
+}
+
+/****************************************
+                product
+****************************************/
+.body{
+    width: 1000px;
+    margin: auto;
+}
+.Product-list-container{
+    display: flex;
+    gap: 20px;
+    list-style: none;
+    margin: 20px 0;
+}
+.product-contanier{
+    width: 220px;
+    /* height: 380px; */
+}
+.product-contanier img{
+    width: 220px;
+}
+.product-contanier .title{
+    color: gray;
+    text-align: center;
+    font-weight: bold;
+}
+.product-contanier .description{
+    font-size: 10px;
+    padding: 5px;
+}
+.product-contanier .price {
+    text-align: center;
+}
+.product-contanier .fprice {
+    font-size: 12pt;
+    font-weight: bold;
+    color: red;
+}
+.product-contanier .tags{
+    text-align: center;
+}
+.product-contanier .tags span{
+    /* background-color: aqua; */
+    font-size: 9pt;
+    padding: 3px 15px;
+    margin: 0px;
+    border-radius: 15px;
+    color: white;
+}
+.product-contanier .t1 {
+    background-color: tomato;
+}
+.product-contanier .t2 {
+    background-color: greenyellow;
+}
+.product-contanier .t3 {
+    background-color: palevioletred;
+}
+.cart {
+    color: gray;
+}
+.cart:hover {
+    color: coral;
+    cursor: pointer;
+}
