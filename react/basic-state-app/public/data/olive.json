@@ -37,14 +37,62 @@
     },
     {
         "id":"p_004",
+        "img":"https://image.oliveyoung.co.kr/cfimages/cf-goods/uploads/images/thumbnails/400/10/0000/0021/A00000021419126ko.jpg?l=ko",
+        "alt":"[세럼1위/6년연속수상/총 120ml 대용량]구달 청귤 비타C 잡티케어 세럼 70ml 대용량 어워즈 한정기획",
+        "title":"구달",
+        "description":"[세럼1위/6년연속수상/총 120ml 대용량]구달 청귤 비타C 잡티케어 세럼 70ml 대용량 어워즈 한정기획",
+        "price":"50,000원",
+        "sale":"33,160원",
+        "isSale":true,
+        "isCupon":true,
+        "isToday":true
+    },
+    {
+        "id":"p_005",
+        "img":"https://image.oliveyoung.co.kr/cfimages/cf-goods/uploads/images/thumbnails/400/10/0000/0021/A00000021349504ko.jpg?l=ko",
+        "alt":"[1위패드/100+100+14매] 메디힐 마데카소사이드 흔적패드 어워즈 한정기획",
+        "title":"마녀공장",
+        "description":"[2024어워즈/4년연속 1위] 마녀공장 퓨어 클렌징 오일 300mlX2 어워즈 한정기획 (+킬패드 3매",
+        "price":"49,000원",
+        "sale":"29,830원",
+        "isSale":true,
+        "isCupon":true,
+        "isToday":true
+    },
+    {
+        "id":"p_006",
         "img":"https://image.oliveyoung.co.kr/cfimages/cf-goods/uploads/images/thumbnails/550/10/0000/0013/A00000013906380ko.jpg?l=ko",
-        "alt":"[2024 어워즈/올영쿠션 1위] 정샘물 에센셜 스킨누더 쿠션 어워즈 한정 기획 (글리터팟+립토퍼+물크림 미니)",
+        "alt":"[4년 연속 수상]토리든 다이브인 세럼 50ml 트리플 어워즈 한정기획(+다이브인 크림 20ml+다이브인 패드 10매)",
         "title":"정샘물",
-        "description":"[2024 어워즈/올영쿠션 1위] 정샘물 에센셜 스킨누더 쿠션 어워즈 한정 기획 (글리터팟+립토퍼+물크림 미니)",
-        "price":"45,000원",
-        "sale":"36,000원",
+        "description":"[4년 연속 수상]토리든 다이브인 세럼 50ml 트리플 어워즈 한정기획(+다이브인 크림 20ml+다이브인 패드 10매)",
+        "price":"50,000원",
+        "sale":"33,250원",
+        "isSale":true,
+        "isCupon":true,
+        "isToday":true
+    },
+    {
+        "id":"p_007",
+        "img":"https://image.oliveyoung.co.kr/cfimages/cf-goods/uploads/images/thumbnails/400/10/0000/0021/A00000021402112ko.jpg?l=ko",
+        "alt":"[2024 어워즈/3년 연속 1위] 어노브 딥 데미지 헤어 트리트먼트 EX 더블/듀오 기획4종 택1 (텐더블룸/웜페탈)",
+        "title":"어노브",
+        "description":"[2024 어워즈/3년 연속 1위] 어노브 딥 데미지 헤어 트리트먼트 EX 더블/듀오 기획4종 택1 (텐더블룸/웜페탈)",
+        "price":"42,000원",
+        "sale":"29,800원",
         "isSale":true,
         "isCupon":false,
+        "isToday":true
+    },
+    {
+        "id":"p_008",
+        "img":"https://image.oliveyoung.co.kr/cfimages/cf-goods/uploads/images/thumbnails/550/10/0000/0021/A00000021415406ko.jpg?l=ko",
+        "alt":"[2024어워즈/수분크림]닥터지 레드 블레미쉬 클리어 수딩 크림 70ml 1+1어워즈기획(+70ml+포어젯세럼10ml)",
+        "title":"닥터지",
+        "description":"[2024어워즈/수분크림]닥터지 레드 블레미쉬 클리어 수딩 크림 70ml 1+1어워즈기획(+70ml+포어젯세럼10ml)",
+        "price":"38,000원",
+        "sale":"25,920원",
+        "isSale":true,
+        "isCupon":true,
         "isToday":true
     }
 ]

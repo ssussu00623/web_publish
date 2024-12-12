@@ -1,0 +1,61 @@
+{
+    "category":[
+        {"name":"에세이"}, 
+        {"name":"소설"}, 
+        {"name":"자기계발"}, 
+        {"name":"사회과학"}, 
+        {"name":"고전"}, 
+        {"name":"외국어"} 
+    ]
+,
+    "books":[
+        {
+            "img":"https://image.aladin.co.kr/product/14322/3/cover150/8954651135_3.jpg", 
+            "title":"[국내] 흰", 
+            "type":"domestic",
+            "category":"에세이"
+        },
+        {
+            "img":"https://image.aladin.co.kr/product/3335/59/cover150/8932024634_3.jpg", 
+            "title":"[국내] 서랍에 저녁을 넣어두었다.",
+            "type":"domestic",
+            "category":"소설"            
+        },
+        {
+            "img":"https://image.aladin.co.kr/product/1384/91/cover150/8954616518_2.jpg", 
+            "title":"[국내] 희랍어 시간",
+            "type":"domestic",
+            "category":"자기계발"            
+        },
+        {
+            "img":"https://image.aladin.co.kr/product/32099/92/cover150/e292531758_1.jpg", 
+            "title":"[eBook] 소년이 온다 ",
+            "type":"ebook" ,
+            "category":"사회과학"           
+        },
+        {
+            "img":"https://image.aladin.co.kr/product/10829/77/cover150/110190674x_1.jpg", 
+            "title":"[국외] Human Acts (Paperback)",
+            "type":"overseas",
+            "category":"고전"            
+        },
+        {
+            "img":"https://image.aladin.co.kr/product/11240/96/cover150/0316382000_1.jpg", 
+            "title":"[국외]  The Wild Robot (Paperback, 미국판) ",
+            "type":"overseas",
+            "category":"외국어"            
+        },
+        {
+            "img":"https://image.aladin.co.kr/product/4382/61/cover150/054444220d_1.jpg", 
+            "title":"[국외] The Giver (Paperback, 미국판, International)",
+            "type":"overseas",
+            "category":"외국어"            
+        },
+        {
+            "img":"https://image.aladin.co.kr/product/4997/36/cover150/00995900ff_1.jpg", 
+            "title":"[국외] Sapiens : A Brief History of Humankind (Paperback, 영국판) ",
+            "type":"overseas",
+            "category":"외국어"            
+        }
+    ]
+}
