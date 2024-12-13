@@ -1,6 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import AppAladin from './components/aladin/AppAladin';
+// import CgvLoginForm from './components/form/CgvLoginForm';
+import UserInfo from './components/form/UserInfo';
+import AppForm from './components/form/AppForm';
+// import AppAladin2 from './components/aladin2/AppAladin2';
+// import AppAladin from './components/aladin/AppAladin';
 // import AppBestSeller from './components/yes24/AppBestSeller.jsx';
 // import AppCounter from './components/counter/AppCounter.jsx';
 // import AppCounter2 from './components/counter2/AppCounter2.jsx';
@@ -15,7 +19,11 @@ import AppAladin from './components/aladin/AppAladin';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <AppAladin />
+    <AppForm />
+    <hr></hr>
+    <UserInfo />
+    <hr></hr>
+    {/* <CgvLoginForm /> */}
   </React.StrictMode>
 );
 
