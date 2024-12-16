@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 // import CgvLoginForm from './components/form/CgvLoginForm';
-import UserInfo from './components/form/UserInfo';
+// import UserInfo from './components/form/UserInfo';
 import AppForm from './components/form/AppForm';
 // import AppAladin2 from './components/aladin2/AppAladin2';
 // import AppAladin from './components/aladin/AppAladin';
@@ -21,9 +21,6 @@ root.render(
   <React.StrictMode>
     <AppForm />
     <hr></hr>
-    <UserInfo />
-    <hr></hr>
-    {/* <CgvLoginForm /> */}
   </React.StrictMode>
 );
 
