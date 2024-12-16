@@ -1,4 +1,5 @@
 import React, { useRef, useState } from 'react';
+import { validateLogin2 } from '../../apis/validate.js';
 
 export default function Login2() {
     const idRef = useRef(null)
@@ -18,24 +19,32 @@ export default function Login2() {
         }
             //객체 자체를 가져오는게 아니라 안의 데이터 값을 가져오겠다는 것..
     }
-    const validate = ()=>{
-        let result = true;
-        if(idRef.current.value === ''){
-            // alert("아이디를 입력해주세요")
-            setErrorMsg({...errorMsg, ['id']:'아이디를 입력해주세요'})
-            idRef.current.focus();
-            result = false;
-        } else if(passRef.current.value === ''){
-            // alert("패스워드를 입력해주세요.")
-            setErrorMsg({...errorMsg, ['pass']:"패스워드를 입력해주세요."})
-            passRef.current.focus();
-            result = false;
-        } 
-        return result;
-    }
+
+    // const validate = ()=>{
+    //     let result = true;
+    //     if(idRef.current.value === ''){
+    //         // alert("아이디를 입력해주세요")
+    //         setErrorMsg({...errorMsg, ['id']:'아이디를 입력해주세요'})
+    //         idRef.current.focus();
+    //         result = false;
+    //     } else if(passRef.current.value === ''){
+    //         // alert("패스워드를 입력해주세요.")
+    //         setErrorMsg({...errorMsg, ['pass']:"패스워드를 입력해주세요."})
+    //         passRef.current.focus();
+    //         result = false;
+    //     } 
+    //     return result;
+    // }
+
     const handleSubmit = (e) => {        
         e.preventDefault();
-        if(validate()) console.log(formData);
+        const param = {
+            'idRef': idRef,
+            'passRef':passRef,
+            'errorMsg':errorMsg,
+            'setErrorMsg':setErrorMsg
+        }
+        if(validateLogin2(param)) console.log(formData);
     }
     
     return (

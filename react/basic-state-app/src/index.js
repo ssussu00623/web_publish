@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom/client';
 // import CgvLoginForm from './components/form/CgvLoginForm';
 // import UserInfo from './components/form/UserInfo';
 import AppForm from './components/form/AppForm';
+import Login2 from './components/form/Login2';
 // import AppAladin2 from './components/aladin2/AppAladin2';
 // import AppAladin from './components/aladin/AppAladin';
 // import AppBestSeller from './components/yes24/AppBestSeller.jsx';
@@ -20,7 +21,6 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <AppForm />
-    <hr></hr>
   </React.StrictMode>
 );
 
