@@ -33,7 +33,7 @@
     다 문자기 때문에 가능한 것
      */
 
-    export const ErrorCheckSignup=(name, value, errors, setErrors)=>{
+    export const errorCheckSignup=(name, value, errors, setErrors)=>{
         const names = [
             {'name':'id', 'msg': '아이디를 입력해주세요'},
             {'name':'pwd', 'msg': '비밀번호를 입력해주세요'},
@@ -56,7 +56,7 @@
  * signup error check 
  */
 
-    export const ErrorCheckLogin=(name, value, loginErrors, setLoginErrors)=>{
+    export const errorCheckLogin=(name, value, loginErrors, setLoginErrors)=>{
         const list = [
             {'name':"id", 'msg':'아이디를 입력해주세요.'},
             {'name':"pwd", 'msg':'비밀번호를 입력해주세요.'},
