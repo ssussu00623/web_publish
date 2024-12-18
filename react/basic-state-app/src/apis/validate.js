@@ -263,44 +263,48 @@ export function validateFormSignup2(refs){
     return checkResult
 }*/
 
-    // //아이디 중복 체크
-    // const handleIdCheck = (idRef, errorCheckSignup,errors,setErrors,idMsgRef) =>{
-    //     const id = refs.idRef.current;
-    //     if(id.value === ''){
-    //         errorCheckSignup('id', id.value, errors, setErrors)
-    //     } else {
-    //         const did = 'test';
-    //         if(did === id.value){ //고정되는 값을 앞에 써주는 게 효율적이다!
-    //             setErrors({...errors, ['id']: '이미 사용중인 아이디입니다. 다시 입력해주세요'})
-    //             id.focus();
-    //         } else {
-    //             setErrors({...errors, ['id']: '사용이 가능한 아이디입니다.'})
-    //             idMsgRef.current.style.setProperty('color','green')
-    //             idMsgRef.current.style.setProperty('font-weight','bold')
-    //         }
-    //     }
-    // }
+/**
+ * 
+ * sign up 파일 컴포넌트체크 
+ */
+    //아이디 중복 체크
+    export const handleIdCheck = (idparam) =>{
+        const id = idparam.idRef.current;
+        if(id.value === ''){
+            idparam.errorCheckSignup('id', id.value, idparam.errors, idparam.setErrors, idMsgRef)
+        } else {
+            const did = 'test';
+            if(did === id.value){ //고정되는 값을 앞에 써주는 게 효율적이다!
+                idparam.setErrors({...idparam.errors, ['id']: '이미 사용중인 아이디입니다. 다시 입력해주세요'})
+                id.focus();
+            } else {
+                idparam.setErrors({...idparam.errors, ['id']: '사용이 가능한 아이디입니다.'})
+                idparam.idMsgRef.current.style.setProperty('color','green')
+                idparam.idMsgRef.current.style.setProperty('font-weight','bold')
+            }
+        }
+    }
     
-    // //비밀번호 중복 체크
-    // const handlePwdCheck =(pwdRef, cpwdRef, errorCheckSignup,errors,setErrors,idMsgRef)=> {
-    //     const pwd = refs.pwdRef.current;
-    //     const cpwd = refs.cpwdRef.current;
-    //     if(pwd.value === ''){
-    //         errorCheckSignup('pwd', pwd.value, errors, setErrors)
-    //         pwd.focus()
-    //     } else if (cpwd.value === ''){
-    //         errorCheckSignup('cpwd', cpwd.value, errors, setErrors)
-    //         cpwd.focus()
-    //     } else {
-    //         if (pwd.value  === cpwd.value ){
-    //             setErrors({...errors, ['pwd']: '비밀번호가 동일합니다.'})
-    //             pwdMsgRef.current.style.setProperty('color','green')
-    //             pwdMsgRef.current.style.setProperty('font-weight','bold')
-    //         } else {
-    //             setErrors({...errors, ['pwd']: '비밀번호가 일치하지 않습니다.'})
-    //             refs.pwdRef.current.value = '';
-    //             refs.cpwdRef.current.value = '';
-    //             refs.pwdRef.current.focus();
-    //         }
-    //     }
-    // }
+    //비밀번호 중복 체크
+    export const handlePwdCheck =(param)=> {
+        const pwd = param.refs.pwdRef.current;
+        const cpwd = param.refs.cpwdRef.current;
+        if(pwd.value === ''){
+            param.errorCheckSignup('pwd', pwd.value, param.errors, param.setErrors)
+            pwd.focus()
+        } else if (cpwd.value === ''){
+            param.errorCheckSignup('cpwd', cpwd.value, param.errors, param.setErrors)
+            cpwd.focus()
+        } else {
+            if (pwd.value  === cpwd.value ){
+                param.setErrors({...param.errors, ['pwd']: '비밀번호가 동일합니다.'})
+                param.pwdMsgRef.current.style.setProperty('color','green')
+                param.pwdMsgRef.current.style.setProperty('font-weight','bold')
+            } else {
+                param.setErrors({...param.errors, ['pwd']: '비밀번호가 일치하지 않습니다.'})
+                param.pwdRef.current.value = '';
+                param.cpwdRef.current.value = '';
+                param.pwdRef.current.focus();
+            }
+        }
+    }

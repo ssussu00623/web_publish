@@ -1,7 +1,7 @@
 import React, { useRef, useState } from 'react';
 import './cgv.css'
 import './commons.css'
-import { validateSignup } from '../../apis/validate';
+import { validateSignup, handleIdCheck, handlePwdCheck} from '../../apis/validate';
 import { errorCheckSignup } from '../../apis/errorCheck';
 import { initFormName } from '../../apis/initial';
 
@@ -19,17 +19,7 @@ export default function Signupnon() {
         emailDomainRef:useRef(null),
     }
     const names = ['id', 'pwd', 'cpwd','name','phone','emailName','emailDomain']
-    // const initErrors = {
-    //     //innit과 같이 쓸 수 있겠다 생각할 수 있지만... 변수값까지 공유하기 때문에 따로줘야한다. 
-    //      innit을 initial 파일에서 객체로만드는 함수를 쓰면 따로 주지 않아도 활용 가능
-    //     'id':'',
-    //     'pwd':'',
-    //     'cpwd':'',
-    //     'name':'',
-    //     'phone':'',
-    //     'emailName':'',
-    //     'emailDomain':''
-    // }
+
     const [formData, setFormData] = useState(initFormName(names));
     // 폼의 입력이 변경되는 경우 호출되는 함수
     const handleChangeSignup=(event)=>{
@@ -38,10 +28,6 @@ export default function Signupnon() {
         idMsgRef.current.style.setProperty('color','red')
         idMsgRef.current.style.setProperty('font-weight','normal')
         errorCheckSignup(name, value, errors, setErrors)
-        // if(name === 'id'){
-        //     (value === '')?setErrors({...errors,['id']:'아이디를 입력해주세요.'})
-        //     : setErrors({...errors,['id']:''});
-        // }
     }
     // 폼의 입력이 종료된 후 submit 함수
     const handleSubmitSignup =(event)=>{  
@@ -50,47 +36,6 @@ export default function Signupnon() {
     }
     //에러 메세지 출력하기
     const [errors, setErrors] = useState(initFormName(names))
-
-    // 아이디 중복 체크
-    const handleIdCheck = () =>{
-        const id = refs.idRef.current;
-        if(id.value === ''){
-            errorCheckSignup('id', id.value, errors, setErrors)
-        } else {
-            const did = 'test';
-            if(did === id.value){ //고정되는 값을 앞에 써주는 게 효율적이다!
-                setErrors({...errors, ['id']: '이미 사용중인 아이디입니다. 다시 입력해주세요'})
-                id.focus();
-            } else {
-                setErrors({...errors, ['id']: '사용이 가능한 아이디입니다.'})
-                idMsgRef.current.style.setProperty('color','green')
-                idMsgRef.current.style.setProperty('font-weight','bold')
-            }
-        }
-    }
-    
-    //비밀번호 중복 체크
-    const handlePwdCheck =()=> {
-        const pwd = refs.pwdRef.current;
-        const cpwd = refs.cpwdRef.current;
-        if(pwd.value === ''){
-            errorCheckSignup('pwd', pwd.value, errors, setErrors)
-            pwd.focus()
-        } else if (cpwd.value === ''){
-            errorCheckSignup('cpwd', cpwd.value, errors, setErrors)
-            cpwd.focus()
-        } else {
-            if (pwd.value  === cpwd.value ){
-                setErrors({...errors, ['pwd']: '비밀번호가 동일합니다.'})
-                pwdMsgRef.current.style.setProperty('color','green')
-                pwdMsgRef.current.style.setProperty('font-weight','bold')
-            } else {
-                setErrors({...errors, ['pwd']: '비밀번호가 일치하지 않습니다.'})
-                setFormData({...formData, ['pwd']:'', ['cpwd']:''})
-                refs.pwdRef.current.focus();
-            }
-        }
-    }
 
     return (
         <div className='content'>
@@ -113,7 +58,18 @@ export default function Signupnon() {
                                 ref={refs.idRef}
                                 value={formData.id}
                                 onChange={handleChangeSignup}/>
-                                <button type="button" onClick={handleIdCheck}>중복확인</button>
+                                <button type="button" 
+                                onClick={()=>{
+                                    const idparam = {
+                                        'idRef':refs.idRef,
+                                        'errorCheckSignup':errorCheckSignup,
+                                        'errors':errors,
+                                        'setErrors':setErrors,
+                                        'formData':formData,
+                                        'setFormData':setFormData,
+                                        'idMsgRef':idMsgRef
+                                    }
+                                    handleIdCheck(idparam)}}>중복확인</button>
                                 <input type="hidden" className="idCheckResult" value="default" />
                             </div>
                         </li>
@@ -143,7 +99,16 @@ export default function Signupnon() {
                                 value={formData.cpwd}
                                 onChange={handleChangeSignup}
                                 // oninput="handleChangeJoin(event)"
-                                onBlur={handlePwdCheck}
+                                onBlur={()=>{
+                                    const param =
+                                        {'refs':refs,
+                                        'errorCheckSignup':errorCheckSignup,
+                                        'errors':errors,
+                                        'setErrors':setErrors,
+                                        'pwdMsgRef':pwdMsgRef,
+                                        'formData':formData,
+                                        'setFormData':setFormData}
+                                        handlePwdCheck(param)}}
                                 placeholder="비밀번호재입력" />                        
                             </div>
                         </li>
