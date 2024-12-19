@@ -1,0 +1,24 @@
+{
+    "menulist" : [
+        {
+            "herf":"#about",
+            "name":"About"
+        },
+        {
+            "herf":"#skill",
+            "name":"Skills"
+        },
+        {
+            "herf":"#work",
+            "name":"My work"
+        },
+        {
+            "herf":"#testimonial",
+            "name":"Testimonial"
+        },
+        {
+            "herf":"#contact",
+            "name":"Contact"
+        }
+    ]
+}

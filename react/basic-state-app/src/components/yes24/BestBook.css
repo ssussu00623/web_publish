@@ -1,6 +1,5 @@
 .container {
     width: 1000px;
-    height: 100px;
     margin: auto;
 }
 .container-avatar {
@@ -12,42 +11,29 @@
 .container-avatar p {
     font-size: 1rem;
     font-weight: bold;
-    padding: 0 15px;
+    padding:0 15px;
 }
 .container-avatar img {
     width: 120px;
 }
 .container-content {
-    padding: 0 40px;
-    background-color: aliceblue;
     width: 500px;
-    /* border: 1px solid red; */
+    padding: 0 40px;
+    background-color: rgb(248, 241, 232);
 }
-
-.container-button {
-    height: 120px;
-    list-style: none;
-    background-color: antiquewhite;
-    padding: 20px;
+.container-content-tags {
+    padding: 10px 0;
 }
-
-.nobel{
-    color: rgb(151, 151, 151);
-    font-size: 0.8rem;
+.container-content-tags span {
+    border: 1px solid #333;
+    border-radius: 4px;
+    font-size: .8rem;
+    margin: 5px;
+    padding: 2px 5px;
 }
-.today{
-    border: 1px solid rgb(209, 209, 209);
-    margin: 3px;
-    padding: 1px;
-    border-radius: 5%;
-    background-color: rgb(255, 255, 255);
-    font-size: 0.7rem;
-}
-.suggest{
-    border: 1px solid rgb(209, 209, 209);
-    margin: 3px;
-    padding: 1px;
-    border-radius: 5%;
-    background-color: rgb(255, 255, 255);
-    font-size: 0.7rem;
+.container-button {    
+    list-style-type: none;
+    background-color: rgb(251, 196, 125);
+    padding: 30px;
+    margin: 0;
 }

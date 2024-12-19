@@ -180,15 +180,27 @@ export function validateFormSignup2(refs){
      * 목적이므로 if 체크 후 focus가 적용되지 않음 ! ! ! 
      */
 
+
+
     for(const item of refEntries) {
         const name =item[0]
         const ref = item[1]
-        if(ref && ref.current.value === ''){
-            alert(`${msgs[name]}를 입력해주세요.`)
-            ref.current.focus();
-            return false;
+
+        if(name !== 'jobRef'){
+            if(ref && ref.current.value === ''){
+                alert(`${msgs[name]}를 입력해주세요.`)
+                ref.current.focus();
+                return false;
         }       
-    };
+    } else {
+        if(ref.current.value === 'default'){
+            alert(`${msgs[name]}를 선택해주세요.`)
+        }
+        ref.current.focus();
+        return false;
+    }
+}
+
 
     // for(const ref of refvalues){
     //     if(ref.current.value ===''){

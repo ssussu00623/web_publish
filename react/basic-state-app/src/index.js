@@ -1,26 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-// import CgvLoginForm from './components/form/CgvLoginForm';
-// import UserInfo from './components/form/UserInfo';
-// import AppForm from './components/form/AppForm';
-// import Login2 from './components/form/Login2';
-// import AppAladin2 from './components/aladin2/AppAladin2';
-// import AppAladin from './components/aladin/AppAladin';
-import AppBestSeller from './components/yes24/AppBestSeller.jsx';
-// import AppCounter from './components/counter/AppCounter.jsx';
-// import AppCounter2 from './components/counter2/AppCounter2.jsx';
-// import './index.css';
-// import AppAirbnb from './components/airbnb/AppAirbnb.jsx';
-// import AppAirbnb2 from './components/airbnb2/AppAirbnb2.jsx'
-// import Avatar from './components/avatar/Avatar.jsx';
-// import App from './App';
-// import reportWebVitals from './reportWebVitals';
-// import AppOlive from './components/olive/AppOlive.jsx'
+import './index.js'
+import AppForm from './components/form/AppForm';
+import AppRouter from './components/router/AppRouter';
+import AppRouter2 from './router2/AppRouter2.jsx';
+import AppPortfolio from './portfolio/AppPortfolio.jsx';
+
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <AppBestSeller />
+    <AppPortfolio />
   </React.StrictMode>
 );
 
