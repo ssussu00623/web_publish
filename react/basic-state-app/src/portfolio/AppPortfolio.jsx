@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import './style.css'
 import Header from './Header';
 import AboutMe from './AboutMe';
@@ -8,13 +8,16 @@ import MyWorks from './MyWorks';
 import Testimonial from './Testimonial';
 import Footer from './Footer';
 import ArrowUp from './ArrowUp';
+import HeaderMenuList from './HeaderMenuList';
 
 export default function Appportfolio() {
 
     return (
         <div>
-            <Header />
-            <Home />
+            <Header>
+                <HeaderMenuList />
+            </Header>
+                <Home />
                 <AboutMe />
                 <MySkills />
                 <MyWorks />

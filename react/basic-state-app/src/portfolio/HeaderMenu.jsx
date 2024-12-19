@@ -1,11 +1,9 @@
 import React from 'react';
 
-export default function HeaderMenu(href, name) {
+export default function HeaderMenu({href, name, className}) {
     return (
-        <div>
             <a  href={href}
-            className="menu-item">{name}</a>  
-        </div>
+            className={className}>{name}</a>  
     );
 }
 

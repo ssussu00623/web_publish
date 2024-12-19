@@ -1,19 +1,28 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import HeaderMenu from './HeaderMenu';
 
-export default function HeaderMenuList(list) {
+export default function HeaderMenuList() {
+    const [menuList, setMenuList] = useState([]);
+    useEffect (()=>{
+        fetch("/data/portfolio.json")
+        .then(data=> data.json())
+        .then(jsonData =>
+            setMenuList(jsonData.menuList)
+        )
+    }, [])
+    console.log(menuList);
     return (
         <div>
             <ul className="header__menu">
-            <li><a className="header__menu__item active" href="#home">Home</a></li>
-                { list && list.map((item) => 
-                    <li>
-                        <HeaderMenu  
-                        name={item.name} 
-                        href={item.href}
-                    /></li>) }
+                        {menuList&&menuList.map((item) => 
+                            <li>
+                                <HeaderMenu
+                                    name={item.name} 
+                                    href={item.href}
+                                    className={item.className}
+                            />
+                        </li>) }
             </ul>
         </div>
     );
 }
-

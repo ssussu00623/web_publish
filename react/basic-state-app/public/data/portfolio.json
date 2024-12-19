@@ -1,24 +1,34 @@
 {
-    "menulist" : [
+    "menuList" : [
         {
-            "herf":"#about",
-            "name":"About"
+            "href":"#home",
+            "name":"Home",
+            "className":"header__menu__item active"
         },
         {
-            "herf":"#skill",
-            "name":"Skills"
+            "href":"#about",
+            "name":"About",
+            "className":"header__menu__item"
         },
         {
-            "herf":"#work",
-            "name":"My work"
+            "href":"#skill",
+            "name":"Skills",
+            "className":"header__menu__item"
         },
         {
-            "herf":"#testimonial",
-            "name":"Testimonial"
+            "href":"#work",
+            "name":"My work",
+            "className":"header__menu__item"
         },
         {
-            "herf":"#contact",
-            "name":"Contact"
+            "href":"#testimonial",
+            "name":"Testimonial",
+            "className":"header__menu__item"
+        },
+        {
+            "href":"#contact",
+            "name":"Contact",
+            "className":"header__menu__item"
         }
     ]
 }
