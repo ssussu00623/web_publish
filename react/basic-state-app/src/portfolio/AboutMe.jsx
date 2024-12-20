@@ -1,6 +1,16 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import AboutMeBox from './AboutMeBox';
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import {faBars, faMobile, faServer} from '@fortawesome/free-solid-svg-icons'
 
-export default function AboutMe() {
+
+export default function AboutMe( ) {
+    const [boxList, SetBoxList] = useState([]);
+    useEffect(()=> {
+        fetch("/data/portfolio.json")
+            .then(data=> data.json())
+            .then(jsonData=>SetBoxList(jsonData.boxList))
+    },[])
     return (
         <section id="about" className="section max-container">
         <h2 className="title">About me</h2>
@@ -8,23 +18,18 @@ export default function AboutMe() {
             Iure natus, temporibus perspiciatis repudiandae nostrum modi
             doloremque expedita non eius ipsum! Beatae porro adipisci 
             omnis architecto dignissimos. Iusto ipsa inventore adipisci.</p>
-        <ul className="majors">
-            <li className="major">
-                <i className="fa-brands fa-html5 major__icon"></i>
-                <p className="major__title">Front-end</p>
-                <p>HTML, CSS, JavaScript, TypeScript, React, WebAPIs</p>
-            </li>
-            <li className="major">
-                <i className="fa-solid fa-mobile major__icon"></i>
-                <p className="major__title">Mobile</p>
-                <p>Android Studio, React Native, iOS, Swift, Java, Kotlin</p>
-            </li>
-            <li className="major">
-                <i className="fa-solid fa-server major__icon"></i>
-                <p className="major__title">Back-end</p>
-                <p>Java, JavaScript, Go, Kotlin, Spring, Spring Boot</p>
-            </li>
-        </ul>
+        <div>
+            <ul className="majors">
+                {boxList&&boxList.map((item)=>
+                <li className="major">
+                    <AboutMeBox
+                        icon={item.icon}
+                        title={item.title}
+                        skill={item.skill} />
+                </li>
+                )}
+            </ul>
+        </div>
         <ul className="jobs">
             <li className="job">
             <img src="images/jobs/google.png" alt="google" />

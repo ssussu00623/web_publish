@@ -12,7 +12,7 @@ export default function MySkills() {
         <div className="skills">
             <article className="skills__coding">
             <h3 className="skill__title">Coding Skills</h3>
-            <ul>
+            <ul className='bar'>
                 <li className="bar">
                 <div className="bar__metadata"><span>HTML</span><span>98%</span></div>
                 <div className="bar__bg"><div className="bar__value" style={{width:'98%'}}></div></div>
@@ -41,7 +41,7 @@ export default function MySkills() {
             </article>
             <article className="skills__tools">
             <h3 className="skill__title">Tools</h3>
-            <ul>
+            <ul className='bar'>
                 <li>Visual Studio Code</li>
                 <li>IntelliJ</li>
                 <li>Android Studio Code</li>
@@ -51,7 +51,7 @@ export default function MySkills() {
             </article>
             <article className="skills__etc">
             <h3 className="skill__title">Etc</h3>
-            <ul>
+            <ul className='bar'>
                 <li>Git</li>
                 <li>Scrum Master</li>
                 <li>SVN</li>

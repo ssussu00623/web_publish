@@ -10,7 +10,7 @@ export default function HeaderMenuList() {
             setMenuList(jsonData.menuList)
         )
     }, [])
-    console.log(menuList);
+    // console.log(menuList);
     return (
         <div>
             <ul className="header__menu">

@@ -30,5 +30,163 @@
             "name":"Contact",
             "className":"header__menu__item"
         }
+    ],
+    "footerDater": [
+        {
+            "ment":"Let's talk",
+            "mail":"ssussu00623@gmail.com",
+            "all":"Dream Software Engineer Judy - All right reserved"
+        }
+    ],
+    "footerDaterList":[
+        {
+            "link":"http://linkedin.com"},
+        {
+            "link":"http://github.com"
+        }
+    ],
+    "boxList": [
+        {
+            "icon":"faBars",
+            "title":"Front-end",
+            "skill":"HTML, CSS, JavaScript, TypeScript, React, WebAPIs"
+        },
+        {
+            "icon":"faMobile",
+            "title":"Mobile",
+            "skill":"Android Studio, React Native, iOS, Swift, Java, Kotlin"
+        },
+        {
+            "icon":"faServer",
+            "title":"Back-end",
+            "skill":"Java, JavaScript, Go, Kotlin, Spring, Spring Boot"
+        }
+    ],
+    "worklist": [
+        {   
+            "className":"project__img",
+            "img":"./images/project/project1.webp",
+            "alt":"project1",
+            "divClassName":"project__metadata",
+            "h3ClassName":"project__metadata__title",
+            "name":"Project #1",
+            "etc":"Clone Coding with HTML, CSS",
+            "category":"frontend"
+        },
+        {
+            "className":"project__img",
+            "img":"./images/project/project2.webp",
+            "alt":"project2",
+            "divClassName":"project__metadata",
+            "h3ClassName":"project__metadata__title",
+            "name":"Project #2",
+            "etc":"Clone Coding with HTML, CSS",
+            "category":"frontend"
+        },
+        {
+            "className":"project__img",
+            "img":"./images/project/project3.webp",
+            "alt":"project3",
+            "divClassName":"project__metadata",
+            "h3ClassName":"project__metadata__title",
+            "name":"Project #3",
+            "etc":"Clone Coding with HTML, CSS",
+            "category":"frontend"
+        },
+        {
+            "className":"project__img",
+            "img":"./images/project/project4.webp",
+            "alt":"project4",
+            "divClassName":"project__metadata",
+            "h3ClassName":"project__metadata__title",
+            "name":"Project #4",
+            "etc":"Clone Coding with HTML, CSS",
+            "category":"frontend"
+        },
+        {
+            "className":"project__img",
+            "img":"./images/project/project5.webp",
+            "alt":"project5",
+            "divClassName":"project__metadata",
+            "h3ClassName":"project__metadata__title",
+            "name":"Project #5",
+            "etc":"Clone Coding with HTML, CSS",
+            "category":"backend"
+        },
+        {
+            "className":"project__img",
+            "img":"./images/project/project6.webp",
+            "alt":"project6",
+            "divClassName":"project__metadata",
+            "h3ClassName":"project__metadata__title",
+            "name":"Project #6",
+            "etc":"Clone Coding with HTML, CSS",
+            "category":"backend"
+        },
+        {
+            "className":"project__img",
+            "img":"./images/project/project7.webp",
+            "alt":"project7",
+            "divClassName":"project__metadata",
+            "h3ClassName":"project__metadata__title",
+            "name":"Project #7",
+            "etc":"Clone Coding with HTML, CSS",
+            "category":"mobile"
+        },
+        {
+            "className":"project__img",
+            "img":"./images/project/project8.webp",
+            "alt":"project8",
+            "divClassName":"project__metadata",
+            "h3ClassName":"project__metadata__title",
+            "name":"Project #8",
+            "etc":"Clone Coding with HTML, CSS",
+            "category":"mobile"
+        }
+    ],
+    "menulist":[
+        {
+            "name":"All",
+            "category":"total",
+            "count":"8"
+        },
+        {
+            "name":"Front-end",
+            "category":"frontend",
+            "count":"4"
+        },
+        {
+            "name":"Back-end",
+            "category":"backend",
+            "count":"2"
+        },
+        {
+            "name":"Mobile",
+            "category":"mobile",
+            "count":"2"
+        }
+    ],
+    "testimonialList": [
+        {
+            "img":"images/testimonials/people1.webp",
+            "alt":"people1",
+            "ment":"Lorem ipsum, dolor sit amet consectetur adipisicing elit. Reiciendis similique, unde nam totam quam, nisi odio error amet provident iste modi eos dicta, eum suscipit rem illum inventore sapiente blanditiis?",
+            "name":"James Kim",
+            "office":"/ Google"
+        },
+        {
+            "img":"images/testimonials/people2.webp",
+            "alt":"people2",
+            "ment":"Lorem ipsum, dolor sit amet consectetur adipisicing elit. Reiciendis similique, unde nam totam quam, nisi odio error amet provident iste modi eos dicta, eum suscipit rem illum inventore sapiente blanditiis?",
+            "name":"Smith Park",
+            "office":" / Samsung"
+        },
+        {
+            "img":"images/testimonials/people3.webp",
+            "alt":"people3",
+            "ment":"Lorem ipsum, dolor sit amet consectetur adipisicing elit. Reiciendis similique, unde nam totam quam, nisi odio error amet provident iste modi eos dicta, eum suscipit rem illum inventore sapiente blanditiis?",
+            "name":"Anna Jin",
+            "office":" / Samsung"
+        }
     ]
 }
