@@ -374,25 +374,33 @@ My Skills
  */
 .testimonials {
     margin: 3rem;
+    /* border: solid 1px tomato; */
 }
 .testimonial {
     display: flex;
     align-items: center;
     gap: 2rem;
     margin-bottom: 2rem;
-
+    border: solid 1px tomato;
 }
-.testimonial:nth-child(even) .testimonial__img {
+.sectionContainer{
+    padding: 3rem 2rem;
+    max-width: var(--max-size-width);
+    margin: auto;
+    /* border: solid 1px tomato; */
+}
+.testimonial:nth-child(even) .testimonialImg {
     order: 1;
     /* li태그들 중 짝수번호들은 이미지를 먼저 출력하게 하는 명령어
     기본적으로는 0의 값이 있어서 HTML에 입력된 순서대로 출력된다. 
     활용하기! !  */
 }
-.testimonial__img {
+.testimonialImg {
     width: 150px;
     height: 150px;
     border-radius: 100%;
-    box-shadow: 4px 8px 8px rgba(0,0,0,.38) ;
+    box-shadow: 4px 8px 8px rgba(0,0,0,.38);
+    
 }
 .testimonial__bubble {
     padding: 1rem;

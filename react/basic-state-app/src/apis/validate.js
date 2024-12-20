@@ -283,7 +283,7 @@ export function validateFormSignup2(refs){
     export const handleIdCheck = (idparam) =>{
         const id = idparam.idRef.current;
         if(id.value === ''){
-            idparam.errorCheckSignup('id', id.value, idparam.errors, idparam.setErrors, idMsgRef)
+            idparam.errorCheckSignup('id', id.value, idparam.errors, idparam.setErrors)
         } else {
             const did = 'test';
             if(did === id.value){ //고정되는 값을 앞에 써주는 게 효율적이다!
@@ -291,8 +291,8 @@ export function validateFormSignup2(refs){
                 id.focus();
             } else {
                 idparam.setErrors({...idparam.errors, ['id']: '사용이 가능한 아이디입니다.'})
-                idparam.idMsgRef.current.style.setProperty('color','green')
-                idparam.idMsgRef.current.style.setProperty('font-weight','bold')
+                // idparam.idMsgRef.current.style.setProperty('color','green')
+                // idparam.idMsgRef.current.style.setProperty('font-weight','bold')
             }
         }
     }

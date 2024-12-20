@@ -40,9 +40,12 @@
     ],
     "footerDaterList":[
         {
-            "link":"http://linkedin.com"},
+            "link":"http://linkedin.com",
+            "img":"https://img.cgv.co.kr/R2014/images/common/ico/loginPassword.png"
+        },
         {
-            "link":"http://github.com"
+            "link":"http://github.com",
+            "img":"https://img.cgv.co.kr/R2014/images/common/ico/loginPassword.png"
         }
     ],
     "boxList": [
@@ -172,6 +175,7 @@
             "alt":"people1",
             "ment":"Lorem ipsum, dolor sit amet consectetur adipisicing elit. Reiciendis similique, unde nam totam quam, nisi odio error amet provident iste modi eos dicta, eum suscipit rem illum inventore sapiente blanditiis?",
             "name":"James Kim",
+            "href":"#",
             "office":"/ Google"
         },
         {
@@ -179,6 +183,7 @@
             "alt":"people2",
             "ment":"Lorem ipsum, dolor sit amet consectetur adipisicing elit. Reiciendis similique, unde nam totam quam, nisi odio error amet provident iste modi eos dicta, eum suscipit rem illum inventore sapiente blanditiis?",
             "name":"Smith Park",
+            "href":"#",
             "office":" / Samsung"
         },
         {
@@ -186,6 +191,7 @@
             "alt":"people3",
             "ment":"Lorem ipsum, dolor sit amet consectetur adipisicing elit. Reiciendis similique, unde nam totam quam, nisi odio error amet provident iste modi eos dicta, eum suscipit rem illum inventore sapiente blanditiis?",
             "name":"Anna Jin",
+            "href":"#",
             "office":" / Samsung"
         }
     ]
