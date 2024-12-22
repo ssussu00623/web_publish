@@ -171,7 +171,7 @@
     ],
     "testimonialList": [
         {
-            "img":"images/testimonials/people1.webp",
+            "img":"images/people1.webp",
             "alt":"people1",
             "ment":"Lorem ipsum, dolor sit amet consectetur adipisicing elit. Reiciendis similique, unde nam totam quam, nisi odio error amet provident iste modi eos dicta, eum suscipit rem illum inventore sapiente blanditiis?",
             "name":"James Kim",
@@ -179,7 +179,7 @@
             "office":"/ Google"
         },
         {
-            "img":"images/testimonials/people2.webp",
+            "img":"images/people2.webp",
             "alt":"people2",
             "ment":"Lorem ipsum, dolor sit amet consectetur adipisicing elit. Reiciendis similique, unde nam totam quam, nisi odio error amet provident iste modi eos dicta, eum suscipit rem illum inventore sapiente blanditiis?",
             "name":"Smith Park",
@@ -187,12 +187,44 @@
             "office":" / Samsung"
         },
         {
-            "img":"images/testimonials/people3.webp",
+            "img":"images/people3.webp",
             "alt":"people3",
             "ment":"Lorem ipsum, dolor sit amet consectetur adipisicing elit. Reiciendis similique, unde nam totam quam, nisi odio error amet provident iste modi eos dicta, eum suscipit rem illum inventore sapiente blanditiis?",
             "name":"Anna Jin",
             "href":"#",
             "office":" / Samsung"
+        }
+    ],
+    "MySkillList" :[
+        {
+            "name":"HTML",
+            "percent":"98%",
+            "width":"98%"
+        },
+        {
+            "name":"CSS",
+            "percent":"90%",
+            "width":"90%"
+        },
+        {
+            "name":"JavaScript",
+            "percent":"90%",
+            "width":"90%"
+        },
+        {
+            "name":"TypeScript",
+            "percent":"80%",
+            "width":"80%"
+        },
+        {
+            "name":"React",
+            "percent":"79%",
+            "width":"79%"
+        },
+        {
+            "name":"NodeJS",
+            "percent":"68%",
+            "width":"68%"
         }
     ]
 }

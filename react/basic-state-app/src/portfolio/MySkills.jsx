@@ -1,4 +1,5 @@
 import React from 'react';
+import MySkillList from './MySkillList';
 
 export default function MySkills() {
     return (
@@ -12,32 +13,7 @@ export default function MySkills() {
         <div className="skills">
             <article className="skills__coding">
             <h3 className="skill__title">Coding Skills</h3>
-            <ul className='bar'>
-                <li className="bar">
-                <div className="bar__metadata"><span>HTML</span><span>98%</span></div>
-                <div className="bar__bg"><div className="bar__value" style={{width:'98%'}}></div></div>
-                </li>
-                <li className="bar">
-                <div className="bar__metadata"><span>CSS</span><span>90%</span></div>
-                <div className="bar__bg"><div className="bar__value" style={{width:'90%'}}></div></div>
-                </li>
-                <li className="bar">
-                <div className="bar__metadata"><span>JavaScript</span><span>90%</span></div>
-                <div className="bar__bg"><div className="bar__value" style={{width:'90%'}}></div></div>
-                </li>
-                <li className="bar">
-                <div className="bar__metadata"><span>TypeScript</span><span>80%</span></div>
-                <div className="bar__bg"><div className="bar__value" style={{width:'80%'}}></div></div>
-                </li>
-                <li className="bar">
-                <div className="bar__metadata"><span>React</span><span>79%</span></div>
-                <div className="bar__bg"><div className="bar__value" style={{width:'79%'}}></div></div>
-                </li>
-                <li className="bar">
-                <div className="bar__metadata"><span>NodeJS</span><span>68%</span></div>
-                <div className="bar__bg"><div className="bar__value" style={{width:'68%'}}></div></div>
-                </li>          
-            </ul>
+                <MySkillList />
             </article>
             <article className="skills__tools">
             <h3 className="skill__title">Tools</h3>

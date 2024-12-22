@@ -381,7 +381,7 @@ My Skills
     align-items: center;
     gap: 2rem;
     margin-bottom: 2rem;
-    border: solid 1px tomato;
+    /* border: solid 1px tomato; */
 }
 .sectionContainer{
     padding: 3rem 2rem;
@@ -396,7 +396,7 @@ My Skills
     활용하기! !  */
 }
 .testimonialImg {
-    width: 150px;
+    width: 190px;
     height: 150px;
     border-radius: 100%;
     box-shadow: 4px 8px 8px rgba(0,0,0,.38);
@@ -504,7 +504,7 @@ My Skills
     .testimonial{
         flex-direction: column;
     }
-    .testimonial:nth-child(even) .testimonial__img {
+    .testimonial:nth-child(even) .testimonialImg {
         order: 0;;
     }
     .arrow--up {

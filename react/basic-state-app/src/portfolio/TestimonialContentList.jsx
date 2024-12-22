@@ -11,10 +11,7 @@ export default function TestimonialContentList() {
         )
     }, [])
     return (
-        <section id="testimonial" className="sectionContainer">
-        <h2 className="title">Testimonial</h2>
-        <p className="description">See what they say about me</p>
-            <ul className="testimonials " >
+        <>
                 {testimonialList&&testimonialList.map((item)=>
                     <li className='testimonial'>
                         <TestimonialContent 
@@ -24,10 +21,9 @@ export default function TestimonialContentList() {
                             ment={item.ment}
                             name={item.name}
                             office={item.office}
-                        />
+                            />
                     </li>
                 )}
-            </ul>
-        </section>
+                </>
     );
 }
