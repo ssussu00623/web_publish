@@ -19,8 +19,8 @@ export default function ContentLink() {
             {contactList&&contactList.map((item)=>
             <li>
                 <a className="contact__link" href={item.href}>
-                {type === 'github' &&<FontAwesomeIcon icon={faGithub} />}
-                {type === 'linkedin' &&<FontAwesomeIcon icon={faLinkedinIn} />}
+                {item.type === 'github' &&<FontAwesomeIcon icon={faGithub} />}
+                {item.type === 'linkedin' &&<FontAwesomeIcon icon={faLinkedinIn} />}
                 </a>
             </li>
             )}

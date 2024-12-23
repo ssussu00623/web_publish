@@ -81,11 +81,10 @@ function App() {
           </SectionWrap>
           <ArrowUp />
     </Content>
-    <Footer
+    <Footer>
+      <Top 
       title="Let's talk"
-      description="jeon.developer.judy@gmail.com"
-      >
-      <Top />
+      description="jeon.developer.judy@gmail.com"/>
       <ContentLink />
       <Bottom />
     </Footer>
