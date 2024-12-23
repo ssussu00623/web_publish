@@ -199,32 +199,32 @@
         {
             "name":"HTML",
             "percent":"98%",
-            "width":"98%"
+            "classname":"bar__value1"
         },
         {
             "name":"CSS",
             "percent":"90%",
-            "width":"90%"
+            "classname":"bar__value2"
         },
         {
             "name":"JavaScript",
             "percent":"90%",
-            "width":"90%"
+            "classname":"bar__value3"
         },
         {
             "name":"TypeScript",
             "percent":"80%",
-            "width":"80%"
+            "classname":"bar__value4"
         },
         {
             "name":"React",
             "percent":"79%",
-            "width":"79%"
+            "classname":"bar__value5"
         },
         {
             "name":"NodeJS",
             "percent":"68%",
-            "width":"68%"
+            "classname":"bar__value6"
         }
     ]
 }

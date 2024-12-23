@@ -15,7 +15,7 @@ export default function MySkillList(){
         <MySkill 
           name={item.name}
           percent={item.percent}
-          width={item.width}
+          classname={item.classname}
           />
       </li>
       )}

@@ -77,14 +77,12 @@ button:focus {
     margin: 0.5rem 0;
 }
 
-
 /*
     header
 */
 .header {
     background-color: #000;
     width: 100%;
-    height: 80px;
     padding: 1rem;
     display: flex;
     justify-content: space-between;
@@ -264,47 +262,19 @@ My Skills
     flex-direction: column;
     padding: 1rem;
     gap: 0.5rem;
-    /* border: 1px solid tomato; */
 }
 .bar__metadata {
     display: flex;
     justify-content: space-between;
-    
 }
 .bar__bg {
     width: 100%;
     height: 3px;
     background-color: var(--color-gray);
 }
-.bar__value1 {
+.bar__value {
     height: 3px;
     background-color: var(--color-accent);
-    width: 98%;
-}
-.bar__value2 {
-    height: 3px;
-    background-color: var(--color-accent);
-    width: 90%;
-}
-.bar__value3 {
-    height: 3px;
-    background-color: var(--color-accent);
-    width: 90%;
-}
-.bar__value4 {
-    height: 3px;
-    background-color: var(--color-accent);
-    width: 80%;
-}
-.bar__value5 {
-    height: 3px;
-    background-color: var(--color-accent);
-    width: 79%;
-}
-.bar__value6 {
-    height: 3px;
-    background-color: var(--color-accent);
-    width: 68%;
 }
 /* 
     My work
@@ -350,22 +320,18 @@ My Skills
     top: 0;
 }
 .projects {
-    /* border: 1px solid tomato; */
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     grid-template-rows: repeat(2, 1fr);
     gap: 1rem;
 }
 .project {
-    /* border: 1px solid tomato; */
     position: relative;
     overflow: hidden;
 }
-
-.project img {
+.project__img {
     width: 100%;
     border-radius: 8px;
-    /* border: 1px solid tomato; */
 }
 .project__metadata {
     /* border: 1px solid tomato; */
@@ -400,33 +366,25 @@ My Skills
  */
 .testimonials {
     margin: 3rem;
-    /* border: solid 1px tomato; */
 }
 .testimonial {
     display: flex;
     align-items: center;
     gap: 2rem;
     margin-bottom: 2rem;
-    /* border: solid 1px tomato; */
+
 }
-.sectionContainer{
-    padding: 3rem 2rem;
-    max-width: var(--max-size-width);
-    margin: auto;
-    /* border: solid 1px tomato; */
-}
-.testimonial:nth-child(even) .testimonialImg {
+.testimonial:nth-child(even) .testimonial__img {
     order: 1;
     /* li태그들 중 짝수번호들은 이미지를 먼저 출력하게 하는 명령어
     기본적으로는 0의 값이 있어서 HTML에 입력된 순서대로 출력된다. 
     활용하기! !  */
 }
-.testimonialImg {
-    width: 190px;
+.testimonial__img {
+    width: 150px;
     height: 150px;
     border-radius: 100%;
-    box-shadow: 4px 8px 8px rgba(0,0,0,.38);
-    
+    box-shadow: 4px 8px 8px rgba(0,0,0,.38) ;
 }
 .testimonial__bubble {
     padding: 1rem;
@@ -530,7 +488,7 @@ My Skills
     .testimonial{
         flex-direction: column;
     }
-    .testimonial:nth-child(even) .testimonialImg {
+    .testimonial:nth-child(even) .testimonial__img {
         order: 0;;
     }
     .arrow--up {
