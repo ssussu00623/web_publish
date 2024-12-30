@@ -28,9 +28,12 @@ SELECT CUSTOMER_NAME, CUSTOMER_ID, GENDER, CITY, PHONE, POINT FROM CUSTOMER WHER
 -- Q10) '울산' 지역 고객의 이름, 아이디, 성별, 지역, 전화번호, 포인트를 조회하세요.
 SELECT CUSTOMER_NAME, CUSTOMER_ID, GENDER, CITY, PHONE, POINT FROM CUSTOMER WHERE CITY= '울산';
 -- Q11) 포인트가 500,000 이상인 고객의 이름, 아이디, 성별, 지역, 전화번호, 포인트를 조회하세요.
+SELECT CUSTOMER_NAME, CUSTOMER_ID, GENDER, CITY, PHONE, POINT FROM CUSTOMER WHERE POINT >= 500000;
 -- Q12) 이름에 공백이 들어간 고객의 이름, 아이디, 성별, 지역, 전화번호, 포인트를 조회하세요.
+SELECT  CUSTOMER_NAME, CUSTOMER_ID, GENDER, CITY, PHONE, POINT FROM CUSTOMER WHERE CUSTOMER_NAME = '';
 -- Q13) 전화번호가 010으로 시작하지 않는 고객의 이름, 아이디, 성별, 지역, 전화번호, 포인트를 조회하세요.
 -- Q14) 포인트가 500,000 이상 '서울' 지역 고객의 이름, 아이디, 성별, 지역, 전화번호, 포인트를 조회하세요.
+
 -- Q15) 포인트가 500,000 이상인 '서울' 이외 지역 고객의 이름, 아이디, 성별, 지역, 전화번호, 포인트를 조회하세요.
 -- Q16) 포인트가 400,000 이상인 '서울' 지역 남자 고객의 이름, 아이디, 성별, 지역, 전화번호, 포인트를 조회하세요.
 -- Q17) '강릉' 또는 '원주' 지역 고객의 이름, 아이디, 성별, 지역, 전화번호, 포인트를 조회하세요.
