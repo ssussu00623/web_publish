@@ -31,64 +31,167 @@ SELECT CUSTOMER_NAME, CUSTOMER_ID, GENDER, CITY, PHONE, POINT FROM CUSTOMER WHER
 SELECT CUSTOMER_NAME, CUSTOMER_ID, GENDER, CITY, PHONE, POINT FROM CUSTOMER WHERE POINT >= 500000;
 -- Q12) 이름에 공백이 들어간 고객의 이름, 아이디, 성별, 지역, 전화번호, 포인트를 조회하세요.
 SELECT  CUSTOMER_NAME, CUSTOMER_ID, GENDER, CITY, PHONE, POINT FROM CUSTOMER WHERE CUSTOMER_NAME = '';
+SELECT  CUSTOMER_NAME, CUSTOMER_ID, GENDER, CITY, PHONE, POINT FROM CUSTOMER WHERE CUSTOMER_NAME = '% %';
 -- Q13) 전화번호가 010으로 시작하지 않는 고객의 이름, 아이디, 성별, 지역, 전화번호, 포인트를 조회하세요.
+SELECT CUSTOMER_NAME, CUSTOMER_ID, GENDER, CITY, PHONE, POINT 
+	FROM CUSTOMER
+	WHERE LEFT(PHONE, 3) > 010;
 -- Q14) 포인트가 500,000 이상 '서울' 지역 고객의 이름, 아이디, 성별, 지역, 전화번호, 포인트를 조회하세요.
-
+SELECT CUSTOMER_NAME, CUSTOMER_ID, GENDER, CITY, PHONE, FORMAT(POINT, 0) POINT
+	FROM CUSTOMER
+    WHERE CITY='서울' AND POINT >500000;
 -- Q15) 포인트가 500,000 이상인 '서울' 이외 지역 고객의 이름, 아이디, 성별, 지역, 전화번호, 포인트를 조회하세요.
+SELECT CUSTOMER_NAME, CUSTOMER_ID, GENDER, CITY, PHONE, FORMAT(POINT, 0) POINT
+	FROM CUSTOMER
+    WHERE CITY NOT IN('서울') 
+    AND POINT >500000;
 -- Q16) 포인트가 400,000 이상인 '서울' 지역 남자 고객의 이름, 아이디, 성별, 지역, 전화번호, 포인트를 조회하세요.
+SELECT CUSTOMER_NAME, CUSTOMER_ID, GENDER, CITY, PHONE, FORMAT(POINT, 0) POINT
+	FROM CUSTOMER
+    WHERE CITY = '서울' AND GENDER='M' AND POINT >500000;
 -- Q17) '강릉' 또는 '원주' 지역 고객의 이름, 아이디, 성별, 지역, 전화번호, 포인트를 조회하세요.
+SELECT CUSTOMER_NAME, CUSTOMER_ID, GENDER, CITY, PHONE, FORMAT(POINT, 0) POINT
+	FROM CUSTOMER
+    WHERE CITY='강릉' OR CITY ='원주';
 -- Q18) '서울' 또는 '부산' 또는 '제주' 또는 '인천' 지역 고객의 이름, 아이디, 성별, 지역, 전화번호, 포인트를 조회하세요.
+SELECT CUSTOMER_NAME, CUSTOMER_ID, GENDER, CITY, PHONE, FORMAT(POINT, 0) POINT
+	FROM CUSTOMER
+    WHERE CITY='서울' OR CITY ='부산' OR CITY = '제주' OR CITY= '인천';
 -- Q19) 포인트가 400,000 이상, 500,000 이하인 고객의 이름, 아이디, 성별, 지역, 전화번호, 포인트를 조회하세요.
+SELECT CUSTOMER_NAME, CUSTOMER_ID, GENDER, CITY, PHONE, FORMAT(POINT, 0) POINT
+	FROM CUSTOMER
+    WHERE POINT BETWEEN 400000 AND 500000;
 -- Q20) 1990년에 출생한 고객의 이름, 아이디, 성별, 지역, 전화번호, 생일, 포인트를 조회하세요.
+SELECT CUSTOMER_NAME, CUSTOMER_ID, GENDER, CITY, PHONE, BIRTH_DATE,FORMAT(POINT, 0) POINT
+	FROM CUSTOMER
+    WHERE LEFT(BIRTH_DATE, 4) ='1990';
 -- Q21) 1990년에 출생한 여자 고객의 이름, 아이디, 성별, 지역, 전화번호, 생일, 포인트를 조회하세요.
+SELECT CUSTOMER_NAME, CUSTOMER_ID, GENDER, CITY, PHONE, BIRTH_DATE,FORMAT(POINT, 0) POINT
+	FROM CUSTOMER
+    WHERE LEFT(BIRTH_DATE, 4) ='1990' AND GENDER = 'F';
 -- Q22) 1990년에 출생한 '대구' 또는 '경주' 지역 남자 고객의 이름, 아이디, 성별, 지역, 전화번호, 생일, 포인트를 조회하세요.
+SELECT CUSTOMER_NAME, CUSTOMER_ID, GENDER, CITY, PHONE, BIRTH_DATE,FORMAT(POINT, 0) POINT
+	FROM CUSTOMER
+    WHERE LEFT(BIRTH_DATE, 4) ='1990' AND CITY = '대구' AND GENDER = 'M';
 -- Q23) 1990년에 출생한 남자 고객의 이름, 아이디, 성별, 지역, 전화번호, 생일, 포인트를 조회하세요.
 --      단, 홍길동(gildong) 형태로 이름과 아이디를 묶어서 조회하세요.
+SELECT 
+	CONCAT(CUSTOMER_NAME, '(', CUSTOMER_ID, ')') AS '이름(아이디)', 
+	GENDER, 
+	CITY, 
+	PHONE, 
+	BIRTH_DATE,
+	FORMAT(POINT, 0) 
+	POINT
+	FROM CUSTOMER
+    WHERE LEFT(BIRTH_DATE, 4) ='1990'AND GENDER='M';
 -- Q24) 근무중인 직원의 이름, 사원번호, 성별, 전화번호, 입사일를 조회하세요.
+SELECT EMPLOYEE_ID, EMPLOYEE_NAME, GENDER, PHONE, HIRE_DATE
+FROM EMPLOYEE;
 -- Q25) 근무중인 남자 직원의 이름, 사원번호, 성별, 전화번호, 입사일를 조회하세요.
+SELECT EMPLOYEE_ID, EMPLOYEE_NAME, GENDER, PHONE, HIRE_DATE, RETIRE_DATE
+FROM EMPLOYEE
+WHERE GENDER = 'M' AND RETIRE_DATE IS NULL;
+
 -- Q26) 퇴사한 직원의 이름, 사원번호, 성별, 전화번호, 입사일, 퇴사일를 조회하세요.
+SELECT EMPLOYEE_ID, EMPLOYEE_NAME, GENDER, PHONE, HIRE_DATE, RETIRE_DATE
+FROM EMPLOYEE
+WHERE RETIRE_DATE IS NOT NULL;
 
 -- Q28) 2019-01-01 ~ 2019-01-07 기간 주문의 주문번호, 고객아이디, 사원번호, 주문일시, 소계, 배송비, 전체금액을 조회하세요.
 --      단, 고객아이디를 기준으로 오름차순 정렬해서 조회하세요.
+    SELECT CUSTOMER_ID, EMPLOYEE_ID, ORDER_DATE, CONCAT(FORMAT(SUB_TOTAL, 0), '원') SUB_TOTAL, DELIVERY_FEE, CONCAT(FORMAT(TOTAL_DUE, 0), '원') TOTAL_DUE
+	FROM ORDER_HEADER
+    WHERE ORDER_DATE BETWEEN '2019-01-01' AND '2019-01-07'
+    ORDER BY CUSTOMER_ID DESC;
     
 -- Q29) 2019-01-01 ~ 2019-01-07 기간 주문의 주문번호, 고객아이디, 사원번호, 주문일시, 소계, 배송비, 전체금액을 조회하세요.
 --      단, 전체금액을 기준으로 내림차순 정렬해서 조회하세요.
+	SELECT CUSTOMER_ID, EMPLOYEE_ID, ORDER_DATE, CONCAT(FORMAT(SUB_TOTAL, 0), '원') SUB_TOTAL, DELIVERY_FEE, CONCAT(FORMAT(TOTAL_DUE, 0), '원') TOTAL_DUE
+    FROM ORDER_HEADER
+    WHERE ORDER_DATE BETWEEN '2019-01-01' AND '2019-01-07'
+    ORDER BY TOTAL_DUE DESC;
 
 -- Q30) 2019-01-01 ~ 2019-01-07 기간 주문의 주문번호, 고객아이디, 사원번호, 주문일시, 소계, 배송비, 전체금액을 조회하세요.
 --      단, 사원번호를 기준으로 오름차순, 같은 사원번호는 주문일시를 기준으로 내림차순 정렬해서 조회하세요.
+	SELECT CUSTOMER_ID, EMPLOYEE_ID, ORDER_DATE, CONCAT(FORMAT(SUB_TOTAL, 0), '원') SUB_TOTAL, DELIVERY_FEE, CONCAT(FORMAT(TOTAL_DUE, 0), '원') TOTAL_DUE
+    FROM ORDER_HEADER
+    WHERE ORDER_DATE BETWEEN '2019-01-01' AND '2019-01-07'
+    ORDER BY EMPLOYEE_ID DESC;
 
 /**
 	그룹함수
 **/
+use myshop2019;
+select database();
+show tables;
 /** customer 테이블 사용 **/
 -- Q01) 고객의 포인트 합을 조회하세요.
-
+SELECT FORMAT(SUM(POINT), 0) 포인트총합
+	FROM CUSTOMER;
 -- Q02) '서울' 지역 고객의 포인트 합을 조회하세요.
-
+SELECT
+	IF(GROUPING(CITY), '도시별합계', IFNULL(CITY, '-')) 포인트총합,
+    FORMAT(SUM(IFNULL(POINT, 0)), 0)'총 포인트'
+	FROM CUSTOMER
+    GROUP BY CITY WITH ROLLUP ;
 -- Q03) '서울' 지역 고객의 수를 조회하세요.
-
+SELECT 
+	COUNT(*)
+	FROM CUSTOMER
+    WHERE CITY = '서울';
 -- Q04) '서울' 지역 고객의 포인트 합과 평균을 조회하세요.
-     
+     SELECT 
+     FORMAT(SUM(IFNULL(POINT,0)),0) 총합,
+     FORMAT(AVG(IFNULL(POINT,0)),0) 평균
+     FROM CUSTOMER
+     WHERE CITY='서울';
 -- Q05) '서울' 지역 고객의 포인트 합, 평균, 최댓값, 최솟값을 조회하세요.
+	SELECT 
+	FORMAT(SUM(IFNULL(POINT, 0)),0) 포인트총계,
+    FORMAT(AVG(IFNULL(POINT, 0)),0) 포인트평균,
+    FORMAT(MAX(IFNULL(POINT, 0)),0) 최고포인트,
+    FORMAT(MIN(IFNULL(POINT, 0)),0) 최저포인트
+    FROM CUSTOMER
+    WHERE CITY = '서울';
 
 -- Q06) 남녀별 고객의 수를 조회하세요.
-
+	SELECT GENDER, COUNT(*) '총 고객 수'
+    FROM CUSTOMER
+    GROUP BY GENDER;
 -- Q07) 지역별 고객의 수를 조회하세요.
 --      단, 지역 이름을 기준으로 오름차순 정렬해서 조회하세요.
-
+	SELECT CITY, COUNT(*)
+    FROM CUSTOMER
+    GROUP BY CITY
+    ORDER BY CITY ASC;
  
 -- Q08) 지역별 고객의 수를 조회하세요.
 --      단, 고객의 수가 10명 이상인 행만 지역 이름을 기준으로 오름차순 정렬해서 조회하세요.
+   SELECT CITY, COUNT(*) 고객수
+   FROM CUSTOMER
+   GROUP BY CITY
+   HAVING 고객수>= 10
+   ORDER BY CITY ASC;
    
     
 -- Q09) 남녀별 포인트 합을 조회하세요.
-    
+    SELECT GENDER, FORMAT(SUM(IFNULL(POINT, 0)),0) 포인트총계
+    FROM CUSTOMER
+    GROUP BY GENDER;
 -- Q10) 지역별 포인트 합을 조회하세요.
 --      단, 지역 이름을 기준으로 오름차순 정렬해서 조회하세요.
-    
+    SELECT CITY, FORMAT(SUM(IFNULL(POINT, 0)),0) 포인트총계
+    FROM CUSTOMER
+    GROUP BY CITY
+    ORDER BY CITY ASC;
 -- Q11) 지역별 포인트 합을 조회하세요.
 --      단, 포인트 합이 1,000,000 이상인 행만 포인트 합을 기준으로 내림차순 정렬해서 조회하세요.
-
+	SELECT CITY, FORMAT(SUM(IFNULL(POINT,0)),0) 포인트총계
+    FROM CUSTOMER
+    GROUP BY CITY
+    HAVING 포인트총계> 100
+    ORDER BY 포인트총계 DESC;
       
 -- Q12) 지역별 포인트 합을 조회하세요.
 --      단, 포인트 합을 기준으로 내림차순 정렬해서 조회하세요.
