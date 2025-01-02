@@ -195,30 +195,77 @@ SELECT
       
 -- Q12) 지역별 포인트 합을 조회하세요.
 --      단, 포인트 합을 기준으로 내림차순 정렬해서 조회하세요.
-   
+   SELECT CITY, SUM(IFNULL(POINT,0)) 포인트 
+   FROM CUSTOMER
+   GROUP BY CITY
+   ORDER BY 포인트 DESC;
 
 -- Q13) 지역별 고객의 수, 포인트 합을 조회하세요.
 --      단, 지역 이름을 기준으로 오름차순 정렬해서 조회하세요.
-
+	SELECT  CITY, COUNT(*) 고객수, SUM(IFNULL(POINT,0)) 포인트   
+        FROM CUSTOMER
+        GROUP BY CITY
+        ORDER BY CITY asc;
 
 -- Q14) 지역별 포인트 합, 포인트 평균을 조회하세요.
 --      단, 포인트가 NULL이 아닌 고객을 대상으로 하며, 지역 이름을 기준으로 오름차순 정렬해서 조회하세요.
+	SELECT 
+		CITY 지역, 
+        SUM(POINT) 합포인트,
+        AVG(POINT) 평포인트
+        FROM CUSTOMER
+        WHERE POINT IS NOT NULL
+        GROUP BY CITY
+        ORDER BY 지역 ASC;
 
 -- Q15) '서울', '부산', '대구' 지역 고객의 지역별, 남녀별 포인트 합과 평균을 조회하세요.
 --      단, 지역 이름을 기준으로 오름차순, 같은 지역은 성별을 기준으로 오름차순 정렬해서 조회하세요.
-
+	SELECT 
+		GENDER,
+        FORMAT(SUM(IFNULL(POINT, 0)),0) 합포인트
+        FROM CUSTOMER
+        WHERE CITY = '서울' AND '부산' AND '대구'
+        GROUP BY GENDER        
+        ;
 
 /** order_header 테이블 사용 **/
-    
+    show databases;
+	use myshop2019;
+	select database();
+	show tables;
+    SELECT * FROM order_header;
 -- Q16) 2019년 1월 주문에 대하여 고객아이디별 전체금액 합을 조회하세요.
-
+SELECT 
+	CUSTOMER_ID, FORMAT(SUM(TOTAL_DUE),0) '2019-01 구매 총액'
+    FROM ORDER_HEADER
+    WHERE LEFT(ORDER_DATE, 7) = '2019-01'
+    GROUP BY CUSTOMER_ID;
+    
 
 -- Q17) 주문연도별 전체금액 합계를 조회하세요.
+	SELECT 
+		LEFT(ORDER_DATE,4), 
+        FORMAT(SUM(TOTAL_DUE),0) 총액
+        FROM ORDER_HEADER
+        GROUP BY LEFT(ORDER_DATE,4);
 
 -- Q18) 2019.01 ~ 2019.06 기간 주문에 대하여 주문연도별, 주문월별 전체금액 합을 조회하세요.
-
+	SELECT 
+		LEFT(ORDER_DATE,7) 주문월, 
+        FORMAT(SUM(TOTAL_DUE),0) 총액,
+        FORMAT(AVG(TOTAL_DUE),0) 평균액
+        FROM ORDER_HEADER
+        WHERE LEFT(ORDER_DATE, '7') IN('2019-01', '2019-02', '2019-03', '2019-04', '2019-05', '2019-06')
+        GROUP BY LEFT(ORDER_DATE,7);
 -- Q19) 2019.01 ~ 2019.06 기간 주문에 대하여 주문연도별, 주문월별 전체금액 합과 평균을 조회하세요.
-
+	SELECT 
+		LEFT(ORDER_DATE,4) 주문연도,
+		LEFT(ORDER_DATE,7) 주문월, 
+        FORMAT(SUM(TOTAL_DUE),0) 총액,
+        FORMAT(AVG(TOTAL_DUE),0) 평균액
+        FROM ORDER_HEADER
+        WHERE LEFT(ORDER_DATE, '7') IN('2019-01', '2019-02', '2019-03', '2019-04', '2019-05', '2019-06')
+        GROUP BY LEFT(ORDER_DATE,7);
 -- Q20) 주문연도별, 주문월별 전체금액 합과 평균을 조회하고, rollup 함수를 이용하여 소계와 총계를 출력해주세요.
 
 
