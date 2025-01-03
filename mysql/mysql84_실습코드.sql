@@ -1183,6 +1183,8 @@ DESC DEPT;
     - FOREIGN KEY(참조키): 타 테이블을 참조하기위한 키
     - DEFAULT: 디폴트로 저장되는 데이터 정의하는 제약
     
+    - AUTO_INCREMENT : 자동번호 생성기 (오라클에서는 SEQUENCE)
+    
     단독으로 사용할 수 없다. 
     
     사용 형식 
@@ -1194,6 +1196,8 @@ DESC DEPT;
 SELECT * FROM INFORMATION_SCHEMA.TABLE_CONSTRAINTS
 		WHERE TABLE_NAME= 'EMPLOYEE';
 DESC EMPLOYEE;
+SHOW TABLES;
+DESC EMP;
 
 -- EMP_CONST 테이블 생성
 -- 기본키 제약 : EMP_ID 
@@ -1278,3 +1282,279 @@ SELECT *
 	FROM INFORMATION_SCHEMA.TABLE_CONSTRAINTS
     WHERE TABLE_NAME= 'EMP_CONST2';
     
+-- 제약사항 테스트를 위한 테이블생성 : CONST_TEST
+-- UID 컬럼: CHAR 4 기본키 제약
+-- NAME 컬럼: VARCHAR 10 NULL 비허용
+-- AGE 컬럼: INT NULL 허용
+-- ADDR 컬럼: VARCHAR 30 NULL 허용
+
+show databases;  
+use hrdb2019;
+select database();
+show tables;
+
+CREATE TABLE CONST_TEST(
+	UID CHAR(4)	PRIMARY  KEY,
+    NAME VARCHAR(10) NOT NULL,
+    AGE INT,
+    ADDR VARCHAR(30)
+);
+
+SELECT * FROM INFORMATION_SCHEMA.TABLE_CONSTRAINTS
+		WHERE TABLE_NAME= 'CONST_TEST';
+
+DESC CONST_TEST;
+
+-- DEPT_ID 컬럼추가 : CHAR(3) 디폴트 'HRD', NULL 비허용
+ALTER TABLE CONST_TEST 
+	ADD COLUMN DEPT_ID	CHAR(3) DEFAULT('HRD');
+    
+DESC CONST_TEST;
+    
+-- S001, 홍길동, 20, 서울시, SYS
+INSERT INTO CONST_TEST(UID, NAME, AGE, ADDR, DEPT_ID)
+	VALUES('S001','홍길동', 20, '서울시', 'SYS');
+SELECT * FROM CONST_TEST;
+
+-- S002, 김철수, 20, 서울시, HRD
+INSERT INTO  CONST_TEST(UID, NAME, AGE, ADDR)
+	VALUES('S002', '김철수', 20, '서울시');
+SELECT * FROM CONST_TEST;
+
+-- SALARY 컬럼: INT, 3000이상인 숫자만 등록할 수 있도록 CHECK
+ALTER TABLE CONST_TEST
+	ADD COLUMN SALARY	INT	CHECK(SALARY >= 3000);
+DESC CONST_TEST;
+SELECT * FROM CONST_TEST;
+
+-- S003, 이영희, 30, 부산시, HRD, 연봉 3000
+INSERT INTO CONST_TEST(UID, NAME, AGE, ADDR, SALARY)
+	VALUES('S003', '이영희', 30, '부산시', 3000);
+SELECT * FROM CONST_TEST;
+
+-- Error Code: 3819. Check constraint 'const_test_chk_1' is violated.
+-- 3000이상만 입력할 수으니 체크 오류가뜬다!
+INSERT INTO CONST_TEST(UID, NAME, AGE, ADDR, SALARY)
+	VALUES('S003', '이영희', 30, '부산시', 2000);
+
+-- S004, 이영희, 30, 부산시, HRD, 연봉 4000
+INSERT INTO CONST_TEST(UID, NAME, AGE, ADDR, SALARY)
+	VALUES('S004', '이영희', 30, '부산시', 4000);
+SELECT * FROM CONST_TEST;
+    
+-- 상품 테이블 생성 : PRODUCT_TEST
+-- 컬럼 : PID INT 기본키 설정PTIMARY KEY, PNAME VARCHAR(30), NULL 비허용, PRICE INT NULL허용 
+-- 		COMPANY VARCHAR 20 NULL 허용 
+-- 		AUTO_INCREMENT를 기본키에 사용하기 
+
+CREATE TABLE PRODUCT_TEST (
+	PID 	INT 	PRIMARY KEY		AUTO_INCREMENT,
+    PNAME 	VARCHAR(30)	NOT NULL,
+    PRICE INT,
+    COMPANY VARCHAR(20)
+    );
+SHOW TABLES;
+DESC PRODUCT_TEST;
+-- 키보드, 100, 삼성
+INSERT INTO PRODUCT_TEST(PNAME, PRICE, COMPANY)
+	VALUES('키보드',100,'삼성');
+INSERT INTO PRODUCT_TEST(PNAME, PRICE, COMPANY)
+	VALUES('키보드',200,'삼성');
+INSERT INTO PRODUCT_TEST(PNAME, PRICE, COMPANY)
+	VALUES('모니터',1200,'엘지');
+-- PID가 자동으로 생성되는 걸 볼 수있다.
+SELECT * FROM PRODUCT_TEST;
+
+/*****************************************************************
+	DML : INSERT(C), SELECT(R), UPDATE(U), DELETE(D)
+*****************************************************************/
+-- 2. UPDATE : 데이터 수정
+/*
+ 형식: UPDATE [테이블명] 
+		SET[컬럼명='업데이트 데이터'... ... ]
+		WHERE [조건절];
+        *WHERE가 들어가지 않으면 모든 테이블에 반영되니 주의!!!!*
+*/
+SELECT * FROM CONST_TEST;
+
+-- 홍길동 연봉추가 (업데이트) : NULL - > 3500
+UPDATE CONST_TEST
+	SET SALARY = 3500
+    WHERE UID = 'S001'; -- 조건을 설정하지 않으면 모두 바뀌니 주의! 
+SELECT * FROM CONST_TEST;
+
+-- 김철수 연봉 5000으로 업데이트
+UPDATE CONST_TEST
+	SET SALARY = 5000
+    WHERE UID = 'S002';
+    
+SHOW TABLES;
+-- EMPLOYEE 테이블을 복제하여 CP_EMPLOYEE 테이블을 생성
+-- EMP_ID 컬럼에 기본키 제약 추가
+	CREATE TABLE CP_EMPLOYEE
+    AS
+    SELECT *
+		FROM EMPLOYEE;
+SELECT * FROM CP_EMPLOYEE;
+DESC CP_EMPLOYEE;
+DESC EMPLOYEE;
+-- KEY값(제약사항)은 복제되지 않았다는 걸 알 수 있음. 복제한 값엔 따로 주어야 함
+ALTER TABLE CP_EMPLOYEE
+	ADD CONSTRAINT PK_EMP_ID PRIMARY KEY(EMP_ID);
+    -- PK는 PRIMARY KEY 단축키.. 임의 지정이기 때문에 규칙이 있다면 따르면 됨. 
+    -- 제약사항 이름이 지정되는 것.
+SELECT * FROM INFORMATION_SCHEMA.TABLE_CONSTRAINTS
+		WHERE TABLE_NAME= 'CP_EMPLOYEE';
+        
+/***************************************************
+-- PHONE, EMAIL 컬럼에 UNIQUE 제약추가
+***************************************************/
+ALTER TABLE CP_EMPLOYEE
+	ADD CONSTRAINT UK_PHONE UNIQUE(PHONE);
+    
+ALTER TABLE CP_EMPLOYEE
+	ADD CONSTRAINT UK_EMAIL UNIQUE(EMAIL);
+    
+-- CP_EMPLOYEE 테이블의 PHONE에 추가된 제약사항 삭제
+DESC EMPLOYEE; -- 일단 있는지 확인
+-- CONSTRAINT_NAME을 알아야 삭제할 수 있기 때문에 사전 조회를 통해 확인한다.
+SELECT * FROM INFORMATION_SCHEMA.TABLE_CONSTRAINTS
+		WHERE TABLE_NAME= 'CP_EMPLOYEE';
+-- ADD로 주었으니 DROP으로 삭제!
+-- PHONE 자체를 삭제하는 것이 아닌 제약사항을 지우는 것이므로 컬럼이름 필수 확인
+ALTER TABLE CP_EMPLOYEE
+	DROP CONSTRAINT UK_PHONE;
+    
+SELECT * FROM  CP_EMPLOYEE;
+-- 부서 아이디가 SYS인 부서 아이디를 --> '정보'로 변환
+UPDATE CP_EMPLOYEE
+	SET DEPT_ID = '정보'
+    WHERE DEPT_ID = 'SYS';
+    
+-- 2016년도 입사한 사원들의 입사일 --> 현재날짜로 수정
+UPDATE CP_EMPLOYEE
+	SET HIRE_DATE = LEFT(CURDATE(), 10)
+    WHERE LEFT(HIRE_DATE, 4) = '2016';
+    
+/*
+	Error Code: 1175. You are using safe update mode and you tried to update a table without a WHERE that uses a KEY column. 
+    업데이트 방지 모드로 설정되어 있음.... SAFE UPDATE MODE 설정 변경 작업이 필요하다. 
+*/    
+-- 업데이트 방지 모드를 변경하고 부서 아이디가 SYS인 부서 아이디를 --> '정보'로 변환
+SET SQL_SAFE_UPDATES = 0; -- 해제: 0, 설정: 1
+UPDATE CP_EMPLOYEE
+	SET DEPT_ID = '정보'
+    WHERE DEPT_ID = 'SYS';
+    
+-- 업데이트 방지 모드를 변경하고 2016년도 입사한 사원들의 입사일 --> 현재날짜로 수정
+SET SQL_SAFE_UPDATES = 0; 
+UPDATE CP_EMPLOYEE
+	SET HIRE_DATE = CURDATE()
+    -- DATE 타입이기 때문에 LEFT(CURDATE(), 10) 이렇게 주지 않아도 10자리만 들어간다.. (시분초 자동 생략) NOW, SYSDATE로 들어가도 마찬가지.
+    WHERE LEFT(HIRE_DATE, 4) = '2016';
+    
+    SELECT COUNT(*) 
+		FROM  CP_EMPLOYEE
+        WHERE LEFT(HIRE_DATE, 4) = '2025';
+        
+-- 강우동 사원의 영어이름 'KANG', 퇴사일을 현재 날짜로, 부서는 SYS로 수정
+SELECT * FROM  CP_EMPLOYEE WHERE EMP_NAME = '강우동';
+-- 일단 수정 전 정보 확인
+
+UPDATE CP_EMPLOYEE
+SET 
+	ENG_NAME = 'KANG', 
+    RETIRE_DATE = NOW(), 
+    DEPT_ID='SYS'
+WHERE EMP_NAME = '강우동';
+
+SELECT * FROM  CP_EMPLOYEE WHERE EMP_NAME = '강우동';
+-- 수정 후 정보 확인!
+
+-- 트랙잭션 처리방식이 auto commit이 아닌 경우
+-- 작업완료 : commit, 작업취소 : rollback
+
+COMMIT; 
+
+/*****************************************************************
+	DML : INSERT(C), SELECT(R), UPDATE(U), DELETE(D)
+*****************************************************************/
+-- 3. DELETE : 데이터 삭제
+/*
+ 
+ 형식: 	DELETE FROM [테이블명] 
+		WHERE [조건절];
+        *트랙잭션 관리법에 따라 삭제된 데이터를 복원할 수 있음. AUTO COMMIT 상태에서는 불가능*
+*/
+
+COMMIT;
+-- 여기서부터 트랙잭션이 시작된다는 뜻 / 현재까지 진행한 모든 작업을 DB에 반영한다. 
+
+SELECT * FROM CP_EMPLOYEE;
+-- 김삼순사원,s0004  삭제
+DELETE FROM CP_EMPLOYEE WHERE EMP_ID= 'S0004';
+SELECT * FROM CP_EMPLOYEE WHERE EMP_ID= 'S0004';
+
+ROLLBACK;
+-- 임시저장소에서만 삭제된 정보(커밋하기 전에 삭제된 데이터)를 복구한다.
+/****!!프로그램 개발을 통해 실시간 접속시에는 AUTO COMMIT 실행됨!!****/
+SELECT * FROM CP_EMPLOYEE WHERE EMP_ID= 'S0004';
+
+
+-- 연봉이 7000이상인 모든 사원 삭제
+    SELECT COUNT(*) 
+		FROM  CP_EMPLOYEE
+        WHERE SALARY >= 7000;
+DELETE FROM CP_EMPLOYEE 
+	WHERE SALARY >= 7000;
+
+-- CP_EMPLOYEE 테이블에서 정보시스템 부서 직원들 모두 삭제
+SET SQL_SAFE_UPDATES = 0; 
+SELECT * FROM CP_EMPLOYEE;
+SELECT COUNT(*) 
+	FROM CP_EMPLOYEE
+	WHERE DEPT_ID = '정보';
+DELETE FROM CP_EMPLOYEE WHERE DEPT_ID = '정보';
+
+
+-- CP_EMPLOYEE 테이블에서 2017년 이후 입사자들을 모두 삭제(터미널로 삭제해보기)
+/*
+	    mysql> SELECT COUNT(*)
+    -> FROM CP_EMPLOYEE
+    -> WHERE LEFT(HIRE_DATE, 4) >= '2017';
+		+----------+
+		| COUNT(*) |
+		+----------+
+		|        7 |
+		+----------+
+		1 row in set (0.00 sec)
+        조건에 충족하는 값이 7개 있는 걸 확인 가능 !
+        *****************************************
+		DELETE FROM CP_EMPLOYEE
+		-> WHERE LEFT(HIRE_DATE, 4) >= '2017';
+		Query OK, 7 rows affected (0.05 sec)
+    
+    워크벤치로만 했을 때 알 수 없던 정보들을 터미널로 볼 수 있다.
+    워크벤치로 작업해도 실제 실행은 터미널에서 진행되는 것인데, CRUD를 실행하게 되면 결과가 숫자로 도출되는 걸 알 수 있다. 
+    이 숫자값으로 쿼리 실행 결과를 체크할 수 있어야 함.
+    
+    mysql> SELECT COUNT(*)
+    -> FROM CP_EMPLOYEE
+    -> WHERE LEFT(HIRE_DATE, 4) >= '2017';
+		+----------+
+		| COUNT(*) |
+		+----------+
+		|        0 |
+		+----------+
+		1 row in set (0.00 sec)
+*/
+
+SHOW TABLES;
+DROP TABLE CONST_TEST;
+DROP TABLE DEPT;
+DROP TABLE EMP;
+DROP TABLE EMP_CONST;
+DROP TABLE EMP_CONST2;
+DROP TABLE EMPLOYEE_HRD;
+DROP TABLE EMPLOYEE_SYS;
+DROP TABLE PRODUCT_TEST;
