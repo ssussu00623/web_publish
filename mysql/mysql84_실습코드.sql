@@ -1558,3 +1558,244 @@ DROP TABLE EMP_CONST2;
 DROP TABLE EMPLOYEE_HRD;
 DROP TABLE EMPLOYEE_SYS;
 DROP TABLE PRODUCT_TEST;
+
+/*****************************************************************
+	하나 이상의 테이블 생성 및 연결, 조회 - 
+    - 생성: CREATE TABLE (만들 때는 따로따로 만든당)
+    - 연결: FOREIGN KEY(참조키) 제약 추가
+    - 조회: JOIN, SUBQLERY
+    ** 데이터베이스의 테이벌 설계과정 : 데이터베이스 모델링(모델링은 모델러가 따로 있다) 
+		-> 데이터 정규화 
+        -> (과정을 통해 나오는 결과물) ERD(Entity Relationship Diagram)
+*****************************************************************/
+USE HRDB2019;
+SELECT DATABASE();
+SHOW TABLES;
+-- ERD : MENU -> batabase -> reverse engeering...(단축키 ctrl + R) 
+-- 정규화: 데이터베이스 저장 효율성을 높이기 위한 방식 - 데이터 중복배제, 테이블 분리...
+-- 반정규화: 분리된 테이블을 하나로 합치는 방식
+/*
+	[kk전자의 인사관리 시스템 : 사원테이블 생성 - 정규화 X]
+	사원 테이블의 데이터 : 사원아이디(KID, 기본키),사원명, 주소, 입사일, 연봉, 부서명, 부서위치, 부서번호 
+*/
+
+CREATE TABLE KK_DEPARTMENT (
+	DEPT_ID CHAR(3) PRIMARY KEY,
+    DEPT_NAME VARCHAR(20) NOT NULL,
+    LOC VARCHAR(30));
+
+	DESC KK_DEPARTMENT;
+    SELECT * FROM INFORMATION_SCHEMA.TABLE_CONSTRAINTS
+    WHERE TABLE_NAME LIKE 'KK%';
+    INSERT INTO KK_DEPARTMENT(DEPT_ID, DEPT_NAME, LOC) 
+		VALUE ('SYS','정보시스템','서울 서초구'),('HRD','인사관리','서울 종로구'),('ACC','회계관리','서울 강남구');
+	
+    SELECT * FROM KK_DEPARTMENT;
+        
+CREATE TABLE KK_EMPLOYEE (
+	KID INT PRIMARY KEY AUTO_INCREMENT,
+    KNAME VARCHAR(10) NOT NULL,
+    ADDRESS VARCHAR(20),
+    HRIE_DATE DATE,
+    SALARY INT,
+    DEPT_ID  CHAR(3),
+		CONSTRAINT FK_KK_EMPLOYEE FOREIGN KEY(DEPT_ID) -- 현재 컬럼에서 참고값을 이을 것
+			REFERENCES KK_DEPARTMENT(DEPT_ID) -- 참조할 키 이름
+    );
+    	DESC KK_EMPLOYEE;
+    SELECT * FROM INFORMATION_SCHEMA.TABLE_CONSTRAINTS
+    WHERE TABLE_NAME LIKE 'KK%';
+    SHOW TABLES;
+    
+    INSERT INTO KK_EMPLOYEE (KNAME, ADDRESS, HRIE_DATE, SALARY, DEPT_ID)
+		VALUE('홍길동','서울시 강남구','2015-01-06','5000','SYS'), ('스미스','뉴욕','2014-12-26','6000','HRD');
+	SELECT * FROM KK_EMPLOYEE;
+    
+	-- Error Code: 1452. Cannot add or update a child row: a foreign key constraint fails 
+    -- (`hrdb2019`.`kk_employee`, CONSTRAINT `FK_KK_EMPLOYEE` FOREIGN KEY (`DEPT_ID`) 
+    -- REFERENCES `kk_department` (`DEPT_ID`))
+	-- DEPT_ID는 참조값이기 때문에 KK_DEPARTMENT에 속하지 않은 정보를 입력하려고하면 오류가 발생한다.
+	    INSERT INTO KK_EMPLOYEE (KNAME, ADDRESS, HRIE_DATE, SALARY, DEPT_ID)
+		VALUE('스미스','뉴욕','2014-12-26','6000','HR');
+
+	-- SOLUTION : 참조하는 KK_DEPARTMEN 테이블의 DEPT_ID를 확인하여 입력 
+	INSERT INTO KK_EMPLOYEE (KNAME, ADDRESS, HRIE_DATE, SALARY, DEPT_ID)
+	VALUE('스미스','뉴욕','2014-12-26','6000','HRD');
+    
+    -- 대학으로 만들어보기 
+    
+    CREATE TABLE SUBJECT(
+		SID 	INT 			PRIMARY KEY 	AUTO_INCREMENT,
+		SNAME 	VARCHAR(10) 	NOT NULL,
+		SDATE 	DATETIME
+    );
+    CREATE TABLE STUDENT(
+		STID 	INT 			PRIMARY KEY 	AUTO_INCREMENT,
+        SNAME 	VARCHAR(20) 	NOT NULL,
+        GENDER 	CHAR(1) 		NOT NULL,
+        SID 	INT,			-- FOREIGN KEY, SUBJECT(SID) 이름은 달라도 되지만 참조값으로 활용하려면 타입이 똑같아야함. (하지만 같게주는게 더좋음) 
+        STDATE 	DATETIME,
+        CONSTRAINT SD_SID FOREIGN KEY(SID) REFERENCES SUBJECT(SID)
+    );
+    SHOW TABLES;
+    DESC STUDENT;
+    
+    CREATE TABLE PROFESSOR(
+		PID 	INT 			PRIMARY KEY 	AUTO_INCREMENT,
+        NAME 	VARCHAR(20) 	NOT NULL,
+        SID 	INT, 			-- FOREIGN KEY, SUBJECT(SID)
+        PDATE 	DATETIME,
+        CONSTRAINT PF_SID FOREIGN KEY(SID) REFERENCES SUBJECT(SID)
+	);
+        SELECT * FROM INFORMATION_SCHEMA.TABLE_CONSTRAINTS
+    WHERE TABLE_NAME LIKE 'PROFESSOR';
+	
+    SHOW TABLES;
+    DESC PROFESSOR;
+    
+    -- SUBJECT 데이터 추가
+    INSERT INTO SUBJECT (SNAME, SDATE) VALUES ('HTML', NOW()), ('JAVASCRIPT', NOW()), ('MYSQL', NOW());
+    SELECT * FROM SUBJECT;
+    
+    -- STUDENT 데이터 추가
+    INSERT INTO STUDENT(SNAME, GENDER, SID, STDATE) 
+			VALUE('홍길동','M',1,NOW()),('테스트','M',2,NOW()),('김철수','F',3,NOW()),('이영희','F',3,NOW());
+    SELECT * FROM STUDENT;
+    
+    -- PROFESSOR 추가
+    INSERT INTO PROFESSOR(NAME, SID, PDATE) 
+			VALUE('스미스',1,NOW()),('이순신',2,NOW()),('강감찬',3,NOW());
+    SELECT * FROM PROFESSOR;
+    
+    -- HTML 과목의 정보를 조회
+    SELECT * FROM SUBJECT WHERE SNAME = 'HTML';
+    
+    /*++++++++++++++++++++꼭 외우기++++++++++++++++++++++++
+		조인(JOIN) : 두 개 이상의 테이블 연동.
+		- 두 개 이상의 테이블을 조합하여 집합
+        - CROSS(CATESIAN) JOIN(합집합)
+        : 두 개의 테이블이 독립적으로 생성된 경우, JOIN 연결고리가 없을 때 사용 
+			ㄴ 크로스 조인
+            ㄴ 오라클의 경우 카테이션 조인이라고 부르기도 
+		: PROFESSOR & STUDENT -> PROFESSOR * STUDENT
+		- INNER(EQUI) JOIN(교집합) 
+		: 두 개 테이블이 JOIN 연결고리를 통해 연동되는 형식 
+			ㄴ 보통은 JOIN이라고 부른다. 
+    ++++++++++++++++++++++++++++++++++++++++++++++++++*/
+   
+   -- CROSS(CATESIAN) JOIN(합집합)
+        -- SELECT [컬럼리스트] FROM [테이블명, 테이블명...) / 별칭도 사용할 수 있다. 
+        -- WHERE [조건절]	
+    
+    
+	-- HTML 과목을 수강하는 모든 학생을 조회
+    SELECT *
+		FROM PROFESSOR, STUDENT
+        ORDER BY PID;
+
+    
+    SELECT PID, NAME, P.SID, SNAME, GENDER, S.STDATE
+    FROM PROFESSOR P, STUDENT S; -- 별칭도 사용 가능   
+    
+    -- PROFESSOR, STUDENT, DEPARTMENT 조인하여 모든 데이터 조회
+	SELECT COUNT(*) FROM PROFESSOR; -- 3 
+    SELECT COUNT(*) FROM STUDENT;-- 4
+    SELECT COUNT(*) FROM DEPARTMENT;-- 7
+    
+    SELECT * 
+		FROM PROFESSOR, STUDENT, DEPARTMENT;
+	-- ANSI SQL (SEQUL :: MS-SQL)
+    SELECT * 
+		FROM PROFESSOR CROSS JOIN STUDENT CROSS JOIN DEPARTMENT;
+        -- 연관이 없는 테이블들을 곱한다. 
+        
+	-- INNER JOIN(교집합)
+	-- SELECT [컬럼리스트] FROM [테이블명1, 테이블명2] .... 별칭 사용 가능
+	-- WHERE [테이블명1.조인컬럼 = 테이블명2.조인컬럼]
+    -- AND [ 조건절~~ ]
+	SELECT * FROM PROFESSOR P, SUBJECT S
+    WHERE S.SID = P.SID;
+    
+    SELECT * FROM PROFESSOR P, SUBJECT S
+    WHERE P.SID = S.SID;
+    
+    INSERT INTO PROFESSOR(NAME, SID, PDATE) VALUES('안중근',1,NOW());
+    SELECT * FROM PROFESSOR ;
+    
+    INSERT INTO SUBJECT(SNAME, SDATE) VALUES('REACT', NOW());
+    SELECT * FROM SUBJECT ;
+	
+    -- 이순신 교수가 상의하는 과목의 과목아이디, 과목명, 교수아이디, 교수명, 교수등록일을 조회
+    SELECT S.SID, S.SNAME, P.PID, P.NAME, P.PDATE
+		FROM PROFESSOR P, SUBJECT S
+        WHERE S.SID=P.SID
+        AND P.NAME = '이순신';
+    
+	SELECT S.SID, S.SNAME, P.PID, P.NAME, P.PDATE
+		FROM SUBJECT S INNER JOIN PROFESSOR P ON S.SID = P.SID
+		WHERE P.NAME = '이순신';
+
+	-- HTML 과목을 수강하는 모든 학생 조화
+    SELECT * FROM STUDENT ST, SUBJECT S
+    WHERE S.SID = ST.SID
+    AND S.SNAME = 'HTML';
+
+	SELECT * 
+		FROM SUBJECT S INNER JOIN STUDENT ST
+		WHERE S.SID = ST.SID
+		AND S.SNAME = 'HTML';
+    
+	-- HTML 과목을 강의하는 모든 교수를 조회
+    SELECT * FROM PROFESSOR P, SUBJECT S
+    WHERE S.SID = P.SID
+    AND SNAME = 'HTML';
+    -- MSQUARE 에서는 오라클 방식을 쓰지 못함. (표준이지만 다른 방식을 삽입할 필요가 없어서)
+    
+    SELECT * 
+		FROM SUBJECT S INNER JOIN PROFESSOR P
+			ON S.SID = P.SID
+            WHERE SNAME = 'HTML'; -- NCS 타입 쿼리 / 씨퀄 타입  - 표준장착된 방법이지만 보통 자사 방식을 더 많이ㅆ 쓴다.
+    
+    -- HTML 과목을 수강하는모든 학생과 강의하는 교수를 모두 조회...
+	SELECT * 
+		FROM SUBJECT SU, PROFESSOR P, STUDENT ST
+		WHERE SU.SID = P.SID 
+			AND SU.SID = ST.SID
+			AND SU.SNAME = 'HTML';
+        
+	SELECT * 
+    FROM SUBJECT SU INNER JOIN PROFESSOR P INNER JOIN STUDENT ST
+		ON SU.SID = P.SID 
+			AND SU.SID = ST.SID
+				WHERE SU.SNAME = 'HTML';
+                
+                
+-- EMPLOYEE, DEPARTMENT, VACATION, UNIT 테이블의 ERD 참조 
+-- 모든 사원들의 사원번호, 사원병, 성별, 부서명, 입사일 조회
+-- 사원번호 기준으로 오름차순 
+
+SELECT E.EMP_ID, E.EMP_NAME, E.GENDER, D.DEPT_NAME, E.HIRE_DATE
+FROM EMPLOYEE E, DEPARTMENT D
+	WHERE E.DEPT_ID = D.DEPT_ID
+    ORDER BY E.EMP_ID ASC;
+    
+SELECT E.EMP_ID, E.EMP_NAME, E.GENDER, D.DEPT_NAME, E.HIRE_DATE
+	FROM EMPLOYEE E INNER JOIN DEPARTMENT D
+	ON E.DEPT_ID = D.DEPT_ID
+	ORDER BY E.EMP_ID ASC;
+    
+    
+-- 영업부서에 속해있는 사원들의 사원번호, 사원명, 입사일, 급여, 부서아이디, 부서명 조회
+SELECT E.EMP_ID, E.EMP_NAME, E.HIRE_DATE, E.SALARY, D.DEPT_ID, D.DEPT_NAME
+FROM EMPLOYEE E, DEPARTMENT D
+	WHERE E.DEPT_ID = D.DEPT_ID
+    AND D.DEPT_NAME = '영업' ;
+    
+-- 인사과에 속한 사원들 중에 휴가를 사용한 사원들의 리스트를 모두 조회 
+SELECT *
+FROM DEPARTMENT D, EMPLOYEE E, VACATION V
+	WHERE E.DEPT_ID = D.DEPT_ID
+    AND E.EMP_ID = V.EMP_ID
+    AND D.DEPT_NAME = '인사';
+    
+    
