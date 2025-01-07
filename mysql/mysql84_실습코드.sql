@@ -1798,4 +1798,349 @@ FROM DEPARTMENT D, EMPLOYEE E, VACATION V
     AND E.EMP_ID = V.EMP_ID
     AND D.DEPT_NAME = '인사';
     
+
+USE HRDB2019;
+SELECT DATABASE();
+
+-- 휴가 사용 이유가 '두통'인 사원들 중에 영업부서인 사원의 사원명, 폰번호, 부서명, 휴가사용 이유 조회
+-- 소속 본부 조회
+
+SELECT E.EMP_NAME, E.PHONE, D.DEPT_NAME, V.REASON , U.UNIT_NAME
+FROM VACATION V, EMPLOYEE E, DEPARTMENT D, UNIT U
+	WHERE E.DEPT_ID=D.DEPT_ID
+    AND E.EMP_ID = V.EMP_ID
+	AND D.UNIT_ID = U.UNIT_ID
+    AND V.REASON = '두통'
+    AND D.DEPT_NAME = '영업';
+
+-- ANSI SQL ver.
+SELECT E.EMP_NAME, E.PHONE, D.DEPT_NAME, V.REASON , U.UNIT_NAME
+FROM VACATION V INNER JOIN EMPLOYEE E INNER JOIN DEPARTMENT D INNER JOIN UNIT U
+	ON E.EMP_ID = V.EMP_ID
+    AND E.DEPT_ID=D.DEPT_ID
+    AND D.UNIT_ID = U.UNIT_ID
+WHERE V.REASON = '두통' AND D.DEPT_NAME = '영업';
+
+-- 2014년도부터 2015년까지 입사한 사원들 중에서 퇴사하지 않은 사원들의 아이디, 이름, 부서명, 입사일, 소속본부를 조회
+SELECT E.EMP_ID, E.EMP_NAME, D.DEPT_NAME, U.UNIT_NAME 
+FROM EMPLOYEE E, DEPARTMENT D, UNIT U
+WHERE E.DEPT_ID = D.DEPT_ID
+AND U.UNIT_ID = D.UNIT_ID
+AND LEFT(HIRE_DATE,4) BETWEEN '2014'AND '2015'
+AND RETIRE_DATE IS NULL;
+
+/*
+	S0003	강우동	정보시스템	제1본부
+	S0004	김삼순	영업	제3본부
+	S0006	김치국	인사	제2본부
+	S0007	안경태	회계	제2본부
+	S0009	최사모	정보시스템	제1본부
+
+이 정보들은... 서버 연동을 하면
+	[
+		{'EMP_ID': 'S0003', ....},
+		{'EMP_ID': 'S0004', ....},
+	]
     
+    json 파일과 형식이 같다. java는 객체로 받거나
+    데이터를 node에서 받아서 json 파일로 map 돌릴 수 있는 것
+*/
+
+    /*++++++++++++++++++++꼭 외우기++++++++++++++++++++++++
+		조인(JOIN) : 두 개 이상의 테이블 연동.
+		- 두 개 이상의 테이블을 조합하여 집합
+        - CROSS(CATESIAN) JOIN(합집합)
+        : 두 개의 테이블이 독립적으로 생성된 경우, JOIN 연결고리가 없을 때 사용 
+			ㄴ 크로스 조인
+            ㄴ 오라클의 경우 카테이션 조인이라고 부르기도 
+		: PROFESSOR & STUDENT -> PROFESSOR * STUDENT
+		- INNER(EQUI) JOIN(교집합) 
+		: 두 개 테이블이 JOIN 연결고리를 통해 연동되는 형식 
+			ㄴ 보통은 JOIN이라고 부른다. 
+		- OUTER JOIN : INNER JOIN(교집합) + 선택한 테이블 중 교집합에서 제외된 데이터 
+    ++++++++++++++++++++++++++++++++++++++++++++++++++*/
+    
+-- OUTER JOIN
+SELECT * FROM SUBJECT;
+SELECT * FROM PROFESSOR;
+
+-- ** 오라클 형식의 OUTER JOIN이 지원되지 않음.
+-- 서버 버전 8.0부터는 지원되지 않음. 과거 버전은 가능할 수 있으니 숙지는 해둘 것
+SELECT *
+	FROM SUBJECT S, PROFESSOR P;
+    -- WHERE S.SID = P.SID
+    -- 여기까지는 INNER JOIN과 똑같다 (교집합의 합 부분)
+    -- WHERE S.SID = P.SID(+); NULL이 채워지는 쪽에 (+)를 붙여주면 됨
+
+-- ANSI SQL : LEFT OUTER JOIN, RIGHT OUTER JOIN 두 개의 테이블 중에 해당 테이블을 기준으로 빈 값은 자동 NULL처리하여 출력
+SELECT *
+	FROM SUBJECT S LEFT OUTER JOIN PROFESSOR P
+    ON S.SID = P.SID;
+    
+-- DEPARTMENT, UNIT 테이블
+-- 모든 부서의 본부 아이디, 본부 이름 출력 
+SELECT * FROM DEPARTMENT;
+SELECT * FROM UNIT;
+SELECT * 
+	FROM DEPARTMENT D LEFT OUTER JOIN UNIT U
+    ON D.UNIT_ID = U.UNIT_ID
+    ORDER BY U.UNIT_NAME; -- NILL이 항상 먼저 출력 
+    
+-- 2017년도부터2018년도까지 입사한 사원들의 사원명, 입사일, 연봉, 부서명 조회
+-- 단, 퇴사한 사원은 제외
+-- 소속본부를 모두 조회
+SELECT E.EMP_NAME, E.HIRE_DATE, E.SALARY, U.UNIT_NAME
+FROM EMPLOYEE E INNER JOIN DEPARTMENT D ON E.DEPT_ID = D.DEPT_ID 
+				LEFT OUTER JOIN UNIT U ON D.UNIT_ID = U.UNIT_ID
+                -- 각각 INNER / OUTER JOIN을 하고 있기 때문에 각각의 조건을 걸어주어야 중복 없는 답변을 출력 할 수 있다. 
+		WHERE LEFT (E.HIRE_DATE, 4) BETWEEN 2017 AND 2018
+        AND E.RETIRE_DATE IS NULL
+        ORDER BY E.EMP_ID;
+        
+-- SUBJECT STUDENT 테이블 사용
+-- 학생들이 선택하지 않은 과목을 조회 
+SELECT * 
+	FROM SUBJECT SU LEFT OUTER JOIN STUDENT ST
+	ON SU.SID = ST.SID
+    WHERE ST.SID IS NULL;
+    
+    /*++++++++++++++++++++++++++++++++++꼭 외우기+++++++++++++++++++++++++++++++
+		조인(JOIN) : 두 개 이상의 테이블 연동.
+		- 두 개 이상의 테이블을 조합하여 집합
+        - CROSS(CATESIAN) JOIN(합집합)
+        : 두 개의 테이블이 독립적으로 생성된 경우, JOIN 연결고리가 없을 때 사용 
+			ㄴ 크로스 조인
+            ㄴ 오라클의 경우 카테이션 조인이라고 부르기도 
+		: PROFESSOR & STUDENT -> PROFESSOR * STUDENT
+		- INNER(EQUI) JOIN(교집합) 
+		: 두 개 테이블이 JOIN 연결고리를 통해 연동되는 형식 
+			ㄴ 보통은 JOIN이라고 부른다. 
+		- OUTER JOIN : INNER JOIN(교집합) + 선택한 테이블 중 교집합에서 제외된 데이터 
+        - SELF JOIN : 하나의 테이블을 외부 테이블인 것처럼 만들어 JOIN하는 것 (많이 쓰진 않음) 
+					=> 서브쿼리(SUB QUERY)를 더 많이 쓴다. 
+                    ** 한 테이블에 PK를 참조하는 컬럼이 존재하는 경우 사용!!
+                    EX) S0001사번의 사수가 S0002사번일 때 함께 출력하는 경우 
+    +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+    
+-- SELF JOIN을 위한 테이블 복제
+SHOW TABLES;
+CREATE TABLE EMP 
+AS
+SELECT * FROM EMPLOYEE;
+SELECT * FROM EMP;
+DESC EMP;
+-- EMP 테이블에 EMP_ID 컬럼에 기본키 제약 추가
+ALTER TABLE EMP ADD CONSTRAINT PK_EMP_ID PRIMARY KEY (EMP_ID); 
+
+-- EMP TABLE에 MGR컬럼 추가 
+ALTER TABLE EMP ADD COLUMN MGR CHAR(5);
+DESC EMP;
+
+-- SYS 부서의사원들의 매니저를 홍길동(S0001) 사원으로 업데이트
+SET SQL_SAFE_UPDATES = 0;
+UPDATE EMP
+	SET MGR = 'S0001'
+    WHERE DEPT_ID ='SYS';
+
+-- MKT 부서의사원들의 매니저를 오감자(S0011) 사원으로 업데이트
+UPDATE EMP
+	SET MGR = 'S0011'
+    WHERE DEPT_ID = 'MKT';
+
+-- HRD 부서의사원들의 매니저를 정주고(S0019) 사원으로 업데이트
+UPDATE EMP 
+	SET MGR = 'S0019'
+    WHERE DEPT_ID = 'HRD';
+    SELECT * FROM DEPARTMENT;
+-- SELF JOIN : EMP 테이블의 EMP_ID(기본키), MGR(참조키)
+-- 홍길동 사원이 관리하는 모든 사원들의 사원번호, 사원명, 입사일, 급여, 부서아이디
+SELECT MANAGER.EMP_ID, MANAGER.EMP_NAME, MANAGER.HIRE_DATE, MANAGER.SALARY, D.DEPT_NAME
+	FROM EMP EMPLOYEE, EMP MANAGER, DEPARTMENT D
+    WHERE EMPLOYEE.EMP_ID = MANAGER.MGR
+    AND MANAGER.DEPT_ID = D.DEPT_ID
+    AND MANAGER.MGR = 'S0001'
+    ORDER BY MANAGER.EMP_ID;
+    
+    -- HRD 부서를 관리하는 매니저의 사원번호, 이름, 입사일, 급여, 부서아이디, 부서명 조회 
+    SELECT DISTINCT E.EMP_ID, E.EMP_NAME, E.HIRE_DATE, E.SALARY, E.DEPT_ID, D.DEPT_NAME
+    FROM EMP E, EMP M, DEPARTMENT D
+    WHERE E.EMP_ID = M.MGR
+    AND M.DEPT_ID = D.DEPT_ID
+    AND M.DEPT_ID = 'HRD'; -- 이 값만 바뀌면 다른 부서를 관리하는 매너저 값이 나오는 것... 
+    
+    -- 매니저가 없는 모든 사원의 사원번호, 사원명, 입사일, 급여, 부서아이디 조회
+    SELECT M.EMP_ID, M.EMP_NAME, M.HIRE_DATE, M.SALARY, M.DEPT_ID
+	FROM EMP M LEFT OUTER JOIN EMP E
+	ON M.MGR = E.EMP_ID
+    WHERE M.MGR IS NULL;
+    
+    
+    /*
+    SELECT DISTINCT E.EMP_ID, E.EMP_NAME, E.HIRE_DATE, E.SALARY, E.DEPT_ID
+		FROM EMP M, EMP E
+		WHERE M.EMP_ID = E.EMP_ID 
+        AND M.MGR IS NULL; 
+        이건 혼자 해본 거....E가 기준일 때는 중복 값이나 다른 걸 보는 대신 OUT JOIN을 쓰지 않아도 됨 
+    */
+    
+    -- 홍길동 사원이 관리하는 사원들의 매니저 사원아이디, 매니저 사원명, 
+    -- 연봉, 매니저사번, 매니저가 관리하는 사원명 조회 
+    SELECT E.EMP_ID, E.EMP_NAME, E.SALARY, M.MGR, M.EMP_NAME
+    FROM EMP E, EMP M -- E: 매니저 사원 정보, M : 매니저가 관리하는 사원테이블
+    WHERE E.EMP_ID = M.MGR
+    AND M.MGR = 'S0001';
+    
+	SELECT E.EMP_NAME, M.EMP_NAME
+    FROM EMP E, EMP M -- E: 매니저가 관리하는 사원테이블, M : 매니저 사원 정보
+    WHERE E.MGR = M.EMP_ID
+    AND M.MGR = 'S0001';
+    
+    SELECT EMP_ID, EMP_NAME, MGR FROM EMP;
+    
+    
+    /***********************************************************************
+		SUB QUERY(서브쿼리) 
+        : SELECT ~ FROM ~ WHERE
+        
+        SELECT [컬럼명,... (스칼라 서브쿼리)] <= 권장x 속도가 50% 느리고 효율도 떨어짐 
+			FROM [(인라인 뷰)] 
+            WHERE [(서브쿼리)]
+			- 단일행 서브쿼리 : 
+            - 다중행 서브쿼리 : 
+    ***********************************************************************/
+
+-- 홍길동사원이 속한 부서의 이름과 본부아이디를 조회
+SELECT * FROM EMPLOYEE;
+SELECT * FROM DEPARTMENT;
+
+SELECT DEPT_NAME, UNIT_ID
+	FROM DEPARTMENT
+    WHERE DEPT_ID = (SELECT DEPT_ID FROM EMPLOYEE WHERE EMP_NAME = '홍길동');
+    -- 결과적으로 WHERE DEPT_ID = 'SYS'랑 똑같은 것 
+
+-- 홍길동 사원이 사용한 휴가내역을 조회
+-- 2017~2018년도 휴가 내역
+SELECT EMP_ID FROM EMPLOYEE WHERE EMP_NAME = '홍길동';
+SELECT VACATION_ID, EMP_ID, BEGIN_DATE, REASON  -- * 보단 컬럼리스트는 컬럼명을 정확하게 작성하는 걸 권장, 개발시 
+	FROM VACATION 
+    WHERE EMP_ID = (SELECT EMP_ID FROM EMPLOYEE WHERE EMP_NAME = '홍길동')
+    AND LEFT(BEGIN_DATE, 4) BETWEEN 2017 AND 2018;
+
+SELECT V.VACATION_ID, E.EMP_ID, V.BEGIN_DATE, V.REASON
+	FROM VACATION V, EMPLOYEE E
+	WHERE V.EMP_ID = E.EMP_ID
+    AND EMP_NAME = '홍길동'
+    AND LEFT(BEGIN_DATE, 4) BETWEEN 2017 AND 28018;
+    
+-- 제 3본부에 속한 부서들을 모두 출력 
+SELECT * 
+FROM DEPARTMENT 
+WHERE UNIT_ID = (SELECT UNIT_ID FROM UNIT WHERE UNIT_NAME = '제3본부');
+
+-- 제3본부에 속한 사원들을 모두 출력 
+SELECT *
+	FROM EMPLOYEE 
+	WHERE DEPT_ID IN ( -- 부서 아이디가 2개 이므로 다중행 서브쿼리 형식은 IN으로 진행한다 / 1개 일 때는 = 
+					SELECT DEPT_ID 
+                    FROM DEPARTMENT 
+                    WHERE UNIT_ID = (SELECT UNIT_ID FROM UNIT WHERE UNIT_NAME = '제3본부'));
+                    
+-- 가장 먼저 입사한 사원의 정보를 조회 
+SELECT *
+FROM EMPLOYEE
+WHERE HIRE_DATE = (SELECT MIN(HIRE_DATE) FROM EMPLOYEE);
+
+SELECT MIN(HIRE_DATE) FROM EMPLOYEE;
+
+-- 가장 급여가 높은 사원의 정보를 조회
+
+SELECT *
+FROM EMPLOYEE
+WHERE SALARY = (SELECT MAX(SALARY) FROM EMPLOYEE);
+
+SELECT MAX(SALARY) FROM EMPLOYEE;
+
+-- 정보시스템 부서의 사원중에 휴가를 사용한 사원들을 조회
+SELECT * FROM VACATION;
+
+SELECT *
+FROM EMPLOYEE
+WHERE DEPT_ID = (SELECT DEPT_ID FROM DEPARTMENT WHERE DEPT_NAME ='정보시스템')
+AND EMP_ID IN (SELECT DISTINCT EMP_ID FROM VACATION);
+-- 휴가 일정 자체를 보는게 아니라 사용한 사람들을 보는 것이기 때문에.... 중복 체크! 
+
+-- 정보시스템 부서의 사원중에 휴가를 사용한 적 없는 ! 사원들을 조회
+SELECT *
+FROM EMPLOYEE
+WHERE DEPT_ID = (SELECT DEPT_ID FROM DEPARTMENT WHERE DEPT_NAME ='정보시스템')
+AND EMP_ID NOT IN (SELECT DISTINCT EMP_ID FROM VACATION);
+-- IN값을 부정한다. NOT NULL처럼 
+
+
+/**
+	출력 번호 생성: ROW_NUMBER() OVER(ORDER BY [정렬할 컬럼명]) -> 별칭사용 가능
+    ** SELECT의 컬럼리스트 자리에 사용되며, * 문자와는 동시에 사용 불가능 
+**/
+
+-- 정보 시스템부서사원들 모두 조회
+SELECT ROW_NUMBER() OVER(ORDER BY EMP_ID) AS NO,
+	EMP_ID AS ID, 
+    EMP_NAME AS NAME, 
+    HIRE_DATE AS '입사일'
+		FROM EMPLOYEE 
+		WHERE DEPT_ID=(SELECT DEPT_ID FROM DEPARTMENT WHERE DEPT_NAME = "정보시스템");
+        
+-- 모든 사원의 사원아이디, 사원명, 급여, 부서아이디 출력
+-- 출력행 포함
+SELECT 
+	ROW_NUMBER() OVER(ORDER BY EMP_ID) AS NO,
+	EMP_ID, 
+    EMP_NAME, 
+    SALARY, 
+    DEPT_ID
+    FROM EMPLOYEE;
+    
+-- 사원별 휴가사용 일수를 그루핑하여 사원아이디, 사원명, 입사일, 연봉, 휴가사용일수를 조회
+-- 휴가사용 일수를 구하는 인라인뷰와 사원테이블을 조인 
+SELECT * FROM VACATION;
+
+SELECT E.EMP_ID, E.EMP_NAME, E.HIRE_DATE, SUM(DURATION)
+	FROM EMPLOYEE E, VACATION V
+    WHERE E.EMP_ID = V.EMP_ID
+    GROUP BY E.EMP_ID;
+
+SELECT ROW_NUMBER() OVER(ORDER BY VCOUNT DESC) AS NO,
+	E.EMP_ID, 
+    E.EMP_NAME, 
+    E.HIRE_DATE,
+    CONCAT(FORMAT(E.SALARY, 0), '만원') AS SALARY, 
+    V.VCOUNT '휴가 사용일수'
+	FROM EMPLOYEE E,
+		(SELECT EMP_ID, SUM(DURATION) VCOUNT
+			FROM VACATION
+			GROUP BY EMP_ID) V -- 인라인 뷰의 별칭은 반드시 정의! ! 
+        WHERE E.EMP_ID = V.EMP_ID;
+        
+-- HRD 부서 사원들의 휴가 사용 일수와 사원 아이디, 사원명, 부서아이디, 부서명 조회
+-- 1. HRD 부서의 사원 중 휴가를 사용한 사원아이디, 휴가 사용 일수
+SELECT * FROM VACATION;
+SELECT EMP_ID, SUM(DURATION) 
+		FROM VACATION 
+        WHERE EMP_ID IN (SELECT EMP_ID FROM EMPLOYEE WHERE DEPT_ID = 'HRD') 
+        GROUP BY EMP_ID ;
+
+SELECT EMP_ID
+	FROM EMPLOYEE
+    WHERE DEPT_ID = 'HRD'; -- 이 자료가 JOIN으로 들어감 
+    
+-- 2. 1번 결과와 EMPLOYEE 테이블과 조인하여 사원 상세 정보 출력
+SELECT * FROM VACATION;
+SELECT ROW_NUMBER() OVER(ORDER BY E.EMP_ID) AS NO,
+		E.EMP_ID, E.EMP_NAME,E.DEPT_ID,(SELECT DEPT_NAME FROM DEPARTMENT WHERE DEPT_ID = 'HRD') AS DNAME, V.VCOUNT -- 스칼라 서브쿼리
+		FROM
+        (SELECT EMP_ID, SUM(DURATION) VCOUNT
+			FROM VACATION 
+			WHERE EMP_ID IN (SELECT EMP_ID FROM EMPLOYEE WHERE DEPT_ID = 'HRD') -- 인라인 뷰
+			GROUP BY EMP_ID) V, 
+        EMPLOYEE E
+        WHERE V.EMP_ID = E.EMP_ID;
