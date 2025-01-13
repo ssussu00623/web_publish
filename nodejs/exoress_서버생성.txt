@@ -1,0 +1,4 @@
+1. 서버 역할 폴더 생성 (중복되지만 않으면 된다.) 예: mkdir express-server
+2. 서버 폴더로 이동: cd express-server
+3. express 라이브러리 설치 : npm i(install) express, npm init --yes
+4. nodmeon 라이브러리 설치 : npm i(install) nodmeon --save-dev
