@@ -1,0 +1,52 @@
+1. web_publish/shoppy 생성
+    mkdir shoppy
+    cd shoppy
+
+2. react 프로젝트 생성 : client
+    npx create-react-app client
+    
+    생성 완료 후 
+    cd client
+    npm i react-router-dom      리액트 라우터 돔 라이브러리 설치
+    npm i axios                 axios패키지 설치
+    npm i react-icons           리액트 제공 아이콘 패키지 설치
+    cat package.json            모두 잘 설치 되었는지 확인
+
+    이후는 vs코드에서 활용
+    index.js, app.js 파일 열어두기 
+
+    import reportWebVitals from './reportWebVitals';는 주석처리한다. 
+    리액트의 바이탈 체크하는 것이기 때문에...
+
+    이제 사용하던 터미널은 리액트 전용이 된다. (한 터미널에선 하나의 서버만 띄울 수 있음)
+    여러개를 띄워도 가장 마지막에 열었던 것만 유지.
+
+    app.js파일에 import들을 정돈하고
+    (import React from 'react';
+    import {BrowserRouter, Routes, Route} from 'react-router-dom';
+    import './App.css';로 수정)
+
+    router에서 필요한 것들을 가져온다.
+    (export default function App() {
+        return (
+          <div>
+            <BrowserRouter>
+              <Routes>
+                <Route path='/' element={<Layout />}>
+                  <Route index element={<Home />} />
+                  <Route path='/all' element={<Products />} />
+                  <Route path='/cart' element={<Cart />} />
+                  <Route path='/login' element={<Login />} />
+                  <Route path='/signup' element={<Signup />} />
+                </Route>
+              </Routes>
+          </BrowserRouter>
+          </div>
+        );
+      }) 
+
+각 컴포넌트가 들어갈
+commponenets < - 헤더, 푸터 
+Home < - 사이에 들어가는 변하는 정보값들
+
+폴더를 생성하여 맞는 곳에 삽입한다. 
