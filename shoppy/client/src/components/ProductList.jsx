@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import ProductAvata from './ProductAvata.jsx';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 export default function ProductList() {
     const[list, setList] = useState([]);
     // useState로 list 변경시 실시간 업데이트. 리액트가 알아서 관리할 수 있게 부여하기위해...
 
     useEffect(()=>{
-        axios.get('data/product.json')
+        axios.get('/data/product.json')
             .then((res)=>setList(res.data))
             .catch((error)=>console.log(error));
     }, []);
@@ -24,16 +25,21 @@ export default function ProductList() {
         //     .catch()
     //출력 리스트 생성 [ [{},{},{}],[{},{},{}],[{}] ]
     const rows = [];
-    for(let i = 0; i<list.length; i+=3){ //[{0},{1},{2}], {3} ... 이렇게 2번지에서 자르고
-        rows.push(list.slice(i, i+3)); // slice는 자동으로 배열을 생성한다. 숫자마다 자르고 반복.
+    for(let i = 0; i<list.length; i+=3){ 
+        rows.push(list.slice(i, i+3));
     }
+    //[{0},{1},{2}], {3} ... 이렇게 2번지에서 자르고
+    // slice는 자동으로 배열을 생성한다. 숫자마다 자르고 반복.
     // console.log(rows)    
     return (
         <div>
-            {rows.map((rowArray)=>
-                <div className='product-list'>
+            {rows.map((rowArray, index)=>
+                <div key={index} className='product-list'>
                     {rowArray.map((product)=>
-                        <ProductAvata img={product.image}/>
+                        <Link key={product.pid} to={`/products/${product.pid}`}>
+                            <ProductAvata 
+                                img={product.image}/>
+                        </Link>
                         )
                     }
                 </div>
@@ -43,3 +49,5 @@ export default function ProductList() {
     );
 }
 
+// 유니크한 정보를 가져오고 싶을 때... json 정보를 구분할 수 있는 정보값은 product의 pid이다.
+// 이 값을 불러올 수 있게 Link에 값을 삽입하기...

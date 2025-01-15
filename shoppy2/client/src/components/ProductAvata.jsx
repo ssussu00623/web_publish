@@ -1,9 +1,9 @@
 import React from 'react';
 
-export default function ProductAvata({img}) {
+export default function ProductAvata({image}) {
     return (
         <div className='product-avata'>
-            <img src={img} />
+            <img src={image} />
         </div>
     );
 }
