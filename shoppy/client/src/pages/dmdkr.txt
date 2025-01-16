@@ -1,0 +1,80 @@
+--------
+버튼을 서브밋으로> 
+폼에 온서브밋 주기> 
+리액트로 넘어가는지 프리벤티드로 바꾸기 > 
+값이 바뀔 때마다 바뀌는지 확인하기위한 온체인지 주기> 
+핸드체인지 폼에서 이름과 밸류 값이 이벤트로 오는지 확인 const name, value를 e.target로 보는 것
+    const handleChangeForm =(e)=>{
+        const{name, value} = e.target
+        console.log(name, value);
+    }
+>
+useState로 중간값 저장하기 >
+저장하는 곳이 길어지니까...
+    const initFormData  = {
+        'id':'',
+        'pwd':'',
+        'cpwd':'',
+        'name':'',
+        'phone':'',
+        'emailname':'',
+        'emaildomail':''
+    }
+    로 하고 
+const [formData, setFormData] =useState(initFormData);
+이렇게 관리하게 한다.
+
+    const handleChangeForm =(e)=>{
+        const{name, value} = e.target
+        setFormData({...formData, [name]: value})
+    };
+이러케 하고 폼 데이터를 확인한다
+
+    const handleSubmit=(e)=>{
+        e.preventDefault();
+        console.log('submit====>', formData)
+    }
+
+이제 밸리데이션 체크를 하기.
+
+체크할 수 있게 refs로 ref들을 묶고
+export default function Signup() {
+    const refs = {
+        "idRef":useRef(null),
+        "pwdRef":useRef(null),
+        "cpwdRef":useRef(null),
+        "nameRef":useRef(null),
+        "phoneRef":useRef(null),
+        "emailnameRef":useRef(null),
+        "emaildomainRef":useRef('default')}
+        도메인은 셀렉트라서 디폴트 값을 넣어줘야함
+    }
+
+const validateSignup=()=>{
+    if(refs.idRef.current.value === ''){
+        alert('아이디를 입력해주세요')
+        refs.idRef.current.focus();}
+    }
+이렇게 확인하고서 정상적으로 출력 후 포커스가 잡아진다면 ~ (refs를 줘야한다는 걸 필히 확인)
+
+이제 값마다 부여해준다.
+Login이랑 똑같이 let result = true;로 주고 빈 값을 도출해내는 건 false로 준다. 
+
+const validateSignup=(refs)=>{
+    let result = true;
+    if(refs.idRef.current.value === ''){
+        alert('아이디를 입력해주세요')
+        refs.idRef.current.focus();
+        result = false;
+    }}
+
+이걸 validateSignup으로 funcValidate.js파일에 넣어준다... 
+프롭스를 받아올 때 객체(idRef)이름을 구조분해할당으로 하나하나 받기에 
+양이 너무 많을 때는 구냥 res로 받아서 뿌리기. 
+
+정상작동한다~ 
+
+msgRefs로 Ref를 생성한다(const안에)... msgRefs이렇게
+이제 span id대신 (html이 아니라 우린 필요 없으니까) ref로 msgRefs를 부여해준다.
+
+Refs를 내보낸 방식으로 msgRefs를 보내고 msgRefs를 받을 수 있게 js파일에 넣기 
