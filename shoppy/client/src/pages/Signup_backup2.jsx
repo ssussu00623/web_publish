@@ -1,43 +1,41 @@
 import React, { useState, useRef } from 'react';
 import '../styles/signup.css';
 import { validateSignup } from '../utils/funcValidate';
-import { initSignup } from '../utils/funcInitialize';
 
 export default function Signup() {
-    const{names,} = initSignup();
-    // const names = ['id','pwd','cpwd','name','phone','emailname'];
-    // const namesKor = ['아이디', '비밀번호', '비밀번호 확인', '이름', '휴대폰번호', '이메일주소']
-    // const placeholdersKor = ['아이디(6~12자 이내)', '비밀번호(12자 이내)', '비밀번호 확인', '이름', '휴대폰번호', '이메일주소']
+    const names = ['id','pwd','cpwd','name','phone','emailname'];
+    const namesKor = ['아이디', '비밀번호', '비밀번호 확인', '이름', '휴대폰번호', '이메일주소']
+    const placeholdersKor = ['아이디(6~12자 이내)', '비밀번호(12자 이내)', '비밀번호 확인', '이름', '휴대폰번호', '이메일주소']
     
-    // const placeholders = names.reduce((acc, name, idx)=>{
-    //     acc[name] = placeholdersKor[idx]; return acc;
-    // }, {});
-    // const lables = names.reduce((acc, name, idx)=>{
-    //     acc[name] = namesKor[idx]; return acc;
-    // }, {});
-    // const initFormData = names.reduce((acc, name)=>{
-    //     // 실행코드
-    //     // 리턴다음에는 acc자리가 계속 쌓이는 것 
-    //     acc[name] = ""; return acc;
-    //     //{id: ""}로 자동 정리
-    //     // 숫자는 생략 가능하지만 name은 꼭 줘야함
-    // }, {});
+    const placeholders = names.reduce((acc, name, idx)=>{
+        acc[name] = placeholdersKor[idx]; return acc;
+    }, {});
+    const lables = names.reduce((acc, name, idx)=>{
+        acc[name] = namesKor[idx]; return acc;
+    }, {});
+    const initFormData = names.reduce((acc, name)=>{
+        // 실행코드
+        // 리턴다음에는 acc자리가 계속 쌓이는 것 
+        acc[name] = ""; return acc;
+        //{id: ""}로 자동 정리
+        // 숫자는 생략 가능하지만 name은 꼭 줘야함
+    }, {});
     
-    // const refs = useRef(
-    // names.reduce((acc, name)=>{
-    //     acc[name.concat('Ref')] = React.createRef(); //useRef(null) Hook 바로 호출 X이라 사용
-    //     return acc;
-    // }, {})
-    // );
-    // refs.current.emaildomain = React.createRef();
+    const refs = useRef(
+    names.reduce((acc, name)=>{
+        acc[name.concat('Ref')] = React.createRef(); //useRef(null) Hook 바로 호출 X이라 사용
+        return acc;
+    }, {})
+    );
+    refs.current.emaildomain = React.createRef();
     
     
-    // const msgRefs = useRef(
-    //     names.reduce((acc, name)=>{
-    //     acc[name.concat('MsgRef')] = React.createRef();
-    //     return acc;
-    // },{})
-    // );
+    const msgRefs = useRef(
+        names.reduce((acc, name)=>{
+        acc[name.concat('MsgRef')] = React.createRef();
+        return acc;
+    },{})
+    );
     const [formData, setFormData] =useState(initFormData)
     //change
     const handleChangeForm =(e)=>{
