@@ -2,18 +2,22 @@
  * title : 로그인 폼 체크
  * *********************/
     /*validate 함수 */
-export const validateLogin =({idRef, pwdRef})=>{
+export const validateLogin =({idRef, pwdRef}, {msgRef})=>{
         let result = true;
 
         if(idRef.current.value === ''){
-            alert('아이디를 입력해주세요')
+            // alert('아이디를 입력해주세요')
+            msgRef.current.style.setProperty('color','red');
             idRef.current.focus();
             result = false;
         } else if(pwdRef.current.value === ''){
-            alert('패스워드를 입력해주세요')
+            // alert('패스워드를 입력해주세요')
+            msgRef.current.style.setProperty('color','red');
             pwdRef.current.focus();
             result = false;
-        } 
+        } else {
+            msgRef.current.style.setProperty('color','white');
+        }
         return result;
     }
 /************************
@@ -21,22 +25,29 @@ export const validateLogin =({idRef, pwdRef})=>{
  * *********************/
     /*validate 함수 */
 export const validateSignup=(refs, msgRefs)=>{
-    const refEntries= Object.entries(refs);
-    const msgRefEntries = Object.entries(msgRefs);
+    // console.log('f-refs->>', refs);
+    // console.log('f-msgrefs->>', msgrefs);
+    
+    const refEntries= Object.entries(refs.current);
+    const msgRefEntries = Object.entries(msgRefs.current);
 
     console.log(refEntries);
     console.log(msgRefEntries);
 
-    for(let i=0; i<refEntries.length; i++){
-        const item = refEntries[i];
-        const msgItem = msgRefEntries[i];
+        for(let i=0; i<refEntries.length; i++) {
+            const item = refEntries[i];        
+            const name = item[0];
+            const ref = item[1];    // 데이터 입력폼 객체 주소
         // 0번지부!터! 해당하는 배열값을 가지고 오려는 것 
-        const name = item[0];
         // i번지 부!터! 해당하는 name값을 가지고 오려는 것 
-        const ref = item[1]; 
-        // i번지 부!터! 해당하는 데이터 입력 폼 객체 주소값을 가지고 오려는 것 
-        const msgName = msgItem[0];
-        const msgRef = msgItem[1]; ;
+        // i번지 부!ㄴ터! 해당하는 데이터 입력 폼 객체 주소값을 가지고 오려는 것 
+        let msgItem, msgName, msgRef = null;
+        if(i<refEntries.length-1) {
+            msgItem = msgRefEntries[i];
+            msgName = msgItem[0];
+            msgRef = msgItem[1]; // 데이터 입력폼의 메시지 객체 주소 
+        }
+
         // 해당하는 데이터 입력 폼 메세지 객체 주소값을 가지고 오려는 것 
         /*
         const refEntries = [

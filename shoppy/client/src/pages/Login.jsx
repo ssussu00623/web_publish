@@ -6,6 +6,9 @@ import { FaLock } from "react-icons/fa";
 
 
 export default function Login() {
+    const msgRefs={
+        "msgRef" : useRef(null)
+    }
     const refs = {
         "idRef" : useRef(null),
         "pwdRef" : useRef(null)
@@ -34,7 +37,7 @@ export default function Login() {
     /*submit 함수 */
     const handleLoginSubmit =(event)=>{
         event.preventDefault();
-        if(validateLogin(refs)) {
+        if(validateLogin(refs, msgRefs)) {
             console.log('sendData===>', formData);
         // 리액트 ---> 노드서버(express) 데이터 전송
         }
@@ -71,6 +74,12 @@ export default function Login() {
                                     placeholder="패스워드를 입력해주세요" />
                         </div>
                         <p id="error-msg-pwd"></p>
+                    </li>
+                    <li>
+                        <span style={{fontSize:"0.7em", color:"white"}}
+                            ref={msgRefs.msgRef}>
+                            아이디 또는 패스워드를 입력해주세요
+                        </span>
                     </li>
                     <li>
                         <button type="submit" className="login-button">로그인</button>
