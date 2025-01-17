@@ -23,11 +23,16 @@ export function initSignup(){
     return{names, placeholders, lables, initFormData}
     // names나 namesKor는 밖에서 사영되지않기 때문에... 리턴할 것들을 선정하여 내보낸다. 
 }
-export function useInitSignupRefs(){
+
+/*
+
+*/
+export function useInitSignupRefs(names){
     /*use Ref */
     // 훅이 관리하는만큼 훅에 있는 객체가 되어  리액트에서 기본 관리된다.
     // 외부에서 사용하려면 커스텀훅으로 만들어 export해야함
-    // 
+    // 각각 const를 내보낼 수 없기 때문에... 부모를 붙여준다고 이해함 레퍼런스를 할 수 있기위해 hook에서 관리하도록 함수도 use를 붙여준다. 
+    // hook함수가 아니지만 리액트 속이기용.
     const refs = useRef(
         names.reduce((acc, name)=>{
             acc[name.concat('Ref')] = React.createRef(); 

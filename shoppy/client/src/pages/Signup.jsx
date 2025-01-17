@@ -1,10 +1,13 @@
 import React, { useState, useRef } from 'react';
 import '../styles/signup.css';
 import { validateSignup } from '../utils/funcValidate';
-import { initSignup } from '../utils/funcInitialize';
+import { initSignup, useInitSignupRefs } from '../utils/funcInitialize';
 
 export default function Signup() {
-    const{names,} = initSignup();
+    const{names,placeholders, lables, initFormData} = initSignup();
+    // 앞에서 선언된 initSignup에 있던 names를 호출하여 refs가 돌아갈 수 있게 한다.
+    // 선언한 걸 가져오는 거기 때문에... 순서를 꼭 지켜줘야함  
+    const{refs,msgRefs} = useInitSignupRefs(names);
     // const names = ['id','pwd','cpwd','name','phone','emailname'];
     // const namesKor = ['아이디', '비밀번호', '비밀번호 확인', '이름', '휴대폰번호', '이메일주소']
     // const placeholdersKor = ['아이디(6~12자 이내)', '비밀번호(12자 이내)', '비밀번호 확인', '이름', '휴대폰번호', '이메일주소']
@@ -41,7 +44,7 @@ export default function Signup() {
     const [formData, setFormData] =useState(initFormData)
     //change
     const handleChangeForm =(e)=>{
-        const{name, value} = e.target
+        const{name, value} = e.target;
         setFormData({...formData, [name]: value})
         
     };
@@ -73,7 +76,7 @@ export default function Signup() {
                                     // {(name === 'emailname')?(<></>):(<></>)} 
                                     // :{(emailname일때)?(<>여기 여러 태그니까 빈태그로 묶어 반복되고</>):(<>아닐 땐이 태그들을 반복할래</>)} 
                                     <>
-                                        <input type="text" 
+                                        <input type={(name==="pwd" || name=== "cpwd")?"password":"text"}
                                                 name={name}
                                                 ref={refs.current[name.concat("Ref")]}
                                                 // name으로 돌고 있기 때문에 Ref를 붙여야 refs내의 idRef를 찾을 수 있다
