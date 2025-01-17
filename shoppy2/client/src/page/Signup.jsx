@@ -46,6 +46,7 @@ export default function Signup() {
             <h1 className="center-title">SIGINUP</h1>
             <form className="signup-form" onSubmit={handleSignupsubmit}>
                 <ul>
+                    {/* 여기부터 반복 시작 */}
                     <li>
                         <label for="" ><b>아이디</b></label>
                         <span ref={msgrefs.msgidRef}>아이디를 입력해주세요</span>
@@ -61,6 +62,41 @@ export default function Signup() {
                         </div>
                     </li>
                     <li>
+                        <label for=""><b>이메일 주소</b></label>
+                        <span ref={msgrefs.msgemailnameRef}>이메일 주소를 입력해주세요</span>
+                        <div>
+                            <input type="text" 
+                                    name="emailname"
+                                    id = "emailname"
+                                    ref={refs.emailnameRef}
+                                    onChange={handleChangeForm}
+                                    placeholder="이메일 주소" />
+                            <span>@</span>       
+                            <select name="emaildomain" 
+                                    id="emaildomain"  
+                                    ref={refs.emaildomainRef}
+                                    
+                                    >
+                                <option value="default">선택</option>
+                                <option value="naver.com">naver.com</option>
+                                <option value="gmail.com">gmail.com</option>
+                                <option value="daum.net">daum.net</option>
+                            </select>
+                        </div>
+                    </li>
+                    <li>
+                        <button type="submit">가입하기</button>
+                        <button type="reset">가입취소</button>
+                    </li>
+                </ul>
+            </form>
+        </div>
+    );
+}
+
+
+{/**
+                        <li>
                         <label for=""><b>비밀번호</b></label>
                         <span ref={msgrefs.msgpwdRef}>12자 이내의 비밀번호를 입력해주세요</span>
                         <div>
@@ -108,37 +144,4 @@ export default function Signup() {
                                     placeholder="휴대폰 번호 입력('-' 포함)" />
                         </div>
                     </li>
-                    <li>
-                        <label for=""><b>이메일 주소</b></label>
-                        <span ref={msgrefs.msgemailnameRef}>이메일 주소를 입력해주세요</span>
-                        <div>
-                            <input type="text" 
-                                    name="emailname"
-                                    id = "emailname"
-                                    ref={refs.emailnameRef}
-                                    onChange={handleChangeForm}
-                                    placeholder="이메일 주소" />
-                            <span>@</span>       
-                            <select name="emaildomain" 
-                                    id="emaildomain"  
-                                    ref={refs.emaildomainRef}
-                                    
-                                    >
-                                <option value="default">선택</option>
-                                <option value="naver.com">naver.com</option>
-                                <option value="gmail.com">gmail.com</option>
-                                <option value="daum.net">daum.net</option>
-                            </select>
-                        </div>
-                    </li>
-                    <li>
-                        <button type="submit">가입하기</button>
-                        <button type="reset">가입취소</button>
-                    </li>
-                </ul>
-            </form>
-        </div>
-    );
-}
-
-
+ */}
