@@ -19,13 +19,12 @@ export default function Signup() {
 
         if(validateSignup(refs, msgRefs)){
             if(idCheckResult === "default"){
-                alert("중복확인을 진행해주세요")
+                alert("중복확인을 진행해주세요");
                 return false;
-            }
-        } else {
+            } else {
             console.log('submit===>',formData);
+            }   
         }
-        
     };
 
 
@@ -51,11 +50,11 @@ export default function Signup() {
                                     // :{(emailname일때)?(<>여기 여러 태그니까 빈태그로 묶어 반복되고</>):(<>아닐 땐이 태그들을 반복할래</>)} 
                                     <>
                                         <input type="text" 
-                                        name={name}
-                                        // id="id"
-                                        ref={refs.current[name.concat("Ref")]}
-                                        onChange={handleChangeForm}
-                                        placeholder = {placeholders[name]} />
+                                            name={name}
+                                            // id="id"
+                                            ref={refs.current[name.concat("Ref")]}
+                                            onChange={handleChangeForm}
+                                            placeholder = {placeholders[name]} />
                                         <span>@</span>       
                                         <select name="emaildomain" //얘는 emailname과 묶여있어서 따로 지정해두는 것
                                                 ref={refs.current["emaildomain"]}
