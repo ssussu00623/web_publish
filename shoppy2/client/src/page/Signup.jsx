@@ -1,89 +1,74 @@
-import React, { useRef, useState } from 'react';
-import { validateSignup } from '../utils/funcValidate';
+import React, { useState, useRef } from 'react';
 import '../styles/signup.css';
+import { validateSignup } from '../utils/funcValidate.js';
+import { initSignup, useInitSignupRefs } from '../utils/funcInitialize.js';
 
-export default function Signup() {
-    const[formData, setFormData] =useState({
-        'id':'',
-        'pwd':'',
-        'cpwd':'',
-        'name':'',
-        'phone':'',
-        'emailname':'',
-        'emaildomail':''
-    })
-    const msgrefs = {
-        "msgidRef":useRef(null),
-        "msgpwdRef":useRef(null),
-        "msgcpwdRef":useRef(null),
-        "msgnameRef":useRef(null),
-        "msgphoneRef":useRef(null),
-        "msgemailnameRef":useRef(null),
-        "msgemaildomainRef":useRef('default')
+export default function Signup() {   
+    const {names, placeholders, labels, initFormData} = initSignup();
+    const {refs, msgRefs} = useInitSignupRefs(names);
+    const [formData, setFormData] = useState(initFormData);
+
+    const handleChangeForm = (e) => {
+        const {name, value} = e.target;
+        setFormData({...formData, [name]:value});       
     }
-    const refs ={
-        "idRef":useRef(null),
-        "pwdRef":useRef(null),
-        "cpwdRef":useRef(null),
-        "nameRef":useRef(null),
-        "phoneRef":useRef(null),
-        "emailnameRef":useRef(null),
-        "emaildomainRef":useRef('default')
-    }
-    const handleChangeForm=(event)=>{
-        const{name, value} = event.target;
-        // console.log(event.target.value);
-        setFormData({...formData, [name]: value})
-    }
-    const handleSignupsubmit=(event)=>{
-        event.preventDefault();
-        if(validateSignup(refs, msgrefs)){
-            console.log(('submit===>', formData));
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        if(validateSignup(refs, msgRefs)) {
+            console.log('submit ---->> ', formData);        
         }
     }
+
     return (
         <div className="content">
             <h1 className="center-title">SIGINUP</h1>
-            <form className="signup-form" onSubmit={handleSignupsubmit}>
+            <form className="signup-form" onSubmit={handleSubmit}>
                 <ul>
-                    {/* 여기부터 반복 시작 */}
-                    <li>
-                        <label for="" ><b>아이디</b></label>
-                        <span ref={msgrefs.msgidRef}>아이디를 입력해주세요</span>
-                        <div>
-                            <input type="text" 
-                                    name="id"
-                                    id="id"
-                                    ref={refs.idRef}
-                                    onChange={handleChangeForm}
-                                    placeholder = "아이디 입력(6~20자)" />
-                            <button type="button" >중복확인</button>
-                            <input type="hidden" id="idCheckResult" value="default" />
-                        </div>
-                    </li>
-                    <li>
-                        <label for=""><b>이메일 주소</b></label>
-                        <span ref={msgrefs.msgemailnameRef}>이메일 주소를 입력해주세요</span>
-                        <div>
-                            <input type="text" 
-                                    name="emailname"
-                                    id = "emailname"
-                                    ref={refs.emailnameRef}
-                                    onChange={handleChangeForm}
-                                    placeholder="이메일 주소" />
-                            <span>@</span>       
-                            <select name="emaildomain" 
-                                    id="emaildomain"  
-                                    ref={refs.emaildomainRef}
-                                    
-                                    >
-                                <option value="default">선택</option>
-                                <option value="naver.com">naver.com</option>
-                                <option value="gmail.com">gmail.com</option>
-                                <option value="daum.net">daum.net</option>
-                            </select>
-                        </div>
-                    </li>
+                    {
+                        names && names.map((name)=>(
+                            <li>
+                                <label for="" ><b>{labels[name]}</b></label>
+                                <span ref={msgRefs.current[name.concat("MsgRef")]}>{labels[name]}를 입력해주세요</span>
+                                <div>
+                                    { (name === "emailname") ? (
+                                        <>
+                                            <input type="text"
+                                                    name={name}
+                                                    ref={refs.current[name.concat("Ref")]} 
+                                                    onChange={handleChangeForm}
+                                                    placeholder={placeholders[name]} />
+                                            <span>@</span>       
+                                            <select name="emaildomain" 
+                                                    ref={refs.current["emaildomainRef"]}
+                                                    onChange={handleChangeForm} >
+                                                <option value="default">선택</option>
+                                                <option value="naver.com">naver.com</option>
+                                                <option value="gmail.com">gmail.com</option>
+                                                <option value="daum.net">daum.net</option>
+                                            </select>
+                                        </>
+                                    ) : (
+                                        <>
+                                            <input type={(name==="pwd" || name==="cpwd") ? "password" : "text"}
+                                                name={name}
+                                                ref={refs.current[name.concat("Ref")]}
+                                                onChange={handleChangeForm}
+                                                placeholder = {placeholders[name]} />
+                                            {  name === "id" &&
+                                                <> 
+                                                    <button type="button"
+                                                            >중복확인</button>
+                                                    <input type="hidden" id="idCheckResult" value="default" />
+                                                </> 
+                                            } 
+                                        </>
+                                    )}                                  
+                                </div>
+                            </li>
+                        ))
+                    }
+                
                     <li>
                         <button type="submit">가입하기</button>
                         <button type="reset">가입취소</button>
@@ -94,54 +79,3 @@ export default function Signup() {
     );
 }
 
-
-{/**
-                        <li>
-                        <label for=""><b>비밀번호</b></label>
-                        <span ref={msgrefs.msgpwdRef}>12자 이내의 비밀번호를 입력해주세요</span>
-                        <div>
-                            <input type="password" 
-                                    name="pwd"
-                                    id="pwd"
-                                    ref={refs.pwdRef}
-                                    onChange={handleChangeForm}
-                                    placeholder="비밀번호 입력(문자,숫자,특수문자 포함 6~12자)" />
-                        </div>
-                    </li>
-                    <li>
-                        <label for=""><b>비밀번호 확인</b></label>
-                        <span ref={msgrefs.msgcpwdRef}>비밀번호 확인을 입력해주세요</span>
-                        <div>
-                            <input type="password" 
-                                    name="cpwd"
-                                    id="cpwd"
-                                    ref={refs.cpwdRef}
-                                    onChange={handleChangeForm}
-                                    placeholder="비밀번호 재입력" />
-                        </div>
-                    </li>
-                    <li>
-                        <label for=""><b>이름</b></label>
-                        <span ref={msgrefs.msgnameRef}>이름을 입력해주세요</span>
-                        <div>
-                            <input type="text" 
-                                    name="name"
-                                    id="name"
-                                    ref={refs.nameRef}
-                                    onChange={handleChangeForm}
-                                    placeholder="이름을 입력해주세요" />
-                        </div>
-                    </li>
-                    <li>
-                        <label for=""><b>휴대폰번호</b></label>
-                        <span ref={msgrefs.msgphoneRef}>휴대폰번호를 입력해주세요('-' 포함)</span>
-                        <div>
-                            <input type="text" 
-                                    name="phone"
-                                    id="phone"
-                                    ref={refs.phoneRef}
-                                    onChange={handleChangeForm}
-                                    placeholder="휴대폰 번호 입력('-' 포함)" />
-                        </div>
-                    </li>
- */}

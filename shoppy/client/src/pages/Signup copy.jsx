@@ -46,29 +46,11 @@ export default function Signup() {
                                 자바스크립트로 가져오는것...
                             */}
                             <div>
-                                {(name === 'emailname') ? (
+                                {name === 'emailname' ? (
                                     // {(name === 'emailname')?(<></>):(<></>)} 
                                     // :{(emailname일때)?(<>여기 여러 태그니까 빈태그로 묶어 반복되고</>):(<>아닐 땐이 태그들을 반복할래</>)} 
                                     <>
-                                        <input type="text" 
-                                        name={name}
-                                        // id="id"
-                                        ref={refs.current[name.concat("Ref")]}
-                                        onChange={handleChangeForm}
-                                        placeholder = {placeholders[name]} />
-                                        <span>@</span>       
-                                        <select name="emaildomain" //얘는 emailname과 묶여있어서 따로 지정해두는 것
-                                                ref={refs.current["emaildomain"]}
-                                                onChange={handleChangeForm} >
-                                            <option value="default">선택</option>
-                                            <option value="naver.com">naver.com</option>
-                                            <option value="gmail.com">gmail.com</option>
-                                            <option value="daum.net">daum.net</option>
-                                        </select>
-                                    </>
-                                ) : (
-                                    <>
-                                    <input type={(name==="pwd" || name=== "cpwd")?"password":"text"}
+                                        <input type={(name==="pwd" || name=== "cpwd")?"password":"text"}
                                                 name={name}
                                                 ref={refs.current[name.concat("Ref")]}
                                                 // name으로 돌고 있기 때문에 Ref를 붙여야 refs내의 idRef를 찾을 수 있다
@@ -88,6 +70,24 @@ export default function Signup() {
                                                 }
                                                 placeholder= {placeholders[name]}
                                                 />
+                                        <span>@</span>       
+                                        <select name="emaildomain" //얘는 emailname과 묶여있어서 따로 지정해두는 것
+                                                ref={refs.current["emaildomain"]}
+                                                onChange={handleChangeForm} >
+                                            <option value="default">선택</option>
+                                            <option value="naver.com">naver.com</option>
+                                            <option value="gmail.com">gmail.com</option>
+                                            <option value="daum.net">daum.net</option>
+                                        </select>
+                                    </>
+                                ) : (
+                                    <>
+                                    <input type="text" 
+                                        name={name}
+                                        // id="id"
+                                        ref={refs.current[name.concat("Ref")]}
+                                        onChange={handleChangeForm}
+                                        placeholder = {placeholders[name]} />
                                         { name === 'id' &&
                                             <>
                                             <button type="button" 
