@@ -25,7 +25,7 @@ export function initSignup(){
 }
 
 /*
-
+    이니셜라이징
 */
 export function useInitSignupRefs(names){
     /*use Ref */
@@ -40,7 +40,9 @@ export function useInitSignupRefs(names){
             return acc;
         }, {})
         );
-        refs.current.emaildomain = React.createRef();
+        refs.current.emaildomainRef = useRef(React.createRef());
+        // 화면상의 새로운 이벤트를 진행할 때 domain은 useRef로 남싸져있지 않기 때문에 따로 지정하여 넣어준다.
+        // 중복확인 후 아이디를 바꾼다던가 했을 때... 도메인의 select값이 초기화 돼서 안 넘어오기 때문에 넘겨줄 수 있도록 지정 한 것 
         
         const msgRefs = useRef(
             names.reduce((acc, name)=>{

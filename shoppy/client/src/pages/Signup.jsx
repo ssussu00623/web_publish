@@ -85,6 +85,7 @@ export default function Signup() {
                                                         )}
                                                 :null
                                                 }
+                                                // 콜백함수로 넘기는게 아니면 ! 브라우저에 권한이 넘어가버린다 주의 
                                                 placeholder= {placeholders[name]}
                                                 />
                                         { name === 'id' &&
@@ -98,7 +99,6 @@ export default function Signup() {
                                                     setIdCheckResult
                                                     )
                                                 }}>
-                                                {/* 콜백함수로 넘기는게 아니면 브라우저에게 권한이 넘어간다 주의 */}
                                                 중복확인</button>
                                             <input type="hidden" 
                                             value={idCheckResult} />
