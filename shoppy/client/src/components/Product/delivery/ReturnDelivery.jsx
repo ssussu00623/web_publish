@@ -40,31 +40,33 @@ export default function ReturnDelivery() {
         <>
         <div className="tab_nav">
             <ul>
-                <li >DETAIL</li>
-                <li>REVIEW</li>
-                <li > Q&A </li>
-                <li className="on">RETURN & DELIVERY</li>
+                <li><a href="#detail">DETAIL</a></li>
+                <li><a href="#review">REVIEW</a></li>
+                <li><a href="#qna">Q&A</a></li>
+                <li className="on"><a href="#delivery">RETURN & DELIVERY</a></li>
             </ul>
         </div>
-        <div className='return_delivery-main'>
-            <div className='return_delivery-text'>
-                <h3>배송/교환/반품/AS 관련 유의사항</h3>
-                <p>상품상세설명에 배송/교환/반품/취소 관련 안내가 기재된 경우 다음 안내사항보다 우선 적용됩니다.</p>
+        <div className='delivery' id='delivery'>
+            <div className='return_delivery-main'>
+                <div className='return_delivery-text'>
+                    <h3>배송/교환/반품/AS 관련 유의사항</h3>
+                    <p>상품상세설명에 배송/교환/반품/취소 관련 안내가 기재된 경우 다음 안내사항보다 우선 적용됩니다.</p>
+                </div>
+                <ul>
+                    {list && list.map((item)=>
+                    <li className='aaa'>
+                        <ReturnDeliveryItem 
+                            title={item.title} 
+                            text1={item.text1} 
+                            text2={item.text2} 
+                            text3={item.text3} 
+                            text4={item.text4} 
+                            />
+                    </li>
+                    
+                    )}
+                </ul>
             </div>
-            <ul>
-                {list && list.map((item)=>
-                <li className='aaa'>
-                    <ReturnDeliveryItem 
-                        title={item.title} 
-                        text1={item.text1} 
-                        text2={item.text2} 
-                        text3={item.text3} 
-                        text4={item.text4} 
-                        />
-                </li>
-                
-                )}
-            </ul>
         </div>
         </>
     );

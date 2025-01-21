@@ -1,6 +1,6 @@
-{
-    "qnaList" : [
+[
     {
+        "cid":"1",
         "id":"change@kkao.kr",
         "qna_result":"접수완료",
         "qna_icon":"qna_yet",
@@ -8,6 +8,7 @@
         "date":"2025-03-07"
     },
     {
+        "cid":"2",
         "id":"baegofa123@gmail.com",
         "qna_result":"답변완료",
         "qna_icon":"qna_done",
@@ -15,6 +16,7 @@
         "date":"2025-03-01"
     },
     {
+        "cid":"3",
         "id":"banaff@naver.com",
         "qna_result":"답변완료",
         "qna_icon":"qna_done",
@@ -22,34 +24,11 @@
         "date":"2025-01-03"
     },
     {   
+        "cid":"4",
         "id":"mecof@ald.kr",
         "qna_result":"답변완료",
         "qna_icon":"qna_done",
         "title":"길이",
         "date":"2025-01-01"
     }
-    ],
-    
-"menuList" : [
-    {
-        "href":"#detail",
-        "name":"DETAIL",
-        "className":null
-    },
-    {
-        "href":"#review",
-        "name":"REVIEW",
-        "className":null
-    },
-    {
-        "href":"#qna",
-        "name":"Q&A",
-        "className":"on"
-    },
-    {
-        "href":"#return",
-        "name":"RETURN & DELIVERY",
-        "className":null
-    }
 ]
-}

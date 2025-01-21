@@ -2,8 +2,10 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { PiGiftThin } from "react-icons/pi";
 import axios from "axios"; 
-import Qna from "./qna/Qna"; 
-import ReturnDelivery from "./delivery/ReturnDelivery.jsx";
+import Qna from "../components/Product/qna/Qna.jsx";
+import ReturnDelivery from "../components/Product/delivery/ReturnDelivery.jsx";
+import DetailProductList from "../components/Product/productDetail/DetailProductList.jsx"
+import Review from "../components/Product/review/Review.jsx";
 
 export default function DetailProduct({ addCart }) {
   const { pid } = useParams();
@@ -102,6 +104,8 @@ export default function DetailProduct({ addCart }) {
             <div className="product-detail-tab">
                 {/* start cont */}
                 <div className="tab_content_area"> 
+                    <DetailProductList/>
+                    <Review />
                     <Qna />
                     <ReturnDelivery />
                 </div>
