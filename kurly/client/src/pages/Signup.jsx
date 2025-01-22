@@ -4,8 +4,8 @@ export default function Signup() {
     return (
         <div className='signup-form'>
             <div className='signup-top'>
-                <div><h1>회원가입</h1></div>
-                <div><h5>*필수입력사항</h5></div>
+                <div className='signup-top1'><h1>회원가입</h1></div>
+                <div className='signup-top2'><h5>*필수입력사항</h5></div>
             </div> {/* signup-top-end */}
             <hr />
             <div className='signup-body'>
@@ -37,20 +37,23 @@ export default function Signup() {
                         </li>
                         <li>
                             <label>이메일* </label>
-                            <input type="text" 
-                            placeholder='예:marketkurly'
-                            className='signup_input'/>
-                            <span>@</span>
-                            <select name="" id="">
-                                <option value="">naver.com</option>
-                                <option value="">gmail.com</option>
-                                <option value="">hanmail.net</option>
-                                <option value="">kakao.com</option>
-                                <option value="">daum.net</option>
-                                <option value="">hotmaul.com</option>
-                                <option value="">yahoo.co.kr</option>
-                                <option value="">직접입력</option>
-                            </select>
+                            <div className='email-full'>
+                                <input type="text" 
+                                placeholder='예:marketkurly'
+                                className='email-address'/>
+                                <span>@</span>
+                                <select name="" id=""
+                                className='email-dimain'>
+                                    <option value="">naver.com</option>
+                                    <option value="">gmail.com</option>
+                                    <option value="">hanmail.net</option>
+                                    <option value="">kakao.com</option>
+                                    <option value="">daum.net</option>
+                                    <option value="">hotmaul.com</option>
+                                    <option value="">yahoo.co.kr</option>
+                                    <option value="">직접입력</option>
+                                </select>
+                            </div>
                         </li>
                         <li>
                             <label htmlFor="">휴대폰</label>
