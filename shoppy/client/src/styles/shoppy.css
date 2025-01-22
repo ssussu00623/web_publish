@@ -328,7 +328,10 @@ p {
   list-style: none;
 }
 .button_box{
+  /* border: 1px solid red; */
   text-align: right;
+}
+.button_box button{
   cursor: pointer;
 }
 .qna_button{
@@ -350,6 +353,50 @@ p {
 .qna_table td{
   padding: 10px;
 } 
+.qna_write{
+  margin:  50px 0px 50px 0px;
+}
+.qna_write_table {
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
+  width: 100%;
+}
+.qna_write_table td{
+  border-bottom: 1px solid lightgray;
+}
+.qna_write_title{
+  width: 300px;
+  margin: 50px 0px 50px 0px;
+  text-align: left;
+  padding: 20px;
+} 
+.qna_write_input textarea{
+  margin: 5px;
+  width: 800px; 
+  display: block;
+  border: none;
+  resize: none;
+  background-color: #ececec;
+}
+.qna_wtite ul{
+  list-style: none;
+  padding: 5px;
+}
+.qna_wtite ul li{
+  margin: 5px;
+}
+.qna_write_input {
+  margin: 5px;
+}
+.qna_write_main{
+  height: 6.25em;
+}
+.qna_write_line {
+  border-bottom: 1px solid tomato;
+}
+.qna_bottom_box{
+  margin: 50px 0px 50px 0px;
+}
 .qna_content{
   border-bottom: 1px solid lightgray;
   line-height: 3rem;
@@ -357,6 +404,12 @@ p {
 .qna_content:last-child {
   border-bottom: none;
 }
+.qna_content_sub { 
+  border-bottom: 1px solid lightgray;
+  line-height: 3rem;
+  background-color: #e6e6e6;
+  /* border: 1px solid salmon; */
+}  
 .qna_check {
   width: 100px;
   font-size: 0.6rem;
