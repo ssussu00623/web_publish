@@ -24,15 +24,15 @@ export default function DetailProductList() {
   
   return (
     <>
-    <div className="tab_nav">
-    <ul>
-        <li className="on"><a href="#detail">DETAIL</a></li>
-        <li><a href="#review">REVIEW</a></li>
-        <li><a href="#qna">Q&A</a></li>
-        <li><a href="#delivery">RETURN & DELIVERY</a></li>
-    </ul>
-</div>
     <div className='detail' id='detail'>
+    <div className="tab_nav">
+      <ul>
+          <li className="on"><a href="#detail">DETAIL</a></li>
+          <li><a href="#review">REVIEW</a></li>
+          <li><a href="#qna">Q&A</a></li>
+          <li><a href="#delivery">RETURN & DELIVERY</a></li>
+      </ul>
+    </div>
     <div className='product_detail_content'>
       <div className='product_notice'>
         <img src='/images/product_detail1.jpg'></img>

@@ -38,6 +38,7 @@ const list = [
 export default function ReturnDelivery() {
     return (
         <>
+        <div className='delivery' id='delivery'>
         <div className="tab_nav">
             <ul>
                 <li><a href="#detail">DETAIL</a></li>
@@ -46,7 +47,6 @@ export default function ReturnDelivery() {
                 <li className="on"><a href="#delivery">RETURN & DELIVERY</a></li>
             </ul>
         </div>
-        <div className='delivery' id='delivery'>
             <div className='return_delivery-main'>
                 <div className='return_delivery-text'>
                     <h3>배송/교환/반품/AS 관련 유의사항</h3>

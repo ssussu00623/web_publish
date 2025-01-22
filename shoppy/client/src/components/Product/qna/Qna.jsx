@@ -28,6 +28,8 @@ export default function Qna() {
     }
     return (
         <>
+            {/* start cont */}
+            <div className="tab_content_area" id='qna'>
             <div className="tab_nav">
                 <ul>
                 <li><a href="#detail">DETAIL</a></li>
@@ -36,8 +38,6 @@ export default function Qna() {
                 <li><a href="#delivery">RETURN & DELIVERY</a></li>
                 </ul>
             </div>
-            {/* start cont */}
-            <div className="tab_content_area" id='qna'>
                 <div className="button_box">
                     <button type="button" 
                     className="qna_button"

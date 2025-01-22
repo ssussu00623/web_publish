@@ -77,6 +77,9 @@ export default function Detail() {
 
     return (
         <>
+        <div className="box review">
+            {/* 리뷰 상단 */}
+            <div className="review_avg" id='review'>
         <div className="tab_nav">
             <ul>
                 <li><a href="#detail">DETAIL</a></li>
@@ -85,10 +88,6 @@ export default function Detail() {
                 <li><a href="#delivery">RETURN & DELIVERY</a></li>
             </ul>
         </div>
-        <div className="box review">
-            
-            {/* 리뷰 상단 */}
-            <div className="review_avg" id='review'>
                 <div className="tit">상품 만족도(2)</div>
                 <div className="detail">
                     <div className="left_num">
