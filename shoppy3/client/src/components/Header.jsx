@@ -1,27 +1,21 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import { FiShoppingBag } from "react-icons/fi";
 
-export default function Header({cartCount}) {
+export default function Header() {
     return (
         <div className='header-outer'>
             <div className='header'>
-                <Link to='/' className='header-left'>
-                    <FiShoppingBag />
-                    <span>shoppy</span>
-                </Link>
-                <nav className='header-right'>
-                    <Link to='/all'>products</Link> 
-                    {/* a태그처럼 링크를 타고 이동~ */}
-                    <Link to='/cart'>MyCart({cartCount})</Link>
-                    <Link to='/login'>
-                        <button type='button'>Login</button>
-                    </Link>
-                    <Link to='/signup'>
-                        <button type='button'>Signup</button>
-                    </Link>
-                </nav>
-            </div>
+                <div className='header-left'>
+                    <img src="./public/images/banner.jpg" alt="" /> <span>Shoppy</span>
+                </div>
+                <div className='header-right'>
+                    <nav>
+                    <span>product</span>
+                    <span>cart</span>
+                    <span>login</span>
+                    <span>signup</span>
+                    </nav>
+                </div>
+                </div>  
         </div>
     );
 }
