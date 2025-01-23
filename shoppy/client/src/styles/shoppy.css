@@ -466,7 +466,7 @@ p {
 }
 
   .delivery .return_delivery-main {
-  border: 1px solid red;
+  /* border: 1px solid red; */
   padding: 30px;
 }
 

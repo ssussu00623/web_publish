@@ -4,7 +4,12 @@
         "image":"/images/1.webp",
         "info" : "분홍색 긴팔 후드집업/ 벨벳재질",
         "price":32000,
-        "name":"분홍색 긴팔 후드집업"
+        "name":"분홍색 긴팔 후드집업",
+        "imgList" : [
+            "/images/1.webp",
+            "/images/1.webp",
+            "/images/1.webp" 
+        ]
     },
     {
         "pid" : "2",

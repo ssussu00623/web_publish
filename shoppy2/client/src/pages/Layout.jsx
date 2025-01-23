@@ -6,7 +6,7 @@ import Footer from '../components/Footer.jsx';
 export default function Layout({cartCount}) {
     return (
         <div>
-            <Header cartCount={cartCount} />
+            <Header cartCount = {cartCount} />
             <Outlet />
             <Footer />
         </div>

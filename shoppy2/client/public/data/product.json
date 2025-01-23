@@ -2,49 +2,54 @@
     {
         "pid" : "1",
         "image":"/images/1.webp",
-        "alt" : "분홍색 긴팔 후드집업/ 벨벳재질",
+        "info" : "분홍색 긴팔 후드집업/ 벨벳재질",
         "price":32000,
-        "name":"분홍색 긴팔 후드집업"
+        "name":"분홍색 긴팔 후드집업",
+        "imgList" : [
+            "/images/1.webp",
+            "/images/1.webp",
+            "/images/1.webp" 
+        ]
     },
     {
         "pid" : "2",
         "image":"/images/2.webp",
-        "alt" : "검은색 긴팔 후드집업/ 면재질",
+        "info" : "검은색 긴팔 후드집업/ 면재질",
         "price":28000,
         "name":"검은색 긴팔 후드집업"
     },
     {
         "pid" : "3",
         "image":"/images/3.webp",
-        "alt" : "베이지 트위드 원피스 / 트위드",
+        "info" : "베이지 트위드 원피스 / 트위드",
         "price":74000,
         "name":"베이지 트위드 원피스"
     },
     {
         "pid" : "4",
         "image":"/images/4.webp",
-        "alt" : "베이지 트위드 반바지 / 트위드",
+        "info" : "베이지 트위드 반바지 / 트위드",
         "price":32000,
         "name":"베이지 트위드 반바지"
     },
     {
         "pid" : "5",
         "image":"/images/5.webp",
-        "alt" : "스트라이프 티셔츠",
+        "info" : "스트라이프 티셔츠",
         "price":30000,
         "name":"검은색, 흰색 스트라이프 티셔츠 / 면재질"
     },
     {
         "pid" : "6",
         "image":"/images/6.webp",
-        "alt" : "중간 스트라이프 검은색 원피스 / 면재질",
+        "info" : "중간 스트라이프 검은색 원피스 / 면재질",
         "price":90000,
         "name":"원피스"
     },
     {
         "pid" : "7",
         "image":"/images/7.webp",
-        "alt" : "레드 자켓 / 폴리에스테르",
+        "info" : "레드 자켓 / 폴리에스테르",
         "price":108000,
         "name":"레드자켓"
     }
