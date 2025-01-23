@@ -1,16 +1,10 @@
 import React, { useState } from 'react';
 import { FaStar } from 'react-icons/fa6';
 
-interface IstarProps {
-    w:string;
-    h:string;
-    readonly : booleanp;
-    ratr?: number;
-}
 
-export default function Star({w, h, readonly, rate}: IstarProps) {
+export default function Star({w, h, readonly, rate}) {
     const [rating, setRating] = useState(rate || 0);
-    const handleClickStar = (index : number) =>{
+    const handleClickStar = (index) =>{
         if(readonly){
             setRating(index + 1);
         }
