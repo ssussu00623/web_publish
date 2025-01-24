@@ -3,8 +3,11 @@ import './styles/shoppy.css'
 import './App.css';
 import Layout from './pages/Layout';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import Home from './pages/Home';
-import ProductList from './pages/ProductList';
+import Home from './pages/Home'; 
+import ProductList from './components/ProductList';
+import Products from './pages/Products';
+import Login from './pages/Login';
+import SignUp from './pages/SignUp';
 
 function App() {
   return (
@@ -13,7 +16,9 @@ function App() {
       <Routes>
         <Route path='/' element={<Layout />}>
           <Route index element={<Home />} />
-          <Route index = '/all' element={<ProductList />} />
+          <Route path='all' element={<Products/>} />
+          <Route path='login' element={<Login />} />
+          <Route path='signup' element={<SignUp />} />
         </Route>
       </Routes>
       </BrowserRouter>
