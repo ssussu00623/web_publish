@@ -85,7 +85,7 @@ export default function Qna() {
                         </tr>
                         </tbody>
                     </table>
-                        <button type='radio'></button>
+                        <input type='radio'></input>
                         <span>개인정보 수집 및 이용에 대한 동의(필수)</span>
                         <button type='button'>내용보기</button>
                     </div> {/*end qna_table_sub */}
