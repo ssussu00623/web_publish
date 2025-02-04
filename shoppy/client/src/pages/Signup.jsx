@@ -1,31 +1,195 @@
+// import React, { useState, useRef } from 'react';
+// import '../styles/signup.css';
+// import { validateSignup, handleDuplicateIdCheck, handlePasswordCheck } from '../utils/funcValidate.js';
+// import { initSignup, useInitSignupRefs } from '../utils/funcInitialize.js';
+
+// export default function Signup() {
+//     const{names,placeholders, lables, initFormData} = initSignup();
+//     const{refs,msgRefs} = useInitSignupRefs(names);
+//     const [formData, setFormData] =useState(initFormData)
+//     const [idCheckResult, setIdCheckResult]=useState('default');
+//     // 브라우저가 "중복체크" 부분의 값을 관리하려 들기 때문에 리액트가 관리할 수 있도록 따로 선언하기
+//     //change
+//     const handleChangeForm =(e)=>{
+//         const{name, value} = e.target;
+//         setFormData({...formData, [name]: value}) 
+//     };
+//     const handleSubmit=(e)=>{
+//         e.preventDefault();
+
+//         if(validateSignup(refs, msgRefs)){
+//             if(idCheckResult === "default"){
+//                 alert("중복확인을 진행해주세요");
+//                 return false;
+//             } else {
+//             console.log('submit===>',formData);
+//             }   
+//         }
+//     };
+
+
+//     return (
+//         <div className="content">
+//             <h1 className="center-title">SIGINUP</h1>
+//             <form className="signup-form" onSubmit={handleSubmit}>
+//                 <ul>
+//                 {   
+//                     names && names.map((name)=>(
+//                         // 리턴 키워드 없이 바로 리턴시키는거라 {}없이 ()로 진행
+//                         // li들이 반복되는데 li의 안의 div에 따라 달라지면 name을통해 삼항 연산자를 사용
+//                         <li>
+//                             <label for=""><b>{lables[name]}</b></label>
+//                             <span ref={msgRefs.current[name.concat("MsgRef")]}>{lables[name]} 입력하세요</span>
+//                             {/* 
+//                                 결국 name(id)값과 같이 돌아가기 때문에(레이블즈의 프로퍼티 값) name자리를 끌어온다.
+//                                 자바스크립트로 가져오는것...
+//                             */}
+//                             <div>
+//                                 {(name === 'emailname') ? (
+//                                     // {(name === 'emailname')?(<></>):(<></>)} 
+//                                     // :{(emailname일때)?(<>여기 여러 태그니까 빈태그로 묶어 반복되고</>):(<>아닐 땐이 태그들을 반복할래</>)} 
+//                                     <>
+//                                         <input type="text" 
+//                                             name={name}
+//                                             // id="id"
+//                                             ref={refs.current[name.concat("Ref")]}
+//                                             onChange={handleChangeForm}
+//                                             placeholder = {placeholders[name]} />
+//                                         <span>@</span>       
+//                                         <select name="emaildomain" //얘는 emailname과 묶여있어서 따로 지정해두는 것
+//                                                 ref={refs.current["emaildomain"]}
+//                                                 onChange={handleChangeForm} >
+//                                             <option value="default">선택</option>
+//                                             <option value="naver.com">naver.com</option>
+//                                             <option value="gmail.com">gmail.com</option>
+//                                             <option value="daum.net">daum.net</option>
+//                                         </select>
+//                                     </>
+//                                 ) : (
+//                                     <>
+//                                     <input type={(name==="pwd" || name=== "cpwd")?"password":"text"}
+//                                                 name={name}
+//                                                 ref={refs.current[name.concat("Ref")]}
+//                                                 // name으로 돌고 있기 때문에 Ref를 붙여야 refs내의 idRef를 찾을 수 있다
+//                                                 onChange={handleChangeForm}
+//                                                 // onBlur={(pwdRef.current.value === cpwdRef.current.value)?(
+//                                                 //     alert('비밀번호가 일치합니다')
+//                                                 // ):(alert('비밀번호가 일치하지 않습니다'))}
+//                                                 onBlur={(name === 'cpwd')?
+//                                                     ()=>{handlePasswordCheck(
+//                                                         refs.current["pwdRef"],
+//                                                         refs.current["cpwdRef"],
+//                                                         refs.current["nameRef"],
+//                                                         msgRefs.current["pwdMsgRef"],
+//                                                         msgRefs.current["cpwdMsgRef"]
+//                                                         )}
+//                                                 :null
+//                                                 }
+//                                                 // 콜백함수로 넘기는게 아니면 ! 브라우저에 권한이 넘어가버린다 주의 
+//                                                 placeholder= {placeholders[name]}
+//                                                 />
+//                                         { name === 'id' &&
+//                                             <>
+//                                             <button type="button" 
+//                                             onClick={()=>{
+//                                                 handleDuplicateIdCheck(
+//                                                     refs.current["idRef"],
+//                                                     msgRefs.current["idMsgRef"],
+//                                                     refs.current["pwdRef"],
+//                                                     setIdCheckResult
+//                                                     )
+//                                                 }}>
+//                                                 중복확인</button>
+//                                             <input type="hidden" 
+//                                             value={idCheckResult} />
+//                                             </>
+//                                         }
+                                        
+//                                     </>
+//                                 )}
+                                
+//                             </div>
+//                         </li>
+//                     ))
+//                 } {/**end */}
+//                     <li>
+//                         <button type="submit">가입하기</button>
+//                         <button type="reset">가입취소</button>
+//                     </li>
+//                 </ul>
+//             </form>
+//         </div>
+//     );
+// }
+
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 import React, { useState, useRef } from 'react';
 import '../styles/signup.css';
-import { validateSignup, handleDuplicateIdCheck, handlePasswordCheck } from '../utils/funcValidate.js';
+import { validateSignup, 
+            handleDuplicateIdCheck, 
+            handlePasswordCheck} from '../utils/funcValidate.js';
 import { initSignup, useInitSignupRefs } from '../utils/funcInitialize.js';
 
-export default function Signup() {
-    const{names,placeholders, lables, initFormData} = initSignup();
-    const{refs,msgRefs} = useInitSignupRefs(names);
-    const [formData, setFormData] =useState(initFormData)
-    const [idCheckResult, setIdCheckResult]=useState('default');
-    // 브라우저가 "중복체크" 부분의 값을 관리하려 들기 때문에 리액트가 관리할 수 있도록 따로 선언하기
-    //change
-    const handleChangeForm =(e)=>{
-        const{name, value} = e.target;
-        setFormData({...formData, [name]: value}) 
-    };
-    const handleSubmit=(e)=>{
+export default function Signup() {   
+    const navigate = useNavigate();
+    const {names, placeholders, labels, initFormData} = initSignup();
+    const {refs, msgRefs} = useInitSignupRefs(names);
+    const [formData, setFormData] = useState(initFormData);
+    const [idCheckResult, setIdCheckResult] = useState('default');
+
+    
+    const handleChangeForm = (e) => {
+        const {name, value} = e.target;
+        setFormData({...formData, [name]:value});       
+    }
+
+    const handleSubmit = (e) => {
         e.preventDefault();
 
-        if(validateSignup(refs, msgRefs)){
-            if(idCheckResult === "default"){
-                alert("중복확인을 진행해주세요");
+        if(validateSignup(refs, msgRefs, formData)) {    
+            if(idCheckResult === "default") {
+                alert("중복 확인을 진행해 주세요");
                 return false;
             } else {
-            console.log('submit===>',formData);
+                console.log('submit ---->> ', formData); 
+                // 서버로 폼데이터를 보내고 ==> DB연동하여 insert     
+                // GET : URL을 통해 경로가 호출 되거나 데이터 전달 => 패킷의 Header에 붙어 넘어가기 때문에 => req.params 서버의 파람즈로 받는다
+                //      ㄴ 보안 필요 X , 데이터가 작을 때!
+                // POST : URL 주소로 경로 호출, 데이터 전달 => 패킷의 Body로 넘어간다 => req.body 
+                //      ㄴ 보안 필요한 데이터의 경우, 큰 데이터를 전달할 때 사용 
+                /*
+                axios.post('경로', 전송할객체{}<- 이 타입만 넘어감...아마도?) 
+                        .then() insert가 성공했을 때 넘어가는 것 
+                        .catch() 오류 잡기
+                */
+                axios.post('http://localhost:9000/member/signup', formData)
+                // .then(res=> console.log('res.data===>',res.data))
+                .then(res=> {
+                    if(res.data.result_rows === 1){
+                    alert("회원가입에 성공하셨습니다.");
+                    // 회원 가입에 성공하면 로그인 페이지로 이동하는 것... 
+                    // 1. 리액트적인 방법 ==> useNavigate (리액트 라우터 돔)
+                    //  navigate('/login')
+                    // 2. setTimeout활용. 확인버튼 클릭 후 3초 경과 
+                    setTimeout(() => {
+                        navigate('/login')
+                    }, 3000);
+                    // 3. window.location.href = '/login'
+                    // 윈도우가 실행하도록 하는 방법이기 때문에.... 권장하지 않음. 리액트 적인 걸 해보자.
+                    } else if(res.data.result_rows === 0){
+                        alert("회원가입에 실패하였습니다")
+                    }
+                }) 
+                // .catch(error=> console.log(error));
+                .catch(error=>{
+                    alert("회원가입에 실패하였습니다");
+                    console.log(error);
+                });
             }   
-        }
-    };
+        } 
+    }
+
 
 
     return (
@@ -33,85 +197,68 @@ export default function Signup() {
             <h1 className="center-title">SIGINUP</h1>
             <form className="signup-form" onSubmit={handleSubmit}>
                 <ul>
-                {   
-                    names && names.map((name)=>(
-                        // 리턴 키워드 없이 바로 리턴시키는거라 {}없이 ()로 진행
-                        // li들이 반복되는데 li의 안의 div에 따라 달라지면 name을통해 삼항 연산자를 사용
-                        <li>
-                            <label for=""><b>{lables[name]}</b></label>
-                            <span ref={msgRefs.current[name.concat("MsgRef")]}>{lables[name]} 입력하세요</span>
-                            {/* 
-                                결국 name(id)값과 같이 돌아가기 때문에(레이블즈의 프로퍼티 값) name자리를 끌어온다.
-                                자바스크립트로 가져오는것...
-                            */}
-                            <div>
-                                {(name === 'emailname') ? (
-                                    // {(name === 'emailname')?(<></>):(<></>)} 
-                                    // :{(emailname일때)?(<>여기 여러 태그니까 빈태그로 묶어 반복되고</>):(<>아닐 땐이 태그들을 반복할래</>)} 
-                                    <>
-                                        <input type="text" 
-                                            name={name}
-                                            // id="id"
-                                            ref={refs.current[name.concat("Ref")]}
-                                            onChange={handleChangeForm}
-                                            placeholder = {placeholders[name]} />
-                                        <span>@</span>       
-                                        <select name="emaildomain" //얘는 emailname과 묶여있어서 따로 지정해두는 것
-                                                ref={refs.current["emaildomain"]}
-                                                onChange={handleChangeForm} >
-                                            <option value="default">선택</option>
-                                            <option value="naver.com">naver.com</option>
-                                            <option value="gmail.com">gmail.com</option>
-                                            <option value="daum.net">daum.net</option>
-                                        </select>
-                                    </>
-                                ) : (
-                                    <>
-                                    <input type={(name==="pwd" || name=== "cpwd")?"password":"text"}
+                    {
+                        names && names.map((name)=>(
+                            <li>
+                                <label for="" ><b>{labels[name]}</b></label>
+                                <span ref={msgRefs.current[name.concat("MsgRef")]}>{labels[name]}를 입력해주세요</span>
+                                <div>
+                                    { (name === "emailname") ? (
+                                        <>
+                                            <input type="text"
+                                                    name={name}
+                                                    ref={refs.current[name.concat("Ref")]} 
+                                                    onChange={handleChangeForm}
+                                                    placeholder={placeholders[name]} />
+                                            <span>@</span>       
+                                            <select name="emaildomain" 
+                                                    ref={refs.current["emaildomainRef"]}
+                                                    onChange={handleChangeForm}
+                                                    >
+                                                <option value="default">선택</option>
+                                                <option value="naver.com">naver.com</option>
+                                                <option value="gmail.com">gmail.com</option>
+                                                <option value="daum.net">daum.net</option>
+                                            </select>
+                                        </>
+                                    ) : (
+                                        <>
+                                            <input type={(name==="pwd" || name==="cpwd") ? "password" : "text"}
                                                 name={name}
                                                 ref={refs.current[name.concat("Ref")]}
-                                                // name으로 돌고 있기 때문에 Ref를 붙여야 refs내의 idRef를 찾을 수 있다
                                                 onChange={handleChangeForm}
-                                                // onBlur={(pwdRef.current.value === cpwdRef.current.value)?(
-                                                //     alert('비밀번호가 일치합니다')
-                                                // ):(alert('비밀번호가 일치하지 않습니다'))}
-                                                onBlur={(name === 'cpwd')?
-                                                    ()=>{handlePasswordCheck(
-                                                        refs.current["pwdRef"],
-                                                        refs.current["cpwdRef"],
-                                                        refs.current["nameRef"],
-                                                        msgRefs.current["pwdMsgRef"],
-                                                        msgRefs.current["cpwdMsgRef"]
-                                                        )}
-                                                :null
-                                                }
-                                                // 콜백함수로 넘기는게 아니면 ! 브라우저에 권한이 넘어가버린다 주의 
-                                                placeholder= {placeholders[name]}
-                                                />
-                                        { name === 'id' &&
-                                            <>
-                                            <button type="button" 
-                                            onClick={()=>{
-                                                handleDuplicateIdCheck(
-                                                    refs.current["idRef"],
-                                                    msgRefs.current["idMsgRef"],
-                                                    refs.current["pwdRef"],
-                                                    setIdCheckResult
-                                                    )
-                                                }}>
-                                                중복확인</button>
-                                            <input type="hidden" 
-                                            value={idCheckResult} />
-                                            </>
-                                        }
-                                        
-                                    </>
-                                )}
-                                
-                            </div>
-                        </li>
-                    ))
-                } {/**end */}
+                                                onBlur={(name === 'cpwd') ? ()=>{
+                                                        handlePasswordCheck(
+                                                            refs.current["pwdRef"],
+                                                            refs.current["cpwdRef"],
+                                                            refs.current["nameRef"],
+                                                            msgRefs.current["pwdMsgRef"],
+                                                            msgRefs.current["cpwdMsgRef"]
+                                                        )
+                                                    } : null}
+                                                placeholder = {placeholders[name]} />
+                                            {  name === "id" &&
+                                                <> 
+                                                    <button type="button"
+                                                            onClick={()=>{
+                                                                handleDuplicateIdCheck(
+                                                                                refs.current["idRef"],
+                                                                                refs.current["pwdRef"],
+                                                                                msgRefs.current["idMsgRef"],
+                                                                                setIdCheckResult
+                                                                )
+                                                            }}
+                                                            >중복확인</button>
+                                                    {/* <input type="text" value={idCheckResult}  /> */}
+                                                </> 
+                                            } 
+                                        </>
+                                    )}                                  
+                                </div>
+                            </li>
+                        ))
+                    }
+                
                     <li>
                         <button type="submit">가입하기</button>
                         <button type="reset">가입취소</button>
@@ -121,3 +268,4 @@ export default function Signup() {
         </div>
     );
 }
+
