@@ -1,143 +1,110 @@
-import React from 'react';
+import React, { useState, useRef } from 'react'; 
+import { validateSignup, 
+            handleDuplicateIdCheck, 
+            handlePasswordCheck} from '../utils/funcValidate.js';
+import { initSignup, useInitSignupRefs } from '../utils/funcInitialize.js';
 
-export default function Signup() {
-    return (
-        <div className='signup-form'>
-            <div className='signup-top'>
-                <div className='signup-top1'><h1>회원가입</h1></div>
-                <div className='signup-top2'><h5>*필수입력사항</h5></div>
-            </div> {/* signup-top-end */}
-            <hr />
-            <div className='signup-body'>
-                <form className= 'signup-form ' action="">
-                    <ul>
-                        <li>
-                            <label className='signup_con_title'>아이디* </label>
-                            <input type="text" 
-                            placeholder='아이디를 입력해주세요'
-                            className='signup_input'/>
-                        </li>
-                        <li>
-                            <label>비밀번호* </label>
-                            <input type="password" 
-                            placeholder='비밀번호를 입력해주세요'
-                            className='signup_input'/>
-                        </li>
-                        <li>
-                            <label>비밀번호 확인* </label>
-                            <input type="password" 
-                            placeholder='비밀번호를 한번 더 입력해주세요'
-                            className='signup_input'/>
-                        </li>
-                        <li>
-                            <label>이름* </label>
-                            <input type="text" 
-                            placeholder='이름을 입력해주세요'
-                            className='signup_input'/>
-                        </li>
-                        <li>
-                            <label>이메일* </label>
-                            <div className='email-full'>
-                                <input type="text" 
-                                placeholder='예:marketkurly'
-                                className='email-address'/>
-                                <span>@</span>
-                                <select name="" id=""
-                                className='email-dimain'>
-                                    <option value="">naver.com</option>
-                                    <option value="">gmail.com</option>
-                                    <option value="">hanmail.net</option>
-                                    <option value="">kakao.com</option>
-                                    <option value="">daum.net</option>
-                                    <option value="">hotmaul.com</option>
-                                    <option value="">yahoo.co.kr</option>
-                                    <option value="">직접입력</option>
-                                </select>
-                            </div>
-                        </li>
-                        <li>
-                            <label htmlFor="">휴대폰</label>
-                            <input type="number" 
-                            placeholder='숫자만 입력해주세요' 
-                            className='signup_input'/>
-                            <button type='button'>인증번호받기</button>
-                        </li>
-                        <li>
-                            <label htmlFor="">주소</label>
-                            <button type="button">주소검색</button>
-                            <span>배송지에 따라 상품 정보가 달라질 수 있습니다.</span>
-                        </li>
-                        <li>
-                            <input type="radio" name='gender' value='male'/> 남자
-                            <input type="radio" name='gender' value='female'/> 여자
-                            <input type="radio" name='gender' value='none' checked="checked"/> 선택 안함
-                        </li>
-                        <li>
-                            <label htmlFor="">생년월일</label>
-                            <div className='signup_birth'>
-                                <input type="number"placeholder='YYYY'/>
-                                <span>/</span>
-                                <input type="number" placeholder='MM'/>
-                                <span>/</span>
-                                <input type="number" placeholder='DD'/> 
-                            </div>
-                        </li>
-                        <li>
-                            <input type="radio" name="" />친구초대 추천인 아이디
-                        </li>
-                        <li>
-                            <input type="text" 
-                            placeholder='추천인 아이디 입력'
-                            className='signup_input'/>
-                            <button type='button'>아이디 확인</button>
-                            <span>· 가입 후 7일 이내 첫 주문 배송 완료 시, 친구초대 적립금이 지급됩니다.</span>
-                            <span>· ID입력시, 대소문자 및 띄어쓰기에 유의 부탁드립니다.</span>
-                            <span>· 가입 이후 수정이 불가능합니다.</span>
-                        </li>
-                    </ul>{/* signup-body-end */}
-                    <hr />
-                    <div className='signup-footer'>
-                        <ul>
+export default function Signup() {   
+    const {names, placeholders, labels, initFormData} = initSignup();
+    const {refs, msgRefs} = useInitSignupRefs(names);
+    const [formData, setFormData] = useState(initFormData);
+    const [idCheckResult, setIdCheckResult] = useState('default');
+
+    
+    const handleChangeForm = (e) => {
+        const {name, value} = e.target;
+        setFormData({...formData, [name]:value});       
+    }
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+
+        if(validateSignup(refs, msgRefs, formData)) {    
+            if(idCheckResult === "default") {
+                alert("중복 확인을 진행해 주세요");
+                return false;
+            } else {
+                console.log('submit ---->> ', formData);                
+                // 회원가입 성공 후 ==> setIdCheckResult("default");
+            }   
+        } 
+    }
+
+return (
+        <div className="content">
+            <h1 className="center-title">SIGINUP</h1>
+            <form className="signup-form" onSubmit={handleSubmit}>
+                <ul>
+                    {
+                        names && names.map((name)=>(
                             <li>
-                                <input type="radio" name="" />
-                                    <span>전체 동의합니다.</span>
-                                    <span>선택항목에 동의하지 않은 경우도 회원가입 및 일반적인 서비스를 이용할 수 있습니다.</span>
+                                <label for="" ><b>{labels[name]}</b></label>
+                                <span ref={msgRefs.current[name.concat("MsgRef")]}>{labels[name]}를 입력해주세요</span>
+                                <div>
+                                    { (name === "emailname") ? (
+                                        <>
+                                            <input type="text"
+                                                    name={name}
+                                                    ref={refs.current[name.concat("Ref")]} 
+                                                    onChange={handleChangeForm}
+                                                    placeholder={"예: marketkurly"}/>
+                                            <span>@</span>       
+                                            <select name="emaildomain" 
+                                                    ref={refs.current["emaildomainRef"]}
+                                                    onChange={handleChangeForm}
+                                                    >
+                                                <option value="default">선택하기</option>
+                                                <option value="naver.com">naver.com</option>
+                                                <option value="gmail.com">gmail.com</option>
+                                                <option value="daum.net">daum.net</option>
+                                            </select>
+                                        </>
+                                    ) : (
+                                        <>
+                                            <input type={(name==="pwd" || name==="cpwd") ? "password" : "text"}
+                                                name={name}
+                                                ref={refs.current[name.concat("Ref")]}
+                                                onChange={handleChangeForm}
+                                                onBlur={(name === 'cpwd') ? ()=>{
+                                                        handlePasswordCheck(
+                                                            refs.current["pwdRef"],
+                                                            refs.current["cpwdRef"],
+                                                            refs.current["nameRef"],
+                                                            msgRefs.current["pwdMsgRef"],
+                                                            msgRefs.current["cpwdMsgRef"]
+                                                        )
+                                                    } : null}
+                                                placeholder = {placeholders[name]} />
+                                            {  name === "phone" &&
+                                                <> 
+                                                    <button type="button"
+                                                            onClick={()=>{
+                                                                handleDuplicateIdCheck(
+                                                                                refs.current["phoneRef"],
+                                                                                refs.current["emailnameRef"],
+                                                                                msgRefs.current["phoneMsgRef"],
+                                                                                setIdCheckResult
+                                                                )
+                                                            }}
+                                                            >중복확인</button>
+                                                    <input type="text"                                                             
+                                                            value={idCheckResult}
+                                                            />
+                                                </> 
+                                            } 
+                                        </>
+                                    )}                                  
+                                </div>
                             </li>
-                            <li>
-                                <input type="radio" name="" />
-                                이용약관 동의(필수)
-                                <a href="#">약관보기</a>
-                            </li>
-                            <li>
-                            <input type="radio" name="" />
-                                개인정보 수집·이용 동의(필수)
-                                <a href="#">약관보기</a>
-                            </li>
-                            <li>
-                            <input type="radio" name="" />
-                                개인정보 수집·이용 동의(선택)
-                                <a href="#">약관보기</a>
-                            </li>
-                            <li>
-                                <input type="radio" name="" />
-                                무료배송, 할인쿠폰 등 혜택/정보 수신 동의(선택)
-                                <ul>
-                                    <li><input type="radio" name="" />SMS</li>
-                                    <li><input type="radio" name="" />이메일</li>
-                                </ul>
-                            </li>
-                            <li>
-                            <input type="radio" name="" />
-                                본인은 만 14세 이상입니다</li>
-                        </ul>
-                </div>{/* signup-footer-end */}
-                <div className='button-box'>
-                    <button type='button'>가입하기</button>
-                </div>
-                    </form>
-            </div>
-        </div>// signup-end
-        
+                        ))
+                    }
+                
+                    <li>
+                        <button type="submit">가입하기</button>
+                        <button type="reset">가입취소</button>
+                    </li>
+                </ul>
+            </form>
+        </div>
     );
 }
-

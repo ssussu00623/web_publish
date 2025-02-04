@@ -1,3 +1,5 @@
+import axios from "axios";
+
 /************************
  * title : 로그인 폼 체크
  * *********************/
@@ -114,20 +116,27 @@ export const handleDuplicateIdCheck=(idRef, idMsgRef, pwdRef, setIdCheckResult)=
         idRef.current.focus();
         return false;
     } else{
-        const did = 'test'; //  DB연동 전 
-        if(idRef.current.value === did){
-            alert('이미 사용중인 아이디입니다.')
-            idRef.current.focus();
-            return false;
-        } else {
-            alert('사용 가능한 아이딥니다.')
-            // idCheckResult.current.value = "complete"
-            setIdCheckResult("complete");
-            pwdRef.current.focus();
-            return false;
-        }
+        // const did = 'test'; //  DB연동 전  
+        /**DB 서버 연동 후 . 확인버튼 누른다고 링크가 바뀔 수 없기 때문에 post로 */
+        axios
+            .post('http://localhost:9000/member/idcheck', {"id": idRef.current.value})
+            .then(res=>{
+                if(res.data.result === 1){
+                    alert('이미 사용중인 아이디 입니다. 새로운 아이디를 입력해주세요.')
+                    idRef.current.focus();
+                    return false;
+                } else {
+                    alert('사용 가능한 아이디 입니다.')
+                    // idCheckResult.current.value = "complete"
+                    setIdCheckResult("complete");
+                    pwdRef.current.focus();
+                    return false;
+                } 
+            })
+            .catch(error => console.log(error));
     }
     };
+
 /**********************************
  * 비밀번호 체크
  **********************************/
