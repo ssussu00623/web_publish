@@ -13,14 +13,14 @@ export function initSignup(){
     const placeholders = names.reduce((acc, name, idx)=>{
         acc[name] = placeholdersKor[idx]; return acc;
     }, {});
-    const lables = names.reduce((acc, name, idx)=>{
+    const labels = names.reduce((acc, name, idx)=>{
         acc[name] = namesKor[idx]; return acc;
     }, {});
     const initFormData = names.reduce((acc, name)=>{ 
         acc[name] = ""; return acc;
     }, {});
     
-    return{names, placeholders, lables, initFormData}
+    return{names, placeholders, labels, initFormData}
     // names나 namesKor는 밖에서 사영되지않기 때문에... 리턴할 것들을 선정하여 내보낸다. 
 }
 
