@@ -30,4 +30,4 @@ select * from shoppy_member;
 -- : check하는 과정은 결과를 count 함수로 반환하여야 한다. 
 select count(id) as result from shoppy_member where id = 'test';
 -- 특정 아이디가 있는지 확인하는게 아니라 id와 같은 값을 카운트해서 0이면 true, 1이면 fale이 되도록 한다
--- {result : 0} 이면 트루인 것. 
+-- {result : 0} 이렇게 json으로 넘어오며 이면 트루인 것. 
