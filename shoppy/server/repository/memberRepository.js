@@ -42,6 +42,29 @@ export const getIdCheck = async({id})=>{
     const [result, fields] = await db.execute(sql, [id]) 
     return result[0];
 }
+
+/**
+ * 로그인
+ * 기본 틀::
+ *  export const checkLogin = async({id, pwd})=> { // {id: 'test', pwd: '1234'}
+    const sql = ``; 
+    const result = await db.execute();
+    return '';
+}
+*/
+export const checkLogin = async({id, pwd})=> { // {id: 'test', pwd: '1234'}
+    const sql = `
+    select count(*) as result_rows from shoppy_member
+	where id = ? and pwd = ?;
+    `;  // mysql에서 하던 것 
+    // 물음표의 값 순서가 매우 중요. id가 먼저 나왔으니 첫 물음표도 무조건 id와 연결된다.
+    const [result] = await db.execute(sql, [id, pwd]);
+    // 2차원 배열인 [[], []]이렇게 출력되고... 첫번째인 []를 result로 받는다... id, pwd는 {}로 받아 이름을 붙인 것과 다르게 result에도 []를 씌움
+    return result[0];
+    // [{result_rows : 1}]만 넘어갈 수 있게 0번지를 준다.
+}
+
+
 /*
 export const getIdCheck = async(idData)=>{ //{ id: 'test' }로 넘어오는 걸 알고 있고.. 객체를 구조분해할당으로 받아 async({id})로도 받을 수 있다.
     const sql = `select count(id) as result from shoppy_member where id = ?;`; //외우기  ! !  count로 받는 것 

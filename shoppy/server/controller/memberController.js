@@ -1,4 +1,5 @@
 import * as repository from '../repository/memberRepository.js'
+import jwt from 'jsonwebtoken';
 
 /**
  * 회원가입 registerMember()
@@ -26,3 +27,22 @@ export const getIdCheck = async(req, res) =>{
     res.json(result)
     res.end(); 
 }
+
+/**
+ * 로그인 체크 
+ */
+export const checkLogin = async(req, res)=>{
+    // console.log(req.body);
+    let result = await repository.checkLogin(req.body); // result = {result_rows:1} or {result_rows:0} 
+
+    if(result.result_rows === 1){
+    // jwt 토큰 생성 및 result 객체에 추가해야한다. (토큰과 함께 리액트로 넘겨야하니까)
+    // 추가 전송 : {result_rows : 1,  tocken : ~~~~tocken값}
+    //https://www.randomkeygen.com/
+        const token = jwt.sign({"userId" : req.body.id}, 'ti96A2lqFU'); // 토큰 값을 여기서 만들어주고...
+        result = {...result, "token" : token} // 추가해서 붙이고 보낼 수 있도록 
+        console.log(result); 
+    }
+    res.json(result)
+    res.end();
+}   

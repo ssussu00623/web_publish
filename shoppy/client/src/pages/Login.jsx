@@ -1,10 +1,16 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useContext } from 'react';
 import '../styles/login.css';
 import { FaUser } from "react-icons/fa";
 import { FaLock } from "react-icons/fa";
 import { validateLogin } from '../utils/funcValidate.js';
+import axios from 'axios';
+import { useNavigate } from "react-router-dom";
+import { AuthContext } from '../auth/AuthContext.js';
 
 export default function Login() {
+    const {isLoggedIn, setIsLoggdIn} = useContext(AuthContext);
+    const navigate = useNavigate()
+    // 단독 사용 불가 선언 해줘야함 
     const refs = {
         "idRef" : useRef(null),
         "pwdRef" : useRef(null) 
@@ -25,8 +31,34 @@ export default function Login() {
     const handleLoginSubmit = (event) => {
         event.preventDefault();        
         if(validateLogin(refs, msgRefs)) {
-            console.log('send data -->> ', formData);        
+            console.log('send data -->> ', formData);  
+            //브라우저의 로컬스토리지 영역에 아이디, 패스워드 저장
+            /*
+            localStorage.setItem("userId", formData.id);
+            localStorage.setItem("userPassword", formData.pwd);
+            console.log(localStorage.getItem("userId"));
+            localStorage.removeItem("userId");
+            localStorage.clear();
+            */
             //리액트 ---> 노드서버(express) 데이터 전송
+            axios
+                .post('http://localhost:9000/member/login', formData) // 중요한 정보는 post로 가져오기! 
+                .then(res => {
+                        // console.log('res=====>', res.data)
+                        if(res.data.result_rows === 1){
+                            alert('로그인 성공');
+                            //성공했다면 이제 로컬 스토리지에 토큰 저장하기 쿠키에도 가능하다. (cookie에 넣어야겠지만)
+                            localStorage.setItem("token", res.data.token);
+                            setIsLoggdIn(true);
+                            navigate('/');
+                        } else {
+                            alert('로그인 실패. 아이디와 비밀번호를 확인하여주세요.');
+                        }
+                    })
+                .catch(error=> {
+                    alert("서버 오류. 로그인 실패.");
+                    console.log(error);
+                });
         }
     }
 
