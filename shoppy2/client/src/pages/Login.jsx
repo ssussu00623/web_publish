@@ -2,8 +2,8 @@ import React, { useState, useRef } from 'react';
 import '../styles/login.css';
 import { FaUser } from "react-icons/fa";
 import { FaLock } from "react-icons/fa";
-import { validateLogin } from '../utils/funcValidate.js'; 
-import Image from '../components/Image.jsx';
+import { validateLogin } from '../utils/funcValidate.js';  
+import ImageUplode from '../components/ImageUplode.jsx';
 
 
 export default function Login() {
@@ -34,9 +34,8 @@ export default function Login() {
 
     return (
         <div className="content">
-            <h1 className="center-title">LOGIN</h1>
-            {/* <ImageUplodess /> */}
-            <Image />
+            <h1 className="center-title">LOGIN</h1> 
+            <ImageUplode />
             <form className="login-form" onSubmit={handleLoginSubmit}>
                 <ul>
                     <li>
@@ -74,7 +73,7 @@ export default function Login() {
                     <li>
                         <div  className="login-form-checkbox">
                             <input type="checkbox" name="status" />
-                            <label for="">아이디 저장</label>
+                            <label>아이디 저장</label>
                         </div>
                         <div>
                             <a href="#">아이디 찾기</a> 

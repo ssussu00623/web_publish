@@ -6,6 +6,7 @@ import { validateLogin } from '../utils/funcValidate.js';
 import axios from 'axios';
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from '../auth/AuthContext.js';
+import ImageUplode from '../components/ImageUplode.jsx';
 
 export default function Login() {
     const {isLoggedIn, setIsLoggdIn} = useContext(AuthContext);
@@ -65,6 +66,7 @@ export default function Login() {
     return (
         <div className="content">
             <h1 className="center-title">LOGIN</h1>
+            <ImageUplode />
             <form className="login-form" onSubmit={handleLoginSubmit}>
                 <ul>
                     <li>
