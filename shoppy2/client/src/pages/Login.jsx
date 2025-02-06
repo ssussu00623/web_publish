@@ -2,7 +2,9 @@ import React, { useState, useRef } from 'react';
 import '../styles/login.css';
 import { FaUser } from "react-icons/fa";
 import { FaLock } from "react-icons/fa";
-import { validateLogin } from '../utils/funcValidate.js';
+import { validateLogin } from '../utils/funcValidate.js'; 
+import Image from '../components/Image.jsx';
+
 
 export default function Login() {
     const refs = {
@@ -33,6 +35,8 @@ export default function Login() {
     return (
         <div className="content">
             <h1 className="center-title">LOGIN</h1>
+            {/* <ImageUplodess /> */}
+            <Image />
             <form className="login-form" onSubmit={handleLoginSubmit}>
                 <ul>
                     <li>
