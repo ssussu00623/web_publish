@@ -8,9 +8,14 @@ export default function ProductList() {
     // useState로 list 변경시 실시간 업데이트. 리액트가 알아서 관리할 수 있게 부여하기위해...
 
     useEffect(()=>{
-        axios.get('/data/product.json')
-            .then((res)=>setList(res.data))
-            .catch((error)=>console.log(error));
+        // axios.get('/data/product.json')
+        //     .then((res)=>setList(res.data))
+        //     .catch((error)=>console.log(error));
+        // 이건 DB연동 전의 이야기니까... 
+        axios
+            .get('http://localhost:9000/product/all')
+            .then(res => setList(res.data))
+            .catch(error => console.log(error))
     }, []);
             //엑시오스는 혼자만 동작하는 게아니라 get을 이용해야한다.
         // 네트워크를 통해 사용하는 거기 때문에.. 정보값들이 조금 다름 
@@ -38,7 +43,7 @@ export default function ProductList() {
                     {rowArray.map((product)=>
                         <Link key={product.pid} to={`/products/${product.pid}`}>
                             <ProductAvata 
-                                img={product.image}/>
+                                img={`${product.image}`}/>
                         </Link>
                         )
                     }

@@ -31,3 +31,28 @@ select * from shoppy_member;
 select count(id) as result from shoppy_member where id = 'test';
 -- 특정 아이디가 있는지 확인하는게 아니라 id와 같은 값을 카운트해서 0이면 true, 1이면 fale이 되도록 한다
 -- {result : 0} 이렇게 json으로 넘어오며 이면 트루인 것. 
+
+use hrdb2019;
+select database();
+
+-- Login
+select count(*) as result_rows from shoppy_member
+	where id = 'test123' and pwd = '1111';
+    
+use hrdb2019;
+SELECT * FROM INFORMATION_SCHEMA.TABLES
+	WHERE TABLE_NAME LIKE 'SHOPPY%';
+
+-- SHOPPY_PRODUCT
+CREATE TABLE SHOPPY_PRODUCT(
+	PID				INT				PRIMARY KEY		AUTO_INCREMENT,
+    PNAME 			VARCHAR(50)		NOT NULL,
+    PRICE			INT,
+    DESCRIPTION		VARCHAR(200),
+    UPLOAD_FILE		VARCHAR(100),
+    SOURCE_FILE		VARCHAR(100),
+    PDATE			DATETIME
+);
+
+DESC SHOPPY_PRODUCT;
+ 
