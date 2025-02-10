@@ -4,7 +4,7 @@ import cors from 'cors';
 import uploadRouter from './router/uploadRouter.js'  
 import path from 'path' 
 import productRouter from './router/productRouter.js'
-
+ 
 // 서버 생성 및 포트 정의
 const server = express();
 const port = 9000;
@@ -15,7 +15,6 @@ server.use(express.urlencoded());
 server.use(cors());  
 // 업로드 파일 호출 경로 추가 - 이미지 호출 (공통작업으로 진행하여야 함 업로드작업은 /upload를 가지고 있으니 미들웨어에.)
 server.use("/upload_files", express.static(path.join("upload_files"))); //  저장 폴더 연결 서버에 만든 폴더 이름이 들어가야함 
-
 
 /** 서버의 요청처리를 위한 미들웨어 정의 */
 // server.use('/signup');

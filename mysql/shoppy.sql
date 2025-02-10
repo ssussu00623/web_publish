@@ -54,5 +54,37 @@ CREATE TABLE SHOPPY_PRODUCT(
     PDATE			DATETIME
 );
 
+set sql_safe_updates = 0;
 DESC SHOPPY_PRODUCT;
+delete from shoppy_product;
+commit;
+select * from shoppy_product;
  
+ drop table shoppy_product;
+ 
+ 
+ CREATE TABLE SHOPPY_PRODUCT(
+	PID				INT				PRIMARY KEY		AUTO_INCREMENT,
+    PNAME 			VARCHAR(50)		NOT NULL,
+    PRICE			INT,
+    DESCRIPTION		VARCHAR(200),
+    UPLOAD_FILE		json, 
+    SOURCE_FILE		json,
+    -- 모든 회사에서 json이 가능한게 아니니... 미리 확인하고 해야한다. 
+    PDATE			DATETIME
+);
+DESC SHOPPY_PRODUCT;
+select * from shoppy_product;
+select upload_file from shoppy_product;
+select source_file from shoppy_product;
+        select 
+            pid,
+            pname as name, 
+            price,
+            description as info,
+            -- concat('http://localhost:9000/', upload_file) as image, 이미지를 하나만 가져와서 바로 출력 가능할 때.
+            concat('http://localhost:9000/', upload_file->>'$[0]') as image,
+            -- 멀티플일때. 공백 금지! 화살표 2개 들어가야하는 것 확인하기. 
+            source_file,
+            pdate
+        from shoppy_product 

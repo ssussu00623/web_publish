@@ -2,19 +2,24 @@ import React, { useRef, useState } from 'react';
 import ImageUplode from '../components/ImageUplode.jsx'
 import axios from 'axios';
 import {useNavigate} from 'react-router-dom';
+import ImageUploadMultiple from '../components/ImageUploadMultiple.jsx';
 
 export default function NewProduct() {
     //자식이 가진 걸 가져오기 위해선.. 이벤트 함수와 프롭스를 선언해야함
+    const navigate = useNavigate();
+    const ProductNameRef = useRef(null); 
     const [fname, setFnames] = useState({});
     const [preview, setPreview] = useState('');
     let [formData, setFormData] = useState({}); // 입력 할 때마다 바뀌니깐 
-    const ProductNameRef = useRef(null); 
-    const navigate = useNavigate();
+    const [previewList, setPreviewList] = useState([]);
 
     const getFileName = (fileNames) => {
         // console.log('fileNames===>', fileNames);
         setFnames(fileNames);
-        setPreview(`http://localhost:9000/${fileNames.uploadFileName}`)
+        setPreviewList(fileNames.uploadFileName);
+        // setPreview(`http://localhost:9000/${fileNames.uploadFileName}`)
+        // console.log('NewProduct fileNames====>>', fileNames);
+        
     }
 
     //폼 입력시 값을 formData로 추가하는 이벤트 처리 
@@ -39,7 +44,7 @@ export default function NewProduct() {
             formData = ({...formData, 
                             "uploadFile":fname.uploadFileName, 
                             "sourceFile":fname.sourceFileName});
-            // console.log('formData===>',formData);
+            console.log('formData===>',formData);
 
             axios
                 .post('http://localhost:9000/product/new', formData)
@@ -53,7 +58,7 @@ export default function NewProduct() {
                 })
                 .catch(error=> {
                     alert("상품 등록 실패!!! 서버오류")
-                    console.log(error)})
+                    console.log(error)});
         }
     }
 
@@ -86,6 +91,18 @@ export default function NewProduct() {
                             onChange={handleChange}/>
                     </li>
                     <li>
+                        <label>파일업로드(다중)</label>
+                        <ImageUploadMultiple getFileName = {getFileName}/> 
+                        {previewList && previewList.map((preview)=>
+                            <img 
+                            src={`http://localhost:9000/${preview}`} 
+                            alt="preview image"
+                            style={{width:'100px', height:"100px", margin:'5px'}} />
+                        )
+                        }
+                    </li>
+                    {/* -----싱글-----
+                    <li>
                         <label>파일업로드</label>
                         <ImageUplode getFileName = {getFileName}/>
                         {preview && 
@@ -93,7 +110,7 @@ export default function NewProduct() {
                                 src={preview} 
                                 alt="preview image"
                                 style={{width:'100px', height:"100px"}} />}
-                    </li>
+                    </li> */}
                     <li> 
                         <input type="hidden" name = 'upload' value={fname.uploadFileName}/>
                         <input type="hidden" name = 'source' value={fname.sourceFileName}/>
