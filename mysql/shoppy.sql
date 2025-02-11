@@ -74,7 +74,7 @@ select * from shoppy_product;
     PDATE			DATETIME
 );
 DESC SHOPPY_PRODUCT;
-select * from shoppy_product;
+select * from shoppy_product;                           
 select upload_file from shoppy_product;
 select source_file from shoppy_product;
         select 
@@ -87,4 +87,43 @@ select source_file from shoppy_product;
             -- 멀티플일때. 공백 금지! 화살표 2개 들어가야하는 것 확인하기. 
             source_file,
             pdate
-        from shoppy_product 
+        from shoppy_product ;
+use hrdb2019;
+select database();
+show tables;
+select * from shoppy_product; 
+desc shoppy_product;
+select 	pid,
+		pname,
+        price,
+        description,
+        upload_file as uploadFile, 
+        source_file as sourceFile, 
+        pdate,
+        concat('http://localhost:9000/', upload_file->>'$[0]') as image,
+        -- json_array(0,1,2 번지의 이미지를 가져와서 배열객체로 생성하는 함수) as imgList
+        json_array(
+			concat('http://localhost:9000/', upload_file->>'$[0]'),
+            concat('http://localhost:9000/', upload_file->>'$[1]'),
+            concat('http://localhost:9000/', upload_file->>'$[2]') 
+        ) as imgList,
+        -- 이렇게 각 0, 1, 2번지의 이미지들이 imgList라는 이름으로 출력된다. 
+--         ["http://localhost:9000upload_files\\1739169715810-113338499-1.jpg", 
+--         "http://localhost:9000upload_files\\1739169715810-917001291-2.jpg", 
+--         "http://localhost:9000upload_files\\1739169715822-556264576-3.jpg"]
+		json_arrayagg(
+			concat('http://localhost:9000/', jt.filename)) 
+            as detailImgList
+	from shoppy_product, 
+			json_table (shoppy_product.upload_file, '$[*]' 
+				columns (filename varchar(100) path '$') ) as jt -- 제이슨 타입을 위한 인라인 뷰
+		-- json_table (shoppy_product.upload_file, 매핑데이터 columns (컬럼 생성 후 리턴) as jt 
+        -- 제이슨 타입을 위한 인라인 뷰
+        -- ["http://localhost:9000/upload_files\\1739169715810-113338499-1.jpg", 
+        --  "http://localhost:9000/upload_files\\1739169715810-917001291-2.jpg", 
+        -- "http://localhost:9000/upload_files\\1739169715822-556264576-3.jpg", 
+        -- "http://localhost:9000/upload_files\\1739169715826-541175476-4.jpg", 
+        -- "http://localhost:9000/upload_files\\1739169715831-275245698-5.jpg", 
+        --  "http://localhost:9000/upload_files\\1739169715835-520037328-6.jpg"] 
+        -- 6개가 배열 형태가 되었다! 
+    where pid = 5;

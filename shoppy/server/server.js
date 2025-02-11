@@ -4,7 +4,7 @@ import cors from 'cors';
 import uploadRouter from './router/uploadRouter.js'  
 import path from 'path' 
 import productRouter from './router/productRouter.js'
- 
+  
 // 서버 생성 및 포트 정의
 const server = express();
 const port = 9000;
@@ -22,6 +22,7 @@ server.use("/upload_files", express.static(path.join("upload_files"))); //  저�
 server.use('/member', memberRouter);
 server.use('/uploads', uploadRouter);
 server.use("/product", productRouter);
+
 
 server.listen(port, ()=>{
     console.log(`server port ===>> ${port}`);    

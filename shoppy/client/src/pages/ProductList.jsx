@@ -27,6 +27,7 @@ export default function ProductList() {
           <div className='product-list'>
             {rowArray.map((product) =>
               <Link key={product.pid} to={`/products/${product.pid}`}>
+                {/* key값이 필수는 아니지만 반복되면서 브라우저가 요구함 (오류는X) */}
                 <ProductAvata img={product.image} />
               </Link>
             )}

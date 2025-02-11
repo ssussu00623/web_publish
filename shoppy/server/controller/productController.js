@@ -19,3 +19,15 @@ export const getList = async(req, res)=>{
     res.json(result);
     res.end();
 }
+
+/**
+ * 상품 상세 정보 조회 
+ */
+export const getProduct = async(req, res)=> {
+    // console.log('req.body====>', req.body);
+    const result = await repository.getProduct(req.body.pid); 
+    // 전체 정보가 아니라 pid를 끌고와서 출력하는 것
+    // req.body만 받으면 {"pid": pid} 이렇게 넘어와서 pid를 지정하여 pid = 3인 변수 형태로 넘어온다.  
+    res.json(result);
+    res.end();
+}
