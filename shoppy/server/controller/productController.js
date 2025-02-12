@@ -31,3 +31,14 @@ export const getProduct = async(req, res)=> {
     res.json(result);
     res.end();
 }
+
+/**
+ * 카트에 아이템 추가
+ */
+
+export const getcartitems = async(req, res)=> {
+    console.log('pids===>',req.body);
+    const result = await repository.getcartitems(req.body);
+    res.json(result);
+    res.end();
+}

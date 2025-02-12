@@ -4,7 +4,7 @@ import cors from 'cors';
 import uploadRouter from './router/uploadRouter.js'  
 import path from 'path' 
 import productRouter from './router/productRouter.js'
-  
+ 
 // 서버 생성 및 포트 정의
 const server = express();
 const port = 9000;
@@ -27,7 +27,7 @@ server.use("/product", productRouter);
 server.listen(port, ()=>{
     console.log(`server port ===>> ${port}`);    
 });
-
+  
 // import express from 'express';
 // import testRouter from '../router/testRouter.js'
 

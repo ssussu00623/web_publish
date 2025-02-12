@@ -84,3 +84,29 @@ export const getProduct = async(pid)=>{
     return result[0];
     
 }
+
+/**
+ * 카트 아이템 확인
+ * 물음표의 갯수를 특정 할 수 없어서 어려운 부분이 있음... 듀듀ㅠㄷ 
+ */
+export const getcartitems = async({pids})=> { //[{pid:4, ~~}]에서 {pid:4, ~~}만 가져올 수 있게...~ 
+    const strArray = [];
+        pids.forEach(pid => strArray.push("?"));
+        console.log(strArray);
+        
+    const sql = ` 
+    select 	    pid,
+			pname,
+            price,
+            description, 
+            concat('http://localhost:9000/',upload_file->> '$[0]') as image
+	from shoppy_product
+    where pid in (${strArray.join(",")});
+    `
+    // console.log("sql===>", sql);
+    
+    const [result] = await db.execute(sql, pids);
+    return result;
+    // console.log("result====>", result);
+    
+}

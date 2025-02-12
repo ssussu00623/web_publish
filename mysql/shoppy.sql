@@ -126,4 +126,34 @@ select 	pid,
         -- "http://localhost:9000/upload_files\\1739169715831-275245698-5.jpg", 
         --  "http://localhost:9000/upload_files\\1739169715835-520037328-6.jpg"] 
         -- 6개가 배열 형태가 되었다! 
-    where pid = 5;
+    where pid = 5 
+    group by pid;
+    
+    
+    
+    -- 0212
+    use hrdb2019;
+    select database();
+    select * from shoppy_product;
+    
+    -- pid, pname, price, description, upload_file 0번지 이미지
+    
+    select 	pid,
+			pname,
+            price,
+            description, 
+            concat('http://localhost:9000/',upload_file->> '$[0]') as image
+	from shoppy_product
+    where pid in (8,9,11);
+    -- 빌트인 and || or는 in or로 선언해야 여러가지를 담는 사람과 하나를 담는 사람 모두 처리 할 수 있기 때문에....and 가 아닌 or 로 준다. 
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
