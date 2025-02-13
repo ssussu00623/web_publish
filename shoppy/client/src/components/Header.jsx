@@ -11,7 +11,8 @@ export default function Header({cartCount}) {
         if(isLoggedIn){ // 로그인이 성공 했을 때. 로그드인이 트루이니까 
             const select = window.confirm("정말로 로그아웃 하시겠습니까?");
             if(select){
-                localStorage.removeItem("token")
+                localStorage.removeItem("token");
+                localStorage.removeItem("user_Id");
                 setIsLoggdIn(false);
                 navigate('/')
             } 

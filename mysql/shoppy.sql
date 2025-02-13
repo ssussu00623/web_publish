@@ -147,13 +147,37 @@ select 	pid,
     where pid in (8,9,11);
     -- 빌트인 and || or는 in or로 선언해야 여러가지를 담는 사람과 하나를 담는 사람 모두 처리 할 수 있기 때문에....and 가 아닌 or 로 준다. 
     
+use hrdb2019;
+select database();
+show tables;
+
+select * from shoppy_member;
+select * from shoppy_product;
+-- 어떤 회원(pk:id)이 어떤 상품(pk:pid)을 장바구니에 넣었는지 명확하게 구분하기 !! < - 명확하고 간단하게 구성해야함 
+
+-- shoppy_cart
+-- 컬럼리스트 : cid(pk), id(shoppy_member:fk(참조키)), pid(shoppy_product), size, qty, cdate(장바구니 등록 날짜)
+desc shoppy_member;
+desc shoppy_product;
+-- 공유하는 테이블 필드는 이름까지 같은 걸 추천! 직관적인 게 좋음 
+
+create table shoppy_cart (
+	CID				INT							PRIMARY KEY		AUTO_INCREMENT,
+    SIZE			VARCHAR(10)					NOT NULL,
+    QTY				INT							NOT NULL,
+    CDATE			DATETIME,
+	ID				VARCHAR(30) 				NOT NULL,
+    PID				INT							NOT NULL,
+    CONSTRAINT 		FK_ID_SHOPPY_MEMBER_ID		FOREIGN KEY(ID)
+ 					REFERENCES SHOPPY_MEMBER(ID),
+	CONSTRAINT 		FK_PID_SHOPPY_PRODUCT_PID	FOREIGN KEY(PID)
+ 					REFERENCES SHOPPY_PRODUCT(PID)
+                    
+);
     
-    
-    
-    
-    
-    
-    
-    
-    
+show tables;
+DESC SHOPPY_CART;
+SELECT * FROM SHOPPY_CART;
+-- 내부에서 INSERT하는게 아니라~ 외부에서 (브라우저)에서 해야함
+DROP TABLE SHOPPY_CART;
     

@@ -49,6 +49,7 @@ export default function Login() {
                             alert('로그인 성공');
                             //성공했다면 이제 로컬 스토리지에 토큰 저장하기 쿠키에도 가능하다. (cookie에 넣어야겠지만)
                             localStorage.setItem("token", res.data.token);
+                            localStorage.setItem("user_Id", formData.id); // 카트에 넣기 위해...
                             setIsLoggdIn(true);
                             navigate('/');
                         } else {

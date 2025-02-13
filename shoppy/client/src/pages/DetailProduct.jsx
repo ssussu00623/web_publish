@@ -21,7 +21,7 @@ export default function DetailProduct({ addCart }) {
     axios
     .post("http://localhost:9000/product/detail", {"pid": pid}) // http://localhost:3000/data/product.json
     .then((res) => {
-      console.log('res.data====>', res.data);  
+      // console.log('res.data====>', res.data);  
       setProduct(res.data);
       //uploadFile 배열의 3개 이미지를 출력 형태로 생성하여 배열에 저장 MySQL 적용 전에 필요
       // const imgList = res.data.uploadFile.filter((image, i)=> (i<3) && image);
@@ -31,7 +31,7 @@ export default function DetailProduct({ addCart }) {
     .catch((error) => console.log(error));
   }, []);
 
-  console.log('imgList===>', imgList);
+  // console.log('imgList===>', imgList);
   
 
   /* json 으로 끌어왔던 방법
