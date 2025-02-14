@@ -180,4 +180,5 @@ DESC SHOPPY_CART;
 SELECT * FROM SHOPPY_CART;
 -- 내부에서 INSERT하는게 아니라~ 외부에서 (브라우저)에서 해야함
 DROP TABLE SHOPPY_CART;
-    
+truncate table shoppy_cart;
+SELECT * FROM SHOPPY_CART;

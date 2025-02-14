@@ -9,6 +9,7 @@ import Login from './pages/Login.jsx';
 import Signup from './pages/Signup.jsx';
 import DetailProduct from './pages/DetailProduct.jsx';
 import NewProduct from './pages/NewProduct.jsx'
+import CartsDB from './pages/CartsDB.jsx';
 import { AuthProvider } from './auth/AuthContext.js';
 
 
@@ -40,6 +41,14 @@ export default function App() {
       console.log(error);
     }
   });
+  /**
+   * 로컬스토리지 재호출 ====> cartList, cartCount 업데이트
+   */
+  const refreshStorage = ()=>{
+    setCartList([]) // setCartList를 빈 배열로 초기화
+    setCartCount(0); // setCartCount를 빈 값으로 초기화
+    // useState로 관리하는 정보들은 함수로( ()이거 붙여서) 관리해야 반영 됨 
+  }
   
   // cartCount가 업데이트 되면 localStorage에 cartList를 저장 useState가 종료되면 실행되도록 한다. 
   // useEffect (()=>{},[cartCount]) 카트 카운트가 업데이트 되면 이 함수를 매번마다 실행한다.
@@ -86,7 +95,8 @@ export default function App() {
               <Route path='/all' element={<Products />} />
               {/* <Route path='/cart' element={<Carts cartList={cartList}/>} /> 
                 이제 로컬스토리지에 올려두기 때문에 cartList가 필요하지 않음*/}
-              <Route path='/cart' element={<Carts />} />
+              <Route path='/cart' element={<Carts refreshStorage={refreshStorage}/>} />
+              <Route path='/cartdb' element={<CartsDB />}/> 
               <Route path='/login' element={<Login />} />
               <Route path='/signup' element={<Signup />} />
               <Route path='/products/:pid' element={<DetailProduct addCart={addCart}/>} />
