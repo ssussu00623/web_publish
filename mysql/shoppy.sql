@@ -177,8 +177,34 @@ create table shoppy_cart (
     
 show tables;
 DESC SHOPPY_CART;
+DESC SHOPPY_MEMBER;
+DESC SHOPPY_PRODUCT;
 SELECT * FROM SHOPPY_CART;
 -- 내부에서 INSERT하는게 아니라~ 외부에서 (브라우저)에서 해야함
 DROP TABLE SHOPPY_CART;
 truncate table shoppy_cart;
-SELECT * FROM SHOPPY_CART;
+SELECT * FROM SHOPPY_member;
+
+INSERT INTO SHOPPY_CART(SIZE, QTY, CDATE, ID, PID) VALUES('XS', 1, NOW(), 'test5', 12);
+    
+SELECT * FROM SHOPPY_CART ;
+
+-- SHOPPY_CART, SHOPPY_MEMBER, SHOPPY_PRODUCT 조인
+
+    select sc.cid,
+        sc.size,
+        sc.qty,
+        sm.id,
+        sm.zipcode,
+        sm.address,
+        sp.pid,
+        sp.pname,
+        sp.price,
+        sp.description as info,
+        concat('http://localjhost:9000/', sp.upload_file->> '$[0]') as image
+    from shoppy_cart sc,
+        shoppy_member sm,
+        shoppy_product sp
+    where sc.id = sm.id 
+    and sc.pid = sp.pid 
+    and sm.id = 'test123';
