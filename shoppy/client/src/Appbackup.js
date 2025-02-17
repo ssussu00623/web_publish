@@ -75,7 +75,7 @@ export default function App() {
       <AuthProvider>
       <BrowserRouter>
           <Routes>
-              <Route path='/' element={<Layout />} >
+              <Route path='/' element={<Layout cartCount={cartCount}/>} >
                   <Route index element={<Home />} />
                   <Route path='/all' element={<Products />} />
                   <Route path='/cart' element={<Carts refreshStorage={refreshStorage} />} />

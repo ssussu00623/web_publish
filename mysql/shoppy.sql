@@ -208,3 +208,14 @@ SELECT * FROM SHOPPY_CART ;
     where sc.id = sm.id 
     and sc.pid = sp.pid 
     and sm.id = 'test123';
+    
+-- -----
+use hrdb2019;
+select * from shoppy_cart;
+truncate table shoppy_cart;
+
+select count(*) from shoppy_cart
+where id = 'hong1234';
+
+-- [[{count : 4}] [count 필드정보]]
+-- 여기서 갯수만 가져오려고 하는 것이기 때문에... [0]번지 값을 호출한다.

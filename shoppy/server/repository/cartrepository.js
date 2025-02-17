@@ -29,10 +29,32 @@ export const getItems = async({id}) => {
 }
 
 
+/**
+ *  장바구니 카운트
+ */
+export const getCount = async({id})=> {
+    const sql = `
+        select count(*) as count from shoppy_cart 
+            where id = ?
+    `;
+    const [result] = await db.execute(sql, [id]);
+    return result[0]; 
+    //-- [[{count : 4}] [count 필드정보]] <-- count(*)로 받을 수 없으니깐...as를 잘 줘야함 (ㅠㅠ )
+    // -- 여기서 갯수만 가져오려고 하는 것이기 때문에... [0]번지 값을 호출한다.
+}
 
-
-
-
+/**
+ * 장바구니 qty증가
+ */
+export const updateQty = async({cid})=> {
+    const sql = `
+    update shoppy_cart 
+        set qty = qty + 1
+        where cid = ?
+`;
+const [result] = await db.execute(sql, [cid]);
+return {'result_rows' : result.affectedRows}; 
+}
 
 
 

@@ -5,7 +5,8 @@ const router = express.Router();
 
 router
     .post('/add', controller.addCart)
-    .post('/items', controller.getItems);
-
+    .post('/items', controller.getItems)
+    .post('/count', controller.getCount)
+    .put('/updateQty', controller.updateQty);
 
 export default router;
