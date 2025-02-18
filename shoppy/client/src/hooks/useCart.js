@@ -16,6 +16,7 @@ export function useCart() { // 일반 함수와 같은 형식이지만 use가 �
         const result = await axios.post("http://localhost:9000/cart/items", {"id":id});
         // setCartCount(cartCount + 1); 새로운 아이템이 있을 때만 넣어주면 되니 해당하는 곳에 빼준다.
         setCartList(result.data); // 모든 카트리스트 업데이트 
+        setCartCount(result.data.length);
     }
 
 
@@ -40,8 +41,9 @@ export function useCart() { // 일반 함수와 같은 형식이지만 use가 �
      * 장바구니 아이템 수량 업데이트
      */
     const updateCartList = async(cid, type)=>{
-        const result = 
-        await axios.put("http://localhost:9000/cart/updateQty", {"cid": cid, "type":type} )
+        console.log({"cid": cid, "type":type});
+        
+        const result = await axios.put("http://localhost:9000/cart/updateQty", {"cid": cid, "type":type} )
         result.data.result_rows && getCartList();
         return result.data.result_rows;
     }
@@ -61,7 +63,15 @@ export function useCart() { // 일반 함수와 같은 형식이지만 use가 �
      */
     const setCount =(value)=>{ setCartCount(value); }
 
-    return { saveToCartList, updateCartList, getCartList, getCount, setCount};
+    /**
+     * 장바구니 아이템 삭제
+     */
+    const deleteCartItem = async(cid)=>{
+        const result = await axios.delete("http://localhost:9000/cart/deleteItem",{ data : {"cid": cid}})
+        result.data.result_rows && getCartList(); 
+    }
+
+    return { saveToCartList, updateCartList, getCartList, getCount, setCount, deleteCartItem};
     // return { 함수, .... }; 
     // 위에서 생성한 함수를 외부에서도 사용할 수 있어야하기 때문에 return해야한다 ! (여기선 detailProduct에서 호출해오는 것)
 }

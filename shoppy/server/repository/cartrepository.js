@@ -1,5 +1,14 @@
 import { db } from './db.js';
-
+/**
+ * 장바구니 아이템 삭제
+ */
+export const deleteItem = async({cid})=>{
+    const sql = `
+        delete from shoppy_cart where cid = ?
+    `
+    const [result] = await db.execute(sql, [cid]);
+    return {"result_rows":result.affectedRows};
+}
 
 /**
  * 장바구니 전체 조회
@@ -47,8 +56,8 @@ export const getCount = async ({ id }) => {
  * 장바구니 qty증가
  */
 export const updateQty = async ({ cid, type }) => {
-    console.log("cid:", cid);
-    console.log("type:", type);
+    // console.log("cid:", cid);
+    // console.log("type:", type);
     const str = type === "increase" ? "qty=qty+1" : "qty=qty-1"
     
     const sql = `
@@ -59,11 +68,6 @@ export const updateQty = async ({ cid, type }) => {
     const [result] = await db.execute(sql, [cid]);
     return { 'result_rows': result.affectedRows };
 }
-
-
-
-
-
 
 
 /**
@@ -105,3 +109,5 @@ export const addCart = async ({ id, cartList }) => {
 
     return { "result_rows": result_rows };
 }
+
+

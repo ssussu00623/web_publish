@@ -1,8 +1,16 @@
-import * as repository from '../repository/cartRepository'
+import * as repository from '../repository/cartRepository.js'
+/**
+ * 장바구니 삭제
+ */
+export const deleteItem = async(req, res)=>{
+    const result = await repository.deleteItem(req.body);
+    res.json(result);
+    res.end();
+}
 
 /**
  * 장바구니 전체 조회
- */
+ */ 
 export const getItems = async(req, res) => {
     const result = await repository.getItems(req.body);
     res.json(result);

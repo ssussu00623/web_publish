@@ -10,7 +10,7 @@ export default function Carts() {
     const { isLoggedIn, setLoggedIn } = useContext(AuthContext);
     const { cartList, setCartList} = useContext(CartContext); 
     const navigate = useNavigate();
-    const { getCartList, updateCartList } = useCart();
+    const { getCartList, updateCartList, deleteCartItem } = useCart();
     const hasCheckedLogin = useRef(false);
     useEffect(() => {
         if (hasCheckedLogin.current) return; // true : 로그인 상태 --> 알림창 없이 바로 블록을 빠져나와 카트 블록을 보여주는 return.
@@ -27,9 +27,11 @@ export default function Carts() {
     }, [isLoggedIn]);
 
     // console.log('cartList=====>', cartList);
-    const handleQtyUpdate =(cid, type)=>{
-        getCartList(cid, type)
-    }
+    // 수량 업데이트 
+    // const handleQtyUpdate =(cid, type)=>{
+    //     updateCartList(cid, type)
+    // }
+
 
     return (
         <div className="cart-container">
@@ -47,16 +49,18 @@ export default function Carts() {
                                 </p>
                             </div>
                             <div className="cart-quantity">
-                                <button onClick={handleQtyUpdate(item.cid, "decreade")}>
+                                <button onClick={()=>{updateCartList(item.cid, "decrease")}}> 
+                                    {/* 콜백함수 형식이 아니면 무한 루프..... 주의 */}
                                     -
                                 </button>
                                 <input type="text" value={item.qty} readOnly />
-                                <button onClick={handleQtyUpdate(item.cid, "increase")}>
+                                <button onClick={()=>{updateCartList(item.cid, "increase")}}>
                                     +
                                 </button>
                             </div>
                             <button
                                 className="cart-remove"
+                                onClick={()=>{deleteCartItem(item.cid)}}
                             >
                                 <FaTrashCan />
                             </button>

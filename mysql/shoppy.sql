@@ -222,3 +222,6 @@ where id = 'hong1234';
 
  select * from shoppy_cart 
  group by pid;
+ 
+ -- 0218
+ select * from shoppy_cart;

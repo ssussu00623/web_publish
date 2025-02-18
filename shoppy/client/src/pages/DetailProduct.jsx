@@ -76,7 +76,7 @@ export default function DetailProduct() {
       
       if(findItem !==undefined ){ //findItem이 undefind가 아니면 실행
         console.log('update========>');
-        const result = updateCartList(findItem.cid);
+        const result = updateCartList(findItem.cid, "increase");
         result && alert("장바구니에 추가되었습니다."); 
         
         // //qty+0 :: update===> cid
