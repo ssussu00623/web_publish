@@ -49,11 +49,10 @@ export const getCount = async ({ id }) => {
 export const updateQty = async ({ cid, type }) => {
     console.log("cid:", cid);
     console.log("type:", type);
-    const str = type === "increase" ? "qty=qty+1" : "qty=qty-1"
     
     const sql = `
     update shoppy_cart 
-        set ${str}
+        set qty = qty + 1
         where cid = ?
 `;
     const [result] = await db.execute(sql, [cid]);

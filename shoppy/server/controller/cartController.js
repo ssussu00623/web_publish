@@ -1,4 +1,4 @@
-import * as repository from '../repository/cartRepository.js';
+import * as repository from '../repository/cartRepository'
 
 /**
  * 장바구니 전체 조회

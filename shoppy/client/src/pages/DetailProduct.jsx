@@ -8,12 +8,15 @@ import StarRating from "../components/commons/StarRating.jsx";
 import axios from "axios";
 import { CartContext } from "../context/CartContext.js";
 import { AuthContext } from "../auth/AuthContext.js"; 
+import {useCart} from '../hooks/useCart.js'
 
 export default function DetailProduct() {
+  const {saveToCartList, updateCartList} = useCart();
+  //일반 함수가 아니니 주의
 // export default function DetailProduct({ addCart }) { CartContext 쓰게 돼서 안 받아도 됨
   const navigate = useNavigate();
-  const {isLoggedIn, setLoggedIn} = useContext(AuthContext);
-  const { cartList, setCartList, cartCount, setCartCount } = useContext(CartContext);
+  const { isLoggedIn } = useContext(AuthContext);
+  const { cartList } = useContext(CartContext);
   const { pid } = useParams();
   const [product, setProduct] = useState({});
   const [imgList, setImgList] = useState([]);
@@ -57,33 +60,29 @@ export default function DetailProduct() {
     //로그인 됐는지 안 됐는지 체크하기  AuthContext를 임포트하고 const 주기  
     if (isLoggedIn){
       //장바구니 추가 항목 : { pid, size, qty } 
-      const cartItem = {
-        pid: product.pid,
-        size: size,
-        qty: 1,
-        // price: product.price,
-      };
+      const cartItem = { pid: product.pid, size: size, qty: 1, };
+      const findItem = cartList && cartList.find(item=> item.pid === product.pid 
+        && item.size === size);
       // setCartCount(cartCount + 1); // 이제 바로 넣는게 아니라 DB연동이 필요! 
-      // cartItem을 서버 전송하고 --> shoppy_cart에 추가(id 필요!)
-      const id = localStorage.getItem("user_id");
+      // cartItem을 서버 전송하고 --> shoppy_cart에 추가(id 필요!) 
 
       // console.log('formData-->', formData);
 
       //0217
-      // cartItem에 있는 pid, size를 cartList(로그인 성공시 준비)의 item과 비교해서 있다면 qty +1로 update 없다면 새로 추가.
-      console.log("detail cartList===>",cartList);
-
-      const findItem = cartList && cartList.find(item=> item.pid === product.pid 
-                                                && item.size === size);
+      // cartItem에 있는 pid, size를 cartList(로그인 성공시 준비)의 item과 비교해서 있다면 qty +1로 update 없다면 새로 추가.  
       // some 사용시 -> booldean타입
       // find 사용시 -> item요소 
       
       
       if(findItem !==undefined ){ //findItem이 undefind가 아니면 실행
-        //qty+0 :: updatr===> cid
-        console.log('update');
-        const updateResult = axios
-        .put("http://localhost:9000/cart/updateQty", {"cid":findItem.cid} )
+        console.log('update========>');
+        const result = updateCartList(findItem.cid);
+        result && alert("장바구니에 추가되었습니다."); 
+        
+        // //qty+0 :: update===> cid
+        // console.log('update');
+        // const updateResult = axios
+        // .put("http://localhost:9000/cart/updateQty", {"cid":findItem.cid} )
         // DB연동---> cartList 재호출 ! ! ! 
       //   .then(res => {
       //     // console.log('res.data=>', res.data) 
@@ -100,23 +99,28 @@ export default function DetailProduct() {
       //   }
       // )
       //   .catch(error=> console.log(error));  
-  console.log(updateResult);
+  // console.log(updateResult);
   
       } else {
-        console.log('insert');
+        console.log('insert========>');
+        const id = localStorage.getItem("user_id")
         const formData = {id: id, cartList:[cartItem]}; // item을 배열 돌려서...! 
-        axios
-        .post("http://localhost:9000/cart/add", formData )
-        .then(res => {
-          // console.log('res.data=>', res.data) 
-          if(res.data.result_rows){
-            alert("장바구니에 추가되었습니다.");
-            // setCartCount(cartCount + 1); 
-            // setCartList([...cartList, cartItem]);            
-          }
-        }
-      )
-        .catch(error=> console.log(error));
+        const result = saveToCartList(formData);
+        result && alert("장바구니에 추가 되었습니다.")
+        console.log("insert:: cartList==>", cartList);
+        
+      //   axios
+      //   .post("http://localhost:9000/cart/add", formData )
+      //   .then(res => {
+      //     // console.log('res.data=>', res.data) 
+      //     if(res.data.result_rows){
+      //       alert("장바구니에 추가되었습니다.");
+      //       // setCartCount(cartCount + 1); 
+      //       // setCartList([...cartList, cartItem]);            
+      //     }
+      //   }
+      // )
+      //   .catch(error=> console.log(error));
         // DB연동---> cartList 재호출 ! ! ! 
       } 
   }
@@ -128,7 +132,7 @@ export default function DetailProduct() {
     // }
     // addCart(cartItem); // App.js의 addCart 함수 호출 + provider사용하게 돼서 없어도 됨. 
   };
-  console.log('cartCount==>', cartCount); 
+  // console.log('cartCount==>', cartCount); 
 
   return (
     <div className="content">

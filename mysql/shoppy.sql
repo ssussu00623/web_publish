@@ -219,3 +219,6 @@ where id = 'hong1234';
 
 -- [[{count : 4}] [count 필드정보]]
 -- 여기서 갯수만 가져오려고 하는 것이기 때문에... [0]번지 값을 호출한다.
+
+ select * from shoppy_cart 
+ group by pid;
