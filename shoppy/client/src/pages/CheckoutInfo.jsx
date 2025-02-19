@@ -25,7 +25,7 @@ export default function CheckoutInfo() {
     // console.log('totalPrice==>', totalPrice);
     
     
-    
+    const kakaopay = Mipong.getKakaoPay();
 
     /** 주소검색 버튼Toggle */
     const [isOpen, setIsOpen] = useState(false);
