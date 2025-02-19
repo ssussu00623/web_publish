@@ -61,18 +61,16 @@ export default function DetailProduct() {
     if (isLoggedIn){
       //장바구니 추가 항목 : { pid, size, qty } 
       const cartItem = { pid: product.pid, size: size, qty: 1, };
-      const findItem = cartList && cartList.find(item=> item.pid === product.pid 
-        && item.size === size);
+      const findItem = cartList && cartList.find(item=> item.pid === product.pid && item.size === size);
+      /*
       // setCartCount(cartCount + 1); // 이제 바로 넣는게 아니라 DB연동이 필요! 
       // cartItem을 서버 전송하고 --> shoppy_cart에 추가(id 필요!) 
-
       // console.log('formData-->', formData);
-
       //0217
       // cartItem에 있는 pid, size를 cartList(로그인 성공시 준비)의 item과 비교해서 있다면 qty +1로 update 없다면 새로 추가.  
       // some 사용시 -> booldean타입
       // find 사용시 -> item요소 
-      
+      */
       
       if(findItem !==undefined ){ //findItem이 undefind가 아니면 실행
         console.log('update========>');

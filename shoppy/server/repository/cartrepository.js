@@ -15,24 +15,29 @@ export const deleteItem = async({cid})=>{
  */
 export const getItems = async ({ id }) => {
     const sql = `
-            select  sc.cid,
-                    sc.size,
-                    sc.qty,
-                    sm.id,
-                    sm.zipcode,
-                    sm.address,
-                    sp.pid,
-                    sp.pname,
-                    sp.price,
-                    sp.description as info,
-                    concat('http://localhost:9000/', sp.upload_file->>'$[0]') as image
-                from shoppy_cart sc,
-                    shoppy_member sm,
-                    shoppy_product sp
-                where sc.id = sm.id 
-                        and sc.pid = sp.pid
-                        and sm.id = ?
+            select * from view_cart_list
+	    where id = ?;
     `;
+    // 오라클은 뷰를 생성하기 위해선 별도의 권한이 필요하다. 
+    // const sql = `
+    //         select  sc.cid,
+    //                 sc.size,
+    //                 sc.qty,
+    //                 sm.id,
+    //                 sm.zipcode,
+    //                 sm.address,
+    //                 sp.pid,
+    //                 sp.pname,
+    //                 sp.price,
+    //                 sp.description as info,
+    //                 concat('http://localhost:9000/', sp.upload_file->>'$[0]') as image
+    //             from shoppy_cart sc,
+    //                 shoppy_member sm,
+    //                 shoppy_product sp
+    //             where sc.id = sm.id 
+    //                     and sc.pid = sp.pid
+    //                     and sm.id = ?
+    // `;
     const [result] = await db.execute(sql, [id]);
     return result;
 }

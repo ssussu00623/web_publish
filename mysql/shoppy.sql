@@ -225,3 +225,80 @@ where id = 'hong1234';
  
  -- 0218
  select * from shoppy_cart;
+
+select * from shoppy_cart where id = 'test123';
+
+
+-- 주문결제 페이지에 보여주는 데이터
+    select sc.cid,
+        sc.size,
+        sc.qty,
+        sm.id,
+        sm.name,
+        sm.phone,
+		concat(sm.emailname, '@', sm.emaildomain) as email,
+        sm.zipcode,
+        sm.address,
+        sp.pid,
+        sp.pname,
+        sp.price,
+        sp.description as info,
+        concat('http://localjhost:9000/', sp.upload_file->> '$[0]') as image
+    from shoppy_cart sc,
+        shoppy_member sm,
+        shoppy_product sp
+    where sc.id = sm.id 
+		and sc.pid = sp.pid ;
+
+-- 전체 주문 리스트 뷰 생성
+create view view_order_list
+as 
+    select sc.cid,
+        sc.size,
+        sc.qty,
+        sm.id,
+        sm.name,
+        sm.phone,
+		concat(sm.emailname, '@', sm.emaildomain) as email,
+        sm.zipcode,
+        sm.address,
+        sp.pid,
+        sp.pname,
+        sp.price,
+        sp.description as info,
+        concat('http://localjhost:9000/', sp.upload_file->> '$[0]') as image
+    from shoppy_cart sc,
+        shoppy_member sm,
+        shoppy_product sp
+    where sc.id = sm.id 
+		and sc.pid = sp.pid ;
+        
+select * from view_order_list
+	where id = 'test123';
+    
+-- 카트리스트 뷰 생성
+create view view_cart_list
+	as
+            select  sc.cid,
+                    sc.size,
+                    sc.qty,
+                    sm.id,
+                    sm.name,
+                    concat(sm.emailname, '@', sm.emaildomain) as email,
+                    sm.zipcode,
+                    sm.address,
+                    sp.pid,
+                    sp.pname,
+                    sp.price,
+                    sp.description as info,
+                    concat('http://localhost:9000/', sp.upload_file->>'$[0]') as image
+                from shoppy_cart sc,
+                    shoppy_member sm,
+                    shoppy_product sp
+                where sc.id = sm.id 
+                        and sc.pid = sp.pid ; 
+                        
+select * from view_cart_list
+	where id = 'test123';
+    
+drop view view_cart_list;

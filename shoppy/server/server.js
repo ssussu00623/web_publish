@@ -5,7 +5,8 @@ import uploadRouter from './router/uploadRouter.js'
 import path from 'path' 
 import productRouter from './router/productRouter.js'
 import cartRouter from './router/cartRouter.js'
-  
+import orderRouter from './router/orderRouter.js'
+   
 // 서버 생성 및 포트 정의
 const server = express();
 const port = 9000;
@@ -24,6 +25,7 @@ server.use('/member', memberRouter);
 server.use('/uploads', uploadRouter);
 server.use("/product", productRouter);
 server.use("/cart", cartRouter);
+server.use("/order", orderRouter);
 
 
 server.listen(port, ()=>{
@@ -55,4 +57,4 @@ server.listen(port, ()=>{
 //     console.log(`server start===> ${port}`);
     
 // });
-// // 기본 준비 완... nodemon sercer.js 로 실행
+// // 기본 준비 완... nodemon sercer.js 로 실행 */

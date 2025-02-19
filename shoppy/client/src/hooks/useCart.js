@@ -5,7 +5,7 @@ import axios from 'axios';
 
 
 export function useCart() { // 일반 함수와 같은 형식이지만 use가 붙었으니 커스텀 훅(custom Hook)이라고 한다. 
-    const { cartList, setCartList, cartCount, setCartCount } = useContext(CartContext) //3번 라인에서 설명한 것 
+    const { cartList, setCartList, cartCount, setCartCount, totalPrice, setTotalPrice } = useContext(CartContext) //3번 라인에서 설명한 것 
 
     //함수 생성 - 비동기 로직 & useContext가 관히하는 변수는 awit/async를 통해 순서 보장 
     /**
@@ -17,6 +17,7 @@ export function useCart() { // 일반 함수와 같은 형식이지만 use가 �
         // setCartCount(cartCount + 1); 새로운 아이템이 있을 때만 넣어주면 되니 해당하는 곳에 빼준다.
         setCartList(result.data); // 모든 카트리스트 업데이트 
         setCartCount(result.data.length);
+        calculateTotalPrice(result.data);
     }
 
 
@@ -69,6 +70,14 @@ export function useCart() { // 일반 함수와 같은 형식이지만 use가 �
     const deleteCartItem = async(cid)=>{
         const result = await axios.delete("http://localhost:9000/cart/deleteItem",{ data : {"cid": cid}})
         result.data.result_rows && getCartList(); 
+    }
+    /**
+     * 장바구니 총 주문금액 계산하기
+     * 내부에서만 돌아갈 예정이기 때문에... 리턴되지 않는다. 
+     */
+    const calculateTotalPrice = (cartList)=>{
+        const totalPrice = cartList.reduce((sum, item)=> sum + item.price * item.qty, 0);
+        setTotalPrice(totalPrice);
     }
 
     return { saveToCartList, updateCartList, getCartList, getCount, setCount, deleteCartItem};
