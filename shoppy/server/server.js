@@ -25,7 +25,7 @@ server.use("/upload_files", express.static(path.join("upload_files"))); //  저�
 // server.use('/signup');
 // signup/1/member 이런식으로 signup 페이지로 늘어나는게 아니기 떄문에... 대표 주소로 주기엔 애매한 감이 있음
 server.use('/member', memberRouter);
-server.use('/uploads', uploadRouter);
+server.use('/uploads', uploadRouter); 
 server.use("/product", productRouter);
 server.use("/cart", cartRouter);
 server.use("/order", orderRouter);
